@@ -1,0 +1,41 @@
+body {
+    width: 80%;
+    margin: 0px auto 0px auto;
+    background: #fff url(/ikmsm/images/topbluefade.png) repeat-x;
+}
+
+div#navigation {
+    text-align: center;
+    margin: 15px 0 30px 0;
+}
+
+div#navigation a {
+    color: black;
+    background: white;
+    text-decoration: underline;
+    padding: 3px 10px 3px 10px;
+    margin: 0px 10px 0px 10px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+div#navigation a:hover, a:focus, a:active {
+    color: white;
+    background: #5aa2dc;
+}
+
+a:hover, a:focus, a:active {
+    color: white;
+    background: #5aa2dc;
+}
+
+div.figure {
+    float: right;
+    margin: 20px 0px 20px 20px;
+}
+
+div.figure p.caption {
+    text-align: center;
+    font-style: italic;
+}
