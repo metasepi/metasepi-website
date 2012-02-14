@@ -6,4 +6,4 @@ title: toppage
 
 [Source code](https://gitorious.org/metasepi/)
 
-(NetBSD design will be revitalized in functinal world.)
+(NetBSD design will be reborn in the functinal sea.)
