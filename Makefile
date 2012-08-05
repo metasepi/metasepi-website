@@ -1,7 +1,7 @@
 all: build
 
 hakyll: hakyll.hs
-	ghc --make -Wall hakyll.hs -o hakyll
+	ghc --make -Wall -Werror hakyll.hs -o hakyll
 
 build: hakyll
 	./hakyll build

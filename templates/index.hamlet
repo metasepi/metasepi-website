@@ -1,0 +1,47 @@
+<h1>Metasepi
+<p>
+  NetBSD design will be reborn in the functinal sea.
+
+<h2>News
+<ul>
+  #{posts}
+
+<div.clearfix>
+
+<div.left-column>
+  <h2>Links
+  <ul>
+    <li><a href="http://twitter.com/metasepi">Twitter</a>
+    <li><a href="http://www.facebook.com/metasepi">Facebook</a>
+    <li><a href="https://gitorious.org/metasepi/">Source code</a>
+
+<div.right-column>
+  <script src="http://widgets.twimg.com/j/2/widget.js">
+  <script>
+    new TWTR.Widget({
+    version: 2,
+    type: 'profile',
+    rpp: 4,
+    interval: 30000,
+    width: '250',
+    height: 200,
+    theme: {
+      shell: {
+        background: '#333333',
+        color: '#ffffff'
+      },
+      tweets: {
+        background: '#000000',
+        color: '#ffffff',
+        links: '#4aed05'
+      }
+    },
+    features: {
+      scrollbar: true,
+      loop: true,
+      live: true,
+     behavior: 'default'
+    } 
+    }).render().setUser('metasepi').start();
+
+<div.clearfix>

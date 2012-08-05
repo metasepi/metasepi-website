@@ -1,5 +1,9 @@
-_cache/
-_site/
-hakyll
+*#
 *.hi
 *.o
+*~
+hakyll
+_cache/
+_site/
+draft/
+revhs/

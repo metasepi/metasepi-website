@@ -1,0 +1,73 @@
+$doctype 5
+
+\<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+\<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+\<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+\<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>#{title} - Metasepi
+
+  <meta name="description" content="metasepi.masterq.net">
+  <meta name="author" content="Kiwamu Okabe">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="http://metasepi.masterq.net/rss.xml" rel="alternate" title="RSS" type="application/rss+xml">
+
+  <!-- CSS concatenated and minified via ant build script-->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  <link rel="stylesheet" href="/css/calendar.css">
+  <!-- end CSS-->
+
+  <link rel="stylesheet" href="/css/default.css">
+
+  <script src="/js/libs/modernizr-2.0.6.min.js">
+
+<body onload="prettyPrint()">
+  <div#fb-root>
+  <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = '//connect.facebook.net/ja_JP/all.js#xfbml=1';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+  <header.topbar>
+    <div.container>
+      <div.brand>
+        <a href="/">Metasepi
+
+      <div.nav>
+        <li><a href="/">Home</a>
+        <li><a href="/posts.html">Blog</a>
+        <li><a href="/about.html">About</a>
+
+  <div.container>
+    <div.content>
+      #{body}
+
+    <footer>
+      <p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+        <br>
+        Powered by <a href="http://jaspervdj.be/hakyll/">Hakyll</a> 
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
+  <script>window.jQuery || document.write('<script src="/js/libs/jquery-1.6.2.min.js"><\/script>')
+
+  <!-- scripts concatenated and minified via ant build script-->
+  <script defer src="/js/plugins.js">
+  <script defer src="/js/script.js">
+  <!-- end scripts-->
+
+  \<!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js">
+    <script>
+      window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})
+  \<![endif]-->
