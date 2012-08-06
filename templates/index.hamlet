@@ -15,7 +15,7 @@
     <li><a href="http://www.facebook.com/metasepi">Facebook</a>
     <li><a href="https://gitorious.org/metasepi/">Source code</a>
 
-<div.right-column>
+<div.right-column-nowidth>
   <script src="http://widgets.twimg.com/j/2/widget.js">
   <script>
     new TWTR.Widget({

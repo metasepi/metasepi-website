@@ -127,6 +127,11 @@ body {
     width: 380px;
 }
 
+.right-column-nowidth {
+    display: inline;
+    float: right;
+}
+
 .left {
     float: left;
 }
