@@ -66,6 +66,12 @@ $doctype 5
   <script defer src="/js/script.js">
   <!-- end scripts-->
 
+  <script>
+    window._gaq = [['_setAccount','UA-158383-8'],['_trackPageview'],['_trackPageLoadTime']];
+    Modernizr.load({
+      load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+    });
+
   \<!--[if lt IE 7 ]>
     <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js">
     <script>
