@@ -1,7 +1,7 @@
 ---
 title: Metasepi航海日誌はじめるでゲソ
 description: 型推論のある言語を使ってkernelを書くことはできなイカ？
-tags: Project
+tags: project
 ---
 
 おまえたち!久し振りでゲソ!

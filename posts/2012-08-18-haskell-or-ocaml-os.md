@@ -1,7 +1,7 @@
 ---
 title: Haskell/OCaml製のOSって何があるんでゲソ？
 description: 作る前に類似の例がないか調べるでゲソ。
-tags: haskell ocaml os
+tags: haskell, ocaml, os
 ---
 
 ざっくり検索してみると、こんなところみたいでゲソ。
