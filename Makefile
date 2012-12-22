@@ -1,4 +1,10 @@
-all: build
+ODGS := $(wildcard draw/*.odg)
+PNGS := $(patsubst %.odg,%.png,${ODGS})
+
+all: build ${PNGS}
+
+%.png: %.odg
+	unoconv -f png $<
 
 hakyll: hakyll.hs
 	ghc --make -Wall -Werror hakyll.hs -o hakyll
@@ -22,5 +28,8 @@ clean:
 	rm -rf hakyll
 	rm -rf *.hi *.o
 	rm -rf `find . -name "*~"`
+
+distclean: clean
+	rm -f draw/*.png
 
 .PHONY: lint clean
