@@ -75,6 +75,10 @@ main = hakyll $ do
   void $ match "templates/*" $ compile templateCompiler
 
   -- static contents
+  void $ match "draw/*.png" $ do
+    route idRoute
+    compile copyFileCompiler
+
   void $ match "img/**" $ do
     route idRoute
     compile copyFileCompiler
