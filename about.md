@@ -9,6 +9,6 @@ Secret yet.
 ## What is Arafura?
 
 Initial code name of a Metasepi design.
-And you know that [Metasepia pfefferi](http://en.wikipedia.org/wiki/Metasepia_pfefferi) lives these.
+And you know where [Metasepia pfefferi](http://en.wikipedia.org/wiki/Metasepia_pfefferi) live in.
 
 ![](img/arafura_map.png)
