@@ -78,7 +78,6 @@ html, body {
 
 body {
     margin:      0px;
-    padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
 }
 
 .container > footer {
@@ -159,7 +158,6 @@ pre.sourceCode {
     background-color: #333;
     color: white;
     height: 40px;
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;
