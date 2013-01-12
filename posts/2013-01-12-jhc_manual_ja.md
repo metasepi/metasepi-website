@@ -11,6 +11,9 @@ tags: haskell, jhc, specification, translation
 [Jhc User's Manual](http://repetae.net/computer/jhc/manual.html)
 は当然のごとく英語...自然言語さえ苦手なワシには読めんでゲソ。
 そこで根性で日本語訳してみたでゲッソ!
+^[後半の"jhcコア型システム"の章の翻訳は
+[differential_engine (dif_engine)](https://twitter.com/dif_engine)
+さんに手伝ってもらったでゲッソ。感謝でゲソー]
 ざんねんながらワシには専門知識が圧倒的に欠如しているので、用語のミスや根本的な間違いなどを見つけたら是非教えて欲しいでゲソ。
 この記事は翻訳の修正をするたびに随時更新するつもりでゲソ。
 
