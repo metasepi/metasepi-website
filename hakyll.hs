@@ -35,7 +35,7 @@ main = hakyll $ do
     >>> applyTemplateCompiler "templates/default.hamlet"
 
   -- pages
-  void $ match (list ["about.md"]) $ do
+  void $ match (list ["about.md", "map.md"]) $ do
     route $ setExtension "html"
     compile $
       pageCompilerWithPandoc
