@@ -29,7 +29,7 @@ Easy come. Easy go. 気楽にいこうでゲッソ!
 
 ### 再入とは - @takeoka
 
-資料は後日はりつけ予定でゲッソ。
+<iframe src="http://www.slideshare.net/slideshow/embed_code/16333875" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="http://www.slideshare.net/takeoka1/interrupt-jhc" title="Interrupt jhc" target="_blank">Interrupt jhc</a> </strong> from <strong><a href="http://www.slideshare.net/takeoka1" target="_blank">たけおか しょうぞう</a></strong> </div>
 
 ### Metasepiブログエントリの解説 - @masterq_hentai
 
