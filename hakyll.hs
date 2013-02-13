@@ -116,7 +116,7 @@ makeTagList tagg posts =
 feedConfiguration :: FeedConfiguration
 feedConfiguration = FeedConfiguration
   { feedTitle       = "Metasepi Logbook"
-  , feedDescription = "A diary to develop Metasepi kernel"
+  , feedDescription = "A diary to develop Metasepi kernel."
   , feedAuthorName  = "Kiwamu Okabe"
   , feedRoot        = "http://metasepi.masterq.net/"
   }
