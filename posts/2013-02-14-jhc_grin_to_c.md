@@ -201,11 +201,6 @@ fW@.fJhc.Inst.Show.showWord w1540496947 ni1826240557 = do
 
 ~~~ {.c}
 /* C言語 */
-struct sCJhc_Prim_Prim_$x3a {
-    sptr_t a1;
-    sptr_t a2;
-};
-
 static wptr_t A_STD A_MALLOC
 fW$__fJhc_Inst_Show_showWord(gc_t gc,uint32_t v1540496947,sptr_t v1826240557)
 {
@@ -249,14 +244,40 @@ fW$__fJhc_Inst_Show_showWord(gc_t gc,uint32_t v1540496947,sptr_t v1826240557)
 }
 ~~~
 
-C言語側にGrinコード断片をコメントで入れてみたでゲソ。だいたい1対1に対応が取れているでゲソ。
+C言語側にGrinコード断片をコメントで入れてみたでゲソ。
+だいたい1対1に対応が取れているじゃなイカ。
 ここではGrinとC言語の違いに着目して、そのしくみを詳しく見てみるでゲソ。
 
-* dstoreがRAW_SET_UFに
-* dstoreがs_allocに
-* fW@.fR@.fJhc.Inst.Show.showWordの再帰がgotoループに
+まず第一にdstore (CJhc.Type.Basic.Char,x)がRAW_SET_UF(x)になることがあるでゲソ。
+このRAW_SET_UF()はイカのような定義で、即値のWHNFに変換してくれるでゲソ。
+CJhc.Type.Basic.Charは即値なので、RAW_SET_UF()を使ってスマートポインタに埋め込まれるんじゃなイカ。
 
-xxxxxxxx
+~~~ {.c}
+#define RAW_SET_UF(n)  ((wptr_t)(((uintptr_t)(n) << 2) | P_VALUE))
+~~~
+
+ところがdstore (CJhc.Prim.Prim.: x y)
+のような場合にはイカのようにs_alloc()でヒープへのスマートポインタを作って、
+格納するでゲソ。
+これはHaskellの(:)演算子を思いうかべればすぐわかるでゲソ。
+(:)演算子は2つの要素をconsし、
+そのconsした結果がstruct sCJhc_Prim_Prim_$x3aなんでゲソ。
+つまりconsする旅にヒープの領域を消費するということでゲソ。
+
+~~~ {.c}
+struct sCJhc_Prim_Prim_$x3a {
+    sptr_t a1;
+    sptr_t a2;
+};
+
+wptr_t x4 = s_alloc(gc,cCJhc_Prim_Prim_$x3a);
+((struct sCJhc_Prim_Prim_$x3a*)x4)->a1 = x;
+((struct sCJhc_Prim_Prim_$x3a*)x4)->a2 = y;
+~~~
+
+最後にfW@.fR@.fJhc.Inst.Show.showWord関数の再帰がgotoループになっているでゲソ。
+たまたまこの関数の例はすぐにループ化できる再帰だから良かったでゲソ。
+しかし、原理的に全ての再帰がループ化されるのカ？少し不安でゲソ...
 
 ### 4. Func: fJhc.Show.shows :: (I,I) -> (N)
 ### 5. Func: fR@.fJhc.Show.11_showl :: (I,N) -> (N)
