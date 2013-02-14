@@ -17,10 +17,10 @@ hakyll: hakyll.hs
 build: hakyll
 	./hakyll build
 
-server: build
+server: all
 	./hakyll server
 
-publish: build
+publish: all
 	ssh sakura.masterq.net rm -rf ~/vhosts/_site
 	scp -pr _site sakura.masterq.net:~/vhosts/
 	ssh sakura.masterq.net rm -rf ~/vhosts/metasepi
