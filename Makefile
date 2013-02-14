@@ -1,7 +1,7 @@
 ODGS := $(wildcard draw/*.odg)
 PNGS := $(patsubst %.odg,%.png,${ODGS})
 
-all: build ${PNGS}
+all: ${PNGS} build
 
 %.png: %.odg
 	unoconv -n -f png -o $@.tmp $< 2> /dev/null   || \

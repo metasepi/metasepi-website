@@ -280,6 +280,97 @@ wptr_t x4 = s_alloc(gc,cCJhc_Prim_Prim_$x3a);
 しかし、原理的に全ての再帰がループ化されるのカ？少し不安でゲソ...
 
 ### 4. Func: fJhc.Show.shows :: (I,I) -> (N)
+
+~~~ {.haskell}
+-- Grin --
+fJhc.Show.shows :: (I,I) -> (N)
+fJhc.Show.shows ni29375120 ni44000678 = do
+  withRoots(ni44000678)
+    nd100038 <- eval ni29375120
+    (CJhc.Type.Word.Int w216085094) <- return nd100038
+    h100040 <- 0 `Gt` w216085094
+    case h100040 of
+      1 -> do
+        w196289068 <- (bits32)Neg w216085094
+        bm253468954 <- (bits<max>)ConvOp Sx bits32 w196289068
+        w124235152 <- (bits32)ConvOp Lobits bits<max> bm253468954
+        ni244126258 <- istore (FW@.fJhc.Inst.Show.showWord w124235152 ni44000678)
+        withRoots(ni244126258)
+          dstore (CJhc.Prim.Prim.: &(CJhc.Type.Basic.Char 45) ni244126258)
+      0 -> do
+        bm220263214 <- (bits<max>)ConvOp Sx bits32 w216085094
+        w110207578 <- (bits32)ConvOp Lobits bits<max> bm220263214
+        fW@.fJhc.Inst.Show.showWord w110207578 ni44000678
+~~~
+
+~~~ {.c}
+/* C言語 */
+static wptr_t A_STD A_MALLOC
+fJhc_Show_shows(gc_t gc,sptr_t v29375120,sptr_t v44000678)
+{
+        {   uint32_t v216085094;
+            gc_frame0(gc,1,v44000678); // withRoots(ni44000678)
+            wptr_t v100038 = eval(gc,v29375120); // nd100038 <- eval ni29375120
+            v216085094 = ((struct sCJhc_Type_Word_Int*)v100038)->a1; // (CJhc.Type.Word.Int w216085094) <- return nd100038
+            uint16_t v100040 = (((int32_t)0) > ((int32_t)v216085094)); // h100040 <- 0 `Gt` w216085094
+            if (0 == v100040) { // case h100040 of 0 -> do
+                uintmax_t v220263214 = ((intmax_t)((int32_t)v216085094)); // bm220263214 <- (bits<max>)ConvOp Sx bits32 w216085094
+                uint32_t v110207578 = ((uint32_t)v220263214); // w110207578 <- (bits32)ConvOp Lobits bits<max> bm220263214
+                return fW$__fJhc_Inst_Show_showWord(gc,v110207578,v44000678); // fW@.fJhc.Inst.Show.showWord w110207578 ni44000678
+            } else { // 1 -> do
+                /* 1 */
+                assert(1 == v100040);
+                uint32_t v196289068 = (-((int32_t)v216085094)); // w196289068 <- (bits32)Neg w216085094
+                uintmax_t v253468954 = ((intmax_t)((int32_t)v196289068)); // bm253468954 <- (bits<max>)ConvOp Sx bits32 w196289068
+                uint32_t v124235152 = ((uint32_t)v253468954); // w124235152 <- (bits32)ConvOp Lobits bits<max> bm253468954
+                sptr_t x5 = s_alloc(gc,cFW$__fJhc_Inst_Show_showWord); // ni244126258 <- istore (FW@.fJhc.Inst.Show.showWord w124235152 ni44000678)
+                ((struct sFW$__fJhc_Inst_Show_showWord*)x5)->head = TO_FPTR(&E__fW$__fJhc_Inst_Show_showWord);
+                ((struct sFW$__fJhc_Inst_Show_showWord*)x5)->a1 = v124235152;
+                ((struct sFW$__fJhc_Inst_Show_showWord*)x5)->a2 = v44000678;
+                sptr_t v244126258 = MKLAZY(x5);
+                {   gc_frame0(gc,1,v244126258); // withRoots(ni244126258)
+                    wptr_t x6 = s_alloc(gc,cCJhc_Prim_Prim_$x3a); // dstore (CJhc.Prim.Prim.: &(CJhc.Type.Basic.Char 45) ni244126258)
+                    ((struct sCJhc_Prim_Prim_$x3a*)x6)->a1 = ((sptr_t)RAW_SET_UF('-'));
+                    ((struct sCJhc_Prim_Prim_$x3a*)x6)->a2 = v244126258;
+                    return x6;
+                }
+            }
+        }
+}
+~~~
+
+これもほぼ1対1に対応しているでゲソが、唯一の例外が
+istore (FW@.fJhc.Inst.Show.showWord x y)
+がs_alloc()によるヒープの確保に化けることでゲソ。
+
+~~~ {.c}
+struct sFW$__fJhc_Inst_Show_showWord {
+    fptr_t head;
+    sptr_t a2;
+    uint32_t a1;
+};
+
+sptr_t x5 = s_alloc(gc,cFW$__fJhc_Inst_Show_showWord);
+((struct sFW$__fJhc_Inst_Show_showWord*)x5)->head = TO_FPTR(&E__fW$__fJhc_Inst_Show_showWord);
+((struct sFW$__fJhc_Inst_Show_showWord*)x5)->a1 = x;
+((struct sFW$__fJhc_Inst_Show_showWord*)x5)->a2 = y;
+sptr_t v244126258 = MKLAZY(x5);
+~~~
+
+この謎はjhcのjhcライブラリのソース見れば理解できるでゲソ。
+showWord関数はイカのように通常のLazyな関数じゃなイカ。
+ということはここでは未評価サンクだけ作り後で誰かがforceしてくれるのを待てばいいんでゲソ。
+ここで作成する未評価サンクの実体がstruct sFW$__fJhc_Inst_Show_showWordで、
+やはりヒープに確保されるでゲソ。
+
+~~~ {.haskell}
+-- jhc/lib/jhc/Jhc/Inst/Show.hs
+showWord :: Word -> String -> String
+showWord w rest = w `seq` case quotRem w 10 of
+    (n',d) -> n' `seq` d `seq` rest' `seq` if n' == 0 then rest' else showWord n' rest'
+        where rest' = chr (fromIntegral d + ord '0') : rest
+~~~
+
 ### 5. Func: fR@.fJhc.Show.11_showl :: (I,N) -> (N)
 ### 6. Func: ftheMain$2 :: (I,I) -> (N)
 ### 7. Func: fR@.fJhc.Basics.++ :: (I,N) -> (N)
