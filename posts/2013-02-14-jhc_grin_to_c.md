@@ -1,6 +1,6 @@
 ---
 title: (作成中) jhcコンパイルパイプライン: Grin => C
-description: jhcは
+description: jhcコンパイルパイプラインを後段から順番に読んでいかなイカ？
 tags: compiler, jhc, c, grin
 ---
 
