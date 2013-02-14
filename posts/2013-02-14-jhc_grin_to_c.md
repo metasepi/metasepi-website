@@ -143,7 +143,121 @@ ftheMain
 jhcのコンパイル結果にeval()を使っている箇所があったら注意して確認する必要があるということになるでゲソ。
 
 ### 2. Func: b_main :: () -> ()
+
+~~~ {.haskell}
+-- Grin --
+-- Functions
+b_main :: () -> ()
+b_main  = do
+  ftheMain
+~~~
+
+~~~ {.c}
+/* C言語 */
+void
+_amain(void)
+{
+        return (void)b__main(saved_gc);
+}
+
+static void A_STD
+b__main(gc_t gc)
+{
+        return ftheMain(gc);
+}
+~~~
+
+うむ。これはなんかそのままでゲソ。
+あえて違うところを挙げるとするならsaved_gcを引数で取り回すということでゲソ。
+saved_gcはjgcの機能なので、別のGCを選択した場合には当然この出力も変化するはずでゲソ。
+
 ### 3. Func: fW@.fJhc.Inst.Show.showWord :: (bits32,I) -> (N)
+
+~~~ {.haskell}
+-- Grin --
+fW@.fJhc.Inst.Show.showWord :: (bits32,I) -> (N)
+fW@.fJhc.Inst.Show.showWord w1540496947 ni1826240557 = do
+  let
+      fW@.fR@.fJhc.Inst.Show.showWord w80100072 ni196335308 = do
+        w40405746 <- w80100072 / 10
+        w253468956 <- w80100072 % 10
+        bm124940226 <- (bits<max>)ConvOp Zx bits32 w253468956
+        w132127022 <- (bits32)ConvOp Lobits bits<max> bm124940226
+        w26031830 <- 48 + w132127022
+        w260152044 <- (bits32)ConvOp B2B bits32 w26031830
+        withRoots(ni196335308)
+          nd122 <- dstore (CJhc.Type.Basic.Char w260152044)
+          ni55102202 <- demote nd122
+          case w40405746 of
+            0 -> withRoots(ni55102202)
+              dstore (CJhc.Prim.Prim.: ni55102202 ni196335308)
+            w0 -> withRoots(ni55102202)
+              nd15 <- dstore (CJhc.Prim.Prim.: ni55102202 ni196335308)
+              ni1829124143 <- demote nd15
+              fW@.fR@.fJhc.Inst.Show.showWord w40405746 ni1829124143
+   in
+    fW@.fR@.fJhc.Inst.Show.showWord w1540496947 ni1826240557
+~~~
+
+~~~ {.c}
+/* C言語 */
+struct sCJhc_Prim_Prim_$x3a {
+    sptr_t a1;
+    sptr_t a2;
+};
+
+static wptr_t A_STD A_MALLOC
+fW$__fJhc_Inst_Show_showWord(gc_t gc,uint32_t v1540496947,sptr_t v1826240557)
+{
+        sptr_t v196335308;
+        uint32_t v80100072;
+        // let fW@.fR@.fJhc.Inst.Show.showWord w80100072 ni196335308 = do
+        // fW@.fR@.fJhc.Inst.Show.showWord w1540496947 ni1826240557
+        v80100072 = v1540496947;
+        v196335308 = v1826240557;
+        fW$__fR$__fJhc_Inst_Show_showWord__2:;
+        {   uint32_t v40405746 = (v80100072 / 10); // w40405746 <- w80100072 / 10
+            uint32_t v253468956 = (v80100072 % 10); // w253468956 <- w80100072 % 10
+            uintmax_t v124940226 = ((uintmax_t)v253468956); // bm124940226 <- (bits<max>)ConvOp Zx bits32 w253468956
+            uint32_t v132127022 = ((uint32_t)v124940226); // w132127022 <- (bits32)ConvOp Lobits bits<max> bm124940226
+            uint32_t v26031830 = (48 + v132127022); // w26031830 <- 48 + w132127022
+            uint32_t v260152044 = v26031830; // w260152044 <- (bits32)ConvOp B2B bits32 w26031830
+            {   gc_frame0(gc,1,v196335308);
+                wptr_t v122 = RAW_SET_UF(v260152044); // nd122 <- dstore (CJhc.Type.Basic.Char w260152044)
+                sptr_t v55102202 = demote(v122); // ni55102202 <- demote nd122
+                if (0 == v40405746) { // case w40405746 of 0 ->
+                    {   gc_frame0(gc,1,v55102202);
+                        wptr_t x3 = s_alloc(gc,cCJhc_Prim_Prim_$x3a); // dstore (CJhc.Prim.Prim.: ni55102202 ni196335308)
+                        ((struct sCJhc_Prim_Prim_$x3a*)x3)->a1 = v55102202;
+                        ((struct sCJhc_Prim_Prim_$x3a*)x3)->a2 = v196335308;
+                        return x3;
+                    }
+                } else { // w0 ->
+                    {   gc_frame0(gc,1,v55102202);
+                        wptr_t x4 = s_alloc(gc,cCJhc_Prim_Prim_$x3a); // nd15 <- dstore (CJhc.Prim.Prim.: ni55102202 ni196335308)
+                        ((struct sCJhc_Prim_Prim_$x3a*)x4)->a1 = v55102202;
+                        ((struct sCJhc_Prim_Prim_$x3a*)x4)->a2 = v196335308;
+                        wptr_t v15 = x4;
+                        sptr_t v1829124143 = demote(v15); // ni1829124143 <- demote nd15
+                        v80100072 = v40405746; // fW@.fR@.fJhc.Inst.Show.showWord w40405746 ni1829124143
+                        v196335308 = v1829124143;
+                        goto fW$__fR$__fJhc_Inst_Show_showWord__2;
+                    }
+                }
+            }
+        }
+}
+~~~
+
+C言語側にGrinコード断片をコメントで入れてみたでゲソ。だいたい1対1に対応が取れているでゲソ。
+ここではGrinとC言語の違いに着目して、そのしくみを詳しく見てみるでゲソ。
+
+* dstoreがRAW_SET_UFに
+* dstoreがs_allocに
+* fW@.fR@.fJhc.Inst.Show.showWordの再帰がgotoループに
+
+xxxxxxxx
+
 ### 4. Func: fJhc.Show.shows :: (I,I) -> (N)
 ### 5. Func: fR@.fJhc.Show.11_showl :: (I,N) -> (N)
 ### 6. Func: ftheMain$2 :: (I,I) -> (N)
@@ -152,6 +266,7 @@ jhcのコンパイル結果にeval()を使っている箇所があったら注�
 ### 9. Func: fR@.fJhc.Basics.zipWith :: (I,I) -> (N)
 ### 10. Func: fW@.fR@.fJhc.List.387_f :: (bits32,I) -> (N)
 ### 11. Func: ftheMain :: () -> ()
+### Grin由来ではないC言語コード
 
 xxxxxxxx
 
