@@ -493,21 +493,34 @@ ftheMain$2 ni38 ni42 = do
 static wptr_t A_STD A_MALLOC
 ftheMain$d2(gc_t gc,sptr_t v38,sptr_t v42)
 {
-        {   gc_frame0(gc,1,v42);
-            wptr_t v100032 = eval(gc,v38);
+        {   gc_frame0(gc,1,v42); // withRoots(ni42)
+            wptr_t v100032 = eval(gc,v38); // nd100032 <- eval ni38
             {   uint32_t v239029634;
                 uint32_t v242159974;
-                gc_frame0(gc,1,v100032);
-                wptr_t v100092 = eval(gc,v42);
-                v239029634 = ((struct sCJhc_Type_Word_Int*)v100032)->a1;
-                v242159974 = ((struct sCJhc_Type_Word_Int*)v100092)->a1;
-                uint32_t v215350916 = (v239029634 + v242159974);
-                wptr_t x11 = s_alloc(gc,cCJhc_Type_Word_Int);
+                gc_frame0(gc,1,v100032); // withRoots(nd100032)
+                wptr_t v100092 = eval(gc,v42); // nd100092 <- eval ni42
+                v239029634 = ((struct sCJhc_Type_Word_Int*)v100032)->a1; // (CJhc.Type.Word.Int w239029634) <- return nd100032
+                v242159974 = ((struct sCJhc_Type_Word_Int*)v100092)->a1; // (CJhc.Type.Word.Int w242159974) <- return nd100092
+                uint32_t v215350916 = (v239029634 + v242159974); // w215350916 <- w239029634 + w242159974
+                wptr_t x11 = s_alloc(gc,cCJhc_Type_Word_Int); // dstore (CJhc.Type.Word.Int w215350916)
                 ((struct sCJhc_Type_Word_Int*)x11)->a1 = v215350916;
                 return x11;
             }
         }
 }
+~~~
+
+ここではじめて"+"演算子を使っているでゲソ。
+中間に変数をはさんでいるのでわかりにくいでゲソが、全部展開するとイカのような処理のはずでゲソ。
+jhcではプリミティブ型が則、C言語のプリミティブ型に落ちるので、こんな芸当ができるんでゲソ!
+
+~~~ {.c}
+struct sCJhc_Type_Word_Int {
+    uint32_t a1;
+};
+
+((struct sCJhc_Type_Word_Int*)x11)->a1 =
+  ((struct sCJhc_Type_Word_Int*)v100032)->a1 + ((struct sCJhc_Type_Word_Int*)v100092)->a1;
 ~~~
 
 ### 7. Func: fR@.fJhc.Basics.++ :: (I,N) -> (N)
