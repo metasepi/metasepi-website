@@ -544,24 +544,24 @@ fR@.fJhc.Basics.++ ni29534742 nd29534740 = do
 static wptr_t A_STD A_MALLOC
 fR$__fJhc_Basics_$pp(gc_t gc,sptr_t v29534742,wptr_t v29534740)
 {
-        {   gc_frame0(gc,1,v29534740);
-            wptr_t v100000 = eval(gc,v29534742);
-            if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100000) {
-                return v29534740;
-            } else {
+        {   gc_frame0(gc,1,v29534740); // withRoots(nd29534740)
+            wptr_t v100000 = eval(gc,v29534742); // nd100000 <- eval ni29534742
+            if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100000) { // case nd100000 of [] ->
+                return v29534740; // return nd29534740
+            } else { // (CJhc.Prim.Prim.: ni106 ni108) ->
                 sptr_t v106;
                 sptr_t v108;
-                /* ("CJhc.Prim.Prim.:" ni106 ni108) */
+                /* ("CJhc.Prim.Prim.:" ni106 ni108) パターンマッチ */
                 v106 = ((struct sCJhc_Prim_Prim_$x3a*)v100000)->a1;
                 v108 = ((struct sCJhc_Prim_Prim_$x3a*)v100000)->a2;
-                {   gc_frame0(gc,2,v106,v108);
-                    sptr_t x12 = s_alloc(gc,cFR$__fJhc_Basics_$pp);
+                {   gc_frame0(gc,2,v106,v108); // withRoots(ni106,ni108)
+                    sptr_t x12 = s_alloc(gc,cFR$__fJhc_Basics_$pp); // ni69834446 <- istore (FR@.fJhc.Basics.++ ni108 nd29534740)
                     ((struct sFR$__fJhc_Basics_$pp*)x12)->head = TO_FPTR(&E__fR$__fJhc_Basics_$pp);
                     ((struct sFR$__fJhc_Basics_$pp*)x12)->a1 = v108;
                     ((struct sFR$__fJhc_Basics_$pp*)x12)->a2 = v29534740;
                     sptr_t v69834446 = MKLAZY(x12);
-                    {   gc_frame0(gc,1,v69834446);
-                        wptr_t x13 = s_alloc(gc,cCJhc_Prim_Prim_$x3a);
+                    {   gc_frame0(gc,1,v69834446); // withRoots(ni69834446)
+                        wptr_t x13 = s_alloc(gc,cCJhc_Prim_Prim_$x3a); // dstore (CJhc.Prim.Prim.: ni106 ni69834446)
                         ((struct sCJhc_Prim_Prim_$x3a*)x13)->a1 = v106;
                         ((struct sCJhc_Prim_Prim_$x3a*)x13)->a2 = v69834446;
                         return x13;
@@ -571,6 +571,8 @@ fR$__fJhc_Basics_$pp(gc_t gc,sptr_t v29534742,wptr_t v29534740)
         }
 }
 ~~~
+
+この関数はこれまでの調査結果で理解できるでゲソ。
 
 ### 8. Func: ftheMain$3 :: () -> (N)
 
@@ -583,12 +585,42 @@ ftheMain$3  = do
 
 ~~~ {.c}
 /* C言語 */
+struct sCJhc_Prim_Prim_$x3a {
+    sptr_t a1;
+    sptr_t a2;
+};
+
+#define RAW_SET_UF(n)  ((wptr_t)(((uintptr_t)(n) << 2) | P_VALUE))
+#define RAW_SET_16(w)  (wptr_t)(((uintptr_t)(w) << 16) | P_VALUE)
+#define SET_RAW_TAG(x)    RAW_SET_16(x)
+
+enum {
+    CJhc_Prim_Prim_$BE = 1,
+    CJhc_Prim_Prim_$LR = 0,
+    CJhc_Prim_Prim_$x3a = 0,
+    CJhc_Type_Basic_Char = 0,
+    CJhc_Type_Word_Int = 0
+};
+
+/* (HcNode CJhc.Prim.Prim.: [Left &("CJhc.Type.Basic.Char" 93),Left &("CJhc.Prim.Prim.[]")],1) */
+static const struct sCJhc_Prim_Prim_$x3a _c1 = {.a1 = (sptr_t)RAW_SET_UF(']'), .a2 = (sptr_t)SET_RAW_TAG(CJhc_Prim_Prim_$BE)};
+#define c1 (TO_SPTR_C(P_WHNF, (sptr_t)&_c1))
+/* (HcNode CJhc.Prim.Prim.: [Left &("CJhc.Type.Basic.Char" 91),Right 1],2) */
+static const struct sCJhc_Prim_Prim_$x3a _c2 = {.a1 = (sptr_t)RAW_SET_UF('['), .a2 = c1};
+#define c2 (TO_SPTR_C(P_WHNF, (sptr_t)&_c2))
+
 static wptr_t A_STD A_MALLOC
 ftheMain$d3(gc_t gc)
 {
         return fR$__fJhc_Basics_$pp(gc,c2,SET_RAW_TAG(CJhc_Prim_Prim_$BE));
 }
 ~~~
+
+いきなりc2というグローバル変数が出てきたじゃなイカ。これはなんでゲソ？
+
+![](/draw/2013-02-17-jhc_grin_to_c_c2.png)
+
+なるほどたしかに fR@.fJhc.Basics.++ &"[]" [] とあったので"[]"という文字列が欲しかったんでゲソね。
 
 ### 9. Func: fR@.fJhc.Basics.zipWith :: (I,I) -> (N)
 
