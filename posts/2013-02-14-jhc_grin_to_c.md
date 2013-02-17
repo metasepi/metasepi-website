@@ -476,60 +476,372 @@ class  Show a  where
 
 ~~~ {.haskell}
 -- Grin --
+ftheMain$2 :: (I,I) -> (N)
+ftheMain$2 ni38 ni42 = do
+  withRoots(ni42)
+    nd100032 <- eval ni38
+    withRoots(nd100032)
+      nd100092 <- eval ni42
+      (CJhc.Type.Word.Int w239029634) <- return nd100032
+      (CJhc.Type.Word.Int w242159974) <- return nd100092
+      w215350916 <- w239029634 + w242159974
+      dstore (CJhc.Type.Word.Int w215350916)
 ~~~
 
 ~~~ {.c}
 /* C言語 */
+static wptr_t A_STD A_MALLOC
+ftheMain$d2(gc_t gc,sptr_t v38,sptr_t v42)
+{
+        {   gc_frame0(gc,1,v42);
+            wptr_t v100032 = eval(gc,v38);
+            {   uint32_t v239029634;
+                uint32_t v242159974;
+                gc_frame0(gc,1,v100032);
+                wptr_t v100092 = eval(gc,v42);
+                v239029634 = ((struct sCJhc_Type_Word_Int*)v100032)->a1;
+                v242159974 = ((struct sCJhc_Type_Word_Int*)v100092)->a1;
+                uint32_t v215350916 = (v239029634 + v242159974);
+                wptr_t x11 = s_alloc(gc,cCJhc_Type_Word_Int);
+                ((struct sCJhc_Type_Word_Int*)x11)->a1 = v215350916;
+                return x11;
+            }
+        }
+}
 ~~~
 
 ### 7. Func: fR@.fJhc.Basics.++ :: (I,N) -> (N)
 
 ~~~ {.haskell}
 -- Grin --
+fR@.fJhc.Basics.++ :: (I,N) -> (N)
+fR@.fJhc.Basics.++ ni29534742 nd29534740 = do
+  withRoots(nd29534740)
+    nd100000 <- eval ni29534742
+    case nd100000 of
+      (CJhc.Prim.Prim.: ni106 ni108) -> withRoots(ni106,ni108)
+        ni69834446 <- istore (FR@.fJhc.Basics.++ ni108 nd29534740)
+        withRoots(ni69834446)
+          dstore (CJhc.Prim.Prim.: ni106 ni69834446)
+      [] -> return nd29534740
 ~~~
 
 ~~~ {.c}
 /* C言語 */
+static wptr_t A_STD A_MALLOC
+fR$__fJhc_Basics_$pp(gc_t gc,sptr_t v29534742,wptr_t v29534740)
+{
+        {   gc_frame0(gc,1,v29534740);
+            wptr_t v100000 = eval(gc,v29534742);
+            if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100000) {
+                return v29534740;
+            } else {
+                sptr_t v106;
+                sptr_t v108;
+                /* ("CJhc.Prim.Prim.:" ni106 ni108) */
+                v106 = ((struct sCJhc_Prim_Prim_$x3a*)v100000)->a1;
+                v108 = ((struct sCJhc_Prim_Prim_$x3a*)v100000)->a2;
+                {   gc_frame0(gc,2,v106,v108);
+                    sptr_t x12 = s_alloc(gc,cFR$__fJhc_Basics_$pp);
+                    ((struct sFR$__fJhc_Basics_$pp*)x12)->head = TO_FPTR(&E__fR$__fJhc_Basics_$pp);
+                    ((struct sFR$__fJhc_Basics_$pp*)x12)->a1 = v108;
+                    ((struct sFR$__fJhc_Basics_$pp*)x12)->a2 = v29534740;
+                    sptr_t v69834446 = MKLAZY(x12);
+                    {   gc_frame0(gc,1,v69834446);
+                        wptr_t x13 = s_alloc(gc,cCJhc_Prim_Prim_$x3a);
+                        ((struct sCJhc_Prim_Prim_$x3a*)x13)->a1 = v106;
+                        ((struct sCJhc_Prim_Prim_$x3a*)x13)->a2 = v69834446;
+                        return x13;
+                    }
+                }
+            }
+        }
+}
 ~~~
 
 ### 8. Func: ftheMain$3 :: () -> (N)
 
 ~~~ {.haskell}
 -- Grin --
+ftheMain$3 :: () -> (N)
+ftheMain$3  = do
+  fR@.fJhc.Basics.++ &"[]" []
 ~~~
 
 ~~~ {.c}
 /* C言語 */
+static wptr_t A_STD A_MALLOC
+ftheMain$d3(gc_t gc)
+{
+        return fR$__fJhc_Basics_$pp(gc,c2,SET_RAW_TAG(CJhc_Prim_Prim_$BE));
+}
 ~~~
 
 ### 9. Func: fR@.fJhc.Basics.zipWith :: (I,I) -> (N)
 
 ~~~ {.haskell}
 -- Grin --
+fR@.fJhc.Basics.zipWith :: (I,I) -> (N)
+fR@.fJhc.Basics.zipWith ni182639120 ni132127014 = do
+  withRoots(ni132127014)
+    nd100028 <- eval ni182639120
+    case nd100028 of
+      (CJhc.Prim.Prim.: ni40405740 ni40) -> withRoots(ni40,ni40405740)
+        nd100030 <- eval ni132127014
+        case nd100030 of
+          (CJhc.Prim.Prim.: ni194635132 ni116) -> withRoots(ni116,ni194635132)
+            ni248061794 <- istore (FR@.fJhc.Basics.zipWith ni40 ni116)
+            withRoots(ni248061794)
+              ni229109160 <- istore (FtheMain$2 ni40405740 ni194635132)
+              withRoots(ni229109160)
+                dstore (CJhc.Prim.Prim.: ni229109160 ni248061794)
+          [] -> return []
+      [] -> return []
 ~~~
 
 ~~~ {.c}
 /* C言語 */
+static wptr_t A_STD A_MALLOC
+fR$__fJhc_Basics_zipWith(gc_t gc,sptr_t v182639120,sptr_t v132127014)
+{
+        {   gc_frame0(gc,1,v132127014);
+            wptr_t v100028 = eval(gc,v182639120);
+            if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100028) {
+                return v100028;
+            } else {
+                sptr_t v40;
+                sptr_t v40405740;
+                /* ("CJhc.Prim.Prim.:" ni40405740 ni40) */
+                v40405740 = ((struct sCJhc_Prim_Prim_$x3a*)v100028)->a1;
+                v40 = ((struct sCJhc_Prim_Prim_$x3a*)v100028)->a2;
+                {   gc_frame0(gc,2,v40,v40405740);
+                    wptr_t v100030 = eval(gc,v132127014);
+                    if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100030) {
+                        return v100030;
+                    } else {
+                        sptr_t v116;
+                        sptr_t v194635132;
+                        /* ("CJhc.Prim.Prim.:" ni194635132 ni116) */
+                        v194635132 = ((struct sCJhc_Prim_Prim_$x3a*)v100030)->a1;
+                        v116 = ((struct sCJhc_Prim_Prim_$x3a*)v100030)->a2;
+                        {   gc_frame0(gc,2,v116,v194635132);
+                            sptr_t x14 = s_alloc(gc,cFR$__fJhc_Basics_zipWith);
+                            ((struct sFR$__fJhc_Basics_zipWith*)x14)->head = TO_FPTR(&E__fR$__fJhc_Basics_zipWith);
+                            ((struct sFR$__fJhc_Basics_zipWith*)x14)->a1 = v40;
+                            ((struct sFR$__fJhc_Basics_zipWith*)x14)->a2 = v116;
+                            sptr_t v248061794 = MKLAZY(x14);
+                            {   gc_frame0(gc,1,v248061794);
+                                sptr_t x15 = s_alloc(gc,cFtheMain$d2);
+                                ((struct sFtheMain$d2*)x15)->head = TO_FPTR(&E__ftheMain$d2);
+                                ((struct sFtheMain$d2*)x15)->a1 = v40405740;
+                                ((struct sFtheMain$d2*)x15)->a2 = v194635132;
+                                sptr_t v229109160 = MKLAZY(x15);
+                                {   gc_frame0(gc,1,v229109160);
+                                    wptr_t x16 = s_alloc(gc,cCJhc_Prim_Prim_$x3a);
+                                    ((struct sCJhc_Prim_Prim_$x3a*)x16)->a1 = v229109160;
+                                    ((struct sCJhc_Prim_Prim_$x3a*)x16)->a2 = v248061794;
+                                    return x16;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+}
 ~~~
 
 ### 10. Func: fW@.fR@.fJhc.List.387_f :: (bits32,I) -> (N)
 
 ~~~ {.haskell}
 -- Grin --
+fW@.fR@.fJhc.List.387_f :: (bits32,I) -> (N)
+fW@.fR@.fJhc.List.387_f w115160438 ni124940224 = do
+  h100024 <- 0 `Gte` w115160438
+  case h100024 of
+    1 -> return []
+    0 -> do
+      nd100026 <- eval ni124940224
+      case nd100026 of
+        (CJhc.Prim.Prim.: ni304 ni306) -> do
+          w194508206 <- w115160438 - 1
+          withRoots(ni304,ni306)
+            ni131889104 <- istore (FW@.fR@.fJhc.List.387_f w194508206 ni306)
+            withRoots(ni131889104)
+              dstore (CJhc.Prim.Prim.: ni304 ni131889104)
+        [] -> return []
 ~~~
 
 ~~~ {.c}
 /* C言語 */
+static wptr_t A_STD A_MALLOC
+fW$__fR$__fJhc_List_387__f(gc_t gc,uint32_t v115160438,sptr_t v124940224)
+{
+        uint16_t v100024 = (((int32_t)0) >= ((int32_t)v115160438));
+        if (0 == v100024) {
+            wptr_t v100026 = eval(gc,v124940224);
+            if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100026) {
+                return v100026;
+            } else {
+                sptr_t v304;
+                sptr_t v306;
+                /* ("CJhc.Prim.Prim.:" ni304 ni306) */
+                v304 = ((struct sCJhc_Prim_Prim_$x3a*)v100026)->a1;
+                v306 = ((struct sCJhc_Prim_Prim_$x3a*)v100026)->a2;
+                uint32_t v194508206 = (v115160438 - 1);
+                {   gc_frame0(gc,2,v304,v306);
+                    sptr_t x17 = s_alloc(gc,cFW$__fR$__fJhc_List_387__f);
+                    ((struct sFW$__fR$__fJhc_List_387__f*)x17)->head = TO_FPTR(&E__fW$__fR$__fJhc_List_387__f);
+                    ((struct sFW$__fR$__fJhc_List_387__f*)x17)->a1 = v194508206;
+                    ((struct sFW$__fR$__fJhc_List_387__f*)x17)->a2 = v306;
+                    sptr_t v131889104 = MKLAZY(x17);
+                    {   gc_frame0(gc,1,v131889104);
+                        wptr_t x18 = s_alloc(gc,cCJhc_Prim_Prim_$x3a);
+                        ((struct sCJhc_Prim_Prim_$x3a*)x18)->a1 = v304;
+                        ((struct sCJhc_Prim_Prim_$x3a*)x18)->a2 = v131889104;
+                        return x18;
+                    }
+                }
+            }
+        } else {
+            /* 1 */
+            assert(1 == v100024);
+            return SET_RAW_TAG(CJhc_Prim_Prim_$BE);
+        }
+}
 ~~~
 
 ### 11. Func: ftheMain :: () -> ()
 
 ~~~ {.haskell}
 -- Grin --
+ftheMain :: () -> ()
+ftheMain  = do
+  nd163 <- dstore (CJhc.Prim.Prim.: ?::I ?::I)
+  ni856819231 <- demote nd163
+  withRoots(ni856819231)
+    nd168 <- dstore (CJhc.Prim.Prim.: ?::I ?::I)
+    ni220263216 <- demote nd168
+    overwrite ni856819231 (CJhc.Prim.Prim.: &(CJhc.Type.Word.Int 1) ni220263216)
+    withRoots(ni220263216)
+      ni144627460 <- istore (FR@.fJhc.Basics.zipWith ?::I ?::I)
+      overwrite ni144627460 (FR@.fJhc.Basics.zipWith ni856819231 ni220263216)
+      overwrite ni220263216 (CJhc.Prim.Prim.: &(CJhc.Type.Word.Int 1) ni144627460)
+      nd100014 <- fW@.fR@.fJhc.List.387_f 40 ni856819231
+      ni78 <- case nd100014 of
+        (CJhc.Prim.Prim.: ni129 ni32) -> withRoots(ni32,ni129)
+          ni194635134 <- istore (FR@.fJhc.Show.11_showl ni32 [])
+          withRoots(ni194635134)
+            ni196335306 <- istore (FJhc.Show.shows ni129 ni194635134)
+            withRoots(ni196335306)
+              nd84 <- dstore (CJhc.Prim.Prim.: &(CJhc.Type.Basic.Char 91) ni196335306)
+              demote nd84
+        [] -> return ni-930757141
+      nd100016 <- eval ni78
+      ni81465164 <- demote nd100016
+      nd0 <- let
+          fJhc.Monad.72_go ni10 = do
+            nd100020 <- eval ni10
+            case nd100020 of
+              (CJhc.Prim.Prim.: ni12 ni260952206) -> withRoots(ni260952206)
+                nd100022 <- eval ni12
+                (CJhc.Type.Basic.Char w216085086) <- return nd100022
+                w249143450 <- (bits32)ConvOp B2B bits32 w216085086
+                (void)jhc_utf8_putchar(int) w249143450
+                fJhc.Monad.72_go ni260952206
+              [] -> return (CJhc.Prim.Prim.())
+       in
+        fJhc.Monad.72_go ni81465164
+      (void)jhc_utf8_putchar(int) 10
 ~~~
 
 ~~~ {.c}
 /* C言語 */
+static void A_STD
+ftheMain(gc_t gc)
+{
+        wptr_t x19 = s_alloc(gc,cCJhc_Prim_Prim_$x3a);
+        wptr_t v163 = x19;
+        sptr_t v856819231 = demote(v163);
+        {   gc_frame0(gc,1,v856819231);
+            wptr_t x20 = s_alloc(gc,cCJhc_Prim_Prim_$x3a);
+            wptr_t v168 = x20;
+            sptr_t v220263216 = demote(v168);
+            ((struct sCJhc_Prim_Prim_$x3a*)FROM_SPTR(v856819231))->a1 = c3;
+            ((struct sCJhc_Prim_Prim_$x3a*)FROM_SPTR(v856819231))->a2 = v220263216;
+            {   sptr_t v10;
+                wptr_t v100014;
+                sptr_t v78;
+                gc_frame0(gc,1,v220263216);
+                sptr_t x21 = s_alloc(gc,cFR$__fJhc_Basics_zipWith);
+                ((struct sFR$__fJhc_Basics_zipWith*)x21)->head = TO_FPTR(&E__fR$__fJhc_Basics_zipWith);
+                sptr_t v144627460 = MKLAZY(x21);
+                ((struct sFR$__fJhc_Basics_zipWith*)FROM_SPTR(v144627460))->head = TO_FPTR(&E__fR$__fJhc_Basics_zipWith);
+                ((struct sFR$__fJhc_Basics_zipWith*)FROM_SPTR(v144627460))->a1 = v856819231;
+                ((struct sFR$__fJhc_Basics_zipWith*)FROM_SPTR(v144627460))->a2 = v220263216;
+                ((struct sCJhc_Prim_Prim_$x3a*)FROM_SPTR(v220263216))->a1 = c3;
+                ((struct sCJhc_Prim_Prim_$x3a*)FROM_SPTR(v220263216))->a2 = v144627460;
+                v100014 = fW$__fR$__fJhc_List_387__f(gc,40,v856819231);
+                if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100014) {
+                    v78 = g930757141;
+                } else {
+                    sptr_t v129;
+                    sptr_t v32;
+                    /* ("CJhc.Prim.Prim.:" ni129 ni32) */
+                    v129 = ((struct sCJhc_Prim_Prim_$x3a*)v100014)->a1;
+                    v32 = ((struct sCJhc_Prim_Prim_$x3a*)v100014)->a2;
+                    {   gc_frame0(gc,2,v32,v129);
+                        sptr_t x22 = s_alloc(gc,cFR$__fJhc_Show_11__showl);
+                        ((struct sFR$__fJhc_Show_11__showl*)x22)->head = TO_FPTR(&E__fR$__fJhc_Show_11__showl);
+                        ((struct sFR$__fJhc_Show_11__showl*)x22)->a1 = v32;
+                        ((struct sFR$__fJhc_Show_11__showl*)x22)->a2 = SET_RAW_TAG(CJhc_Prim_Prim_$BE);
+                        sptr_t v194635134 = MKLAZY(x22);
+                        {   gc_frame0(gc,1,v194635134);
+                            sptr_t x23 = s_alloc(gc,cFJhc_Show_shows);
+                            ((struct sFJhc_Show_shows*)x23)->head = TO_FPTR(&E__fJhc_Show_shows);
+                            ((struct sFJhc_Show_shows*)x23)->a1 = v129;
+                            ((struct sFJhc_Show_shows*)x23)->a2 = v194635134;
+                            sptr_t v196335306 = MKLAZY(x23);
+                            {   gc_frame0(gc,1,v196335306);
+                                wptr_t x24 = s_alloc(gc,cCJhc_Prim_Prim_$x3a);
+                                ((struct sCJhc_Prim_Prim_$x3a*)x24)->a1 = ((sptr_t)RAW_SET_UF('['));
+                                ((struct sCJhc_Prim_Prim_$x3a*)x24)->a2 = v196335306;
+                                wptr_t v84 = x24;
+                                v78 = demote(v84);
+                            }
+                        }
+                    }
+                }
+                wptr_t v100016 = eval(gc,v78);
+                sptr_t v81465164 = demote(v100016);
+                v10 = v81465164;
+                fJhc_Monad_72__go__25:;
+                {   wptr_t v100020 = eval(gc,v10);
+                    if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100020) {
+                        SET_RAW_TAG(CJhc_Prim_Prim_$LR);
+                    } else {
+                        sptr_t v12;
+                        sptr_t v260952206;
+                        /* ("CJhc.Prim.Prim.:" ni12 ni260952206) */
+                        v12 = ((struct sCJhc_Prim_Prim_$x3a*)v100020)->a1;
+                        v260952206 = ((struct sCJhc_Prim_Prim_$x3a*)v100020)->a2;
+                        {   uint32_t v216085086;
+                            gc_frame0(gc,1,v260952206);
+                            wptr_t v100022 = eval(gc,v12);
+                            v216085086 = ((uint32_t)RAW_GET_UF(v100022));
+                            uint32_t v249143450 = v216085086;
+                            saved_gc = gc;
+                            (void)jhc_utf8_putchar((int)v249143450);
+                            v10 = v260952206;
+                            goto fJhc_Monad_72__go__25;
+                        }
+                    }
+                }
+                saved_gc = gc;
+                return (void)jhc_utf8_putchar((int)10);
+            }
+        }
+}
 ~~~
 
 ### Grin由来ではないC言語コード
