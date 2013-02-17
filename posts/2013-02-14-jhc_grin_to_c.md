@@ -724,39 +724,41 @@ fW@.fR@.fJhc.List.387_f w115160438 ni124940224 = do
 static wptr_t A_STD A_MALLOC
 fW$__fR$__fJhc_List_387__f(gc_t gc,uint32_t v115160438,sptr_t v124940224)
 {
-        uint16_t v100024 = (((int32_t)0) >= ((int32_t)v115160438));
-        if (0 == v100024) {
-            wptr_t v100026 = eval(gc,v124940224);
-            if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100026) {
-                return v100026;
-            } else {
+        uint16_t v100024 = (((int32_t)0) >= ((int32_t)v115160438)); // h100024 <- 0 `Gte` w115160438
+        if (0 == v100024) { // case h100024 of 0 -> do
+            wptr_t v100026 = eval(gc,v124940224); // nd100026 <- eval ni124940224
+            if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100026) { // case nd100026 of [] ->
+                return v100026; // return []
+            } else { // (CJhc.Prim.Prim.: ni304 ni306) -> do
                 sptr_t v304;
                 sptr_t v306;
-                /* ("CJhc.Prim.Prim.:" ni304 ni306) */
+                /* ("CJhc.Prim.Prim.:" ni304 ni306) パターンマッチ */
                 v304 = ((struct sCJhc_Prim_Prim_$x3a*)v100026)->a1;
                 v306 = ((struct sCJhc_Prim_Prim_$x3a*)v100026)->a2;
-                uint32_t v194508206 = (v115160438 - 1);
-                {   gc_frame0(gc,2,v304,v306);
-                    sptr_t x17 = s_alloc(gc,cFW$__fR$__fJhc_List_387__f);
+                uint32_t v194508206 = (v115160438 - 1); // w194508206 <- w115160438 - 1
+                {   gc_frame0(gc,2,v304,v306); // withRoots(ni304,ni306)
+                    sptr_t x17 = s_alloc(gc,cFW$__fR$__fJhc_List_387__f); // ni131889104 <- istore (FW@.fR@.fJhc.List.387_f w194508206 ni306)
                     ((struct sFW$__fR$__fJhc_List_387__f*)x17)->head = TO_FPTR(&E__fW$__fR$__fJhc_List_387__f);
                     ((struct sFW$__fR$__fJhc_List_387__f*)x17)->a1 = v194508206;
                     ((struct sFW$__fR$__fJhc_List_387__f*)x17)->a2 = v306;
                     sptr_t v131889104 = MKLAZY(x17);
-                    {   gc_frame0(gc,1,v131889104);
-                        wptr_t x18 = s_alloc(gc,cCJhc_Prim_Prim_$x3a);
+                    {   gc_frame0(gc,1,v131889104); // withRoots(ni131889104)
+                        wptr_t x18 = s_alloc(gc,cCJhc_Prim_Prim_$x3a); // dstore (CJhc.Prim.Prim.: ni304 ni131889104)
                         ((struct sCJhc_Prim_Prim_$x3a*)x18)->a1 = v304;
                         ((struct sCJhc_Prim_Prim_$x3a*)x18)->a2 = v131889104;
                         return x18;
                     }
                 }
             }
-        } else {
+        } else { // 1 ->
             /* 1 */
             assert(1 == v100024);
-            return SET_RAW_TAG(CJhc_Prim_Prim_$BE);
+            return SET_RAW_TAG(CJhc_Prim_Prim_$BE); // return []
         }
 }
 ~~~
+
+これも今までのパターンと同じでゲソ。もはや楽勝でゲソー。
 
 ### 11. Func: ftheMain :: () -> ()
 
@@ -807,89 +809,92 @@ ftheMain  = do
 static void A_STD
 ftheMain(gc_t gc)
 {
-        wptr_t x19 = s_alloc(gc,cCJhc_Prim_Prim_$x3a);
-        wptr_t v163 = x19;
-        sptr_t v856819231 = demote(v163);
-        {   gc_frame0(gc,1,v856819231);
-            wptr_t x20 = s_alloc(gc,cCJhc_Prim_Prim_$x3a);
+        wptr_t x19 = s_alloc(gc,cCJhc_Prim_Prim_$x3a); // nd163 <- dstore (CJhc.Prim.Prim.: ?::I ?::I)
+        wptr_t v163 = x19; // なんで置き換えた？？？
+        sptr_t v856819231 = demote(v163); // ni856819231 <- demote nd163
+        {   gc_frame0(gc,1,v856819231); // withRoots(ni856819231)
+            wptr_t x20 = s_alloc(gc,cCJhc_Prim_Prim_$x3a); // nd168 <- dstore (CJhc.Prim.Prim.: ?::I ?::I)
             wptr_t v168 = x20;
-            sptr_t v220263216 = demote(v168);
-            ((struct sCJhc_Prim_Prim_$x3a*)FROM_SPTR(v856819231))->a1 = c3;
+            sptr_t v220263216 = demote(v168); // ni220263216 <- demote nd168
+            ((struct sCJhc_Prim_Prim_$x3a*)FROM_SPTR(v856819231))->a1 = c3; // overwrite ni856819231 (CJhc.Prim.Prim.: &(CJhc.Type.Word.Int 1) ni220263216)
             ((struct sCJhc_Prim_Prim_$x3a*)FROM_SPTR(v856819231))->a2 = v220263216;
             {   sptr_t v10;
                 wptr_t v100014;
                 sptr_t v78;
-                gc_frame0(gc,1,v220263216);
-                sptr_t x21 = s_alloc(gc,cFR$__fJhc_Basics_zipWith);
+                gc_frame0(gc,1,v220263216); // withRoots(ni220263216)
+                sptr_t x21 = s_alloc(gc,cFR$__fJhc_Basics_zipWith); // ni144627460 <- istore (FR@.fJhc.Basics.zipWith ?::I ?::I)
                 ((struct sFR$__fJhc_Basics_zipWith*)x21)->head = TO_FPTR(&E__fR$__fJhc_Basics_zipWith);
                 sptr_t v144627460 = MKLAZY(x21);
-                ((struct sFR$__fJhc_Basics_zipWith*)FROM_SPTR(v144627460))->head = TO_FPTR(&E__fR$__fJhc_Basics_zipWith);
+                ((struct sFR$__fJhc_Basics_zipWith*)FROM_SPTR(v144627460))->head = TO_FPTR(&E__fR$__fJhc_Basics_zipWith); // overwrite ni144627460 (FR@.fJhc.Basics.zipWith ni856819231 ni220263216)
                 ((struct sFR$__fJhc_Basics_zipWith*)FROM_SPTR(v144627460))->a1 = v856819231;
                 ((struct sFR$__fJhc_Basics_zipWith*)FROM_SPTR(v144627460))->a2 = v220263216;
-                ((struct sCJhc_Prim_Prim_$x3a*)FROM_SPTR(v220263216))->a1 = c3;
+                ((struct sCJhc_Prim_Prim_$x3a*)FROM_SPTR(v220263216))->a1 = c3; // overwrite ni220263216 (CJhc.Prim.Prim.: &(CJhc.Type.Word.Int 1) ni144627460)
                 ((struct sCJhc_Prim_Prim_$x3a*)FROM_SPTR(v220263216))->a2 = v144627460;
-                v100014 = fW$__fR$__fJhc_List_387__f(gc,40,v856819231);
-                if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100014) {
-                    v78 = g930757141;
-                } else {
+                v100014 = fW$__fR$__fJhc_List_387__f(gc,40,v856819231); // nd100014 <- fW@.fR@.fJhc.List.387_f 40 ni856819231
+                if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100014) { // ni78 <- case nd100014 of [] ->
+                    v78 = g930757141; // return ni-930757141
+                } else { // (CJhc.Prim.Prim.: ni129 ni32) ->
                     sptr_t v129;
                     sptr_t v32;
-                    /* ("CJhc.Prim.Prim.:" ni129 ni32) */
+                    /* ("CJhc.Prim.Prim.:" ni129 ni32) パターンマッチ */
                     v129 = ((struct sCJhc_Prim_Prim_$x3a*)v100014)->a1;
                     v32 = ((struct sCJhc_Prim_Prim_$x3a*)v100014)->a2;
-                    {   gc_frame0(gc,2,v32,v129);
-                        sptr_t x22 = s_alloc(gc,cFR$__fJhc_Show_11__showl);
+                    {   gc_frame0(gc,2,v32,v129); // withRoots(ni32,ni129)
+                        sptr_t x22 = s_alloc(gc,cFR$__fJhc_Show_11__showl); // ni194635134 <- istore (FR@.fJhc.Show.11_showl ni32 [])
                         ((struct sFR$__fJhc_Show_11__showl*)x22)->head = TO_FPTR(&E__fR$__fJhc_Show_11__showl);
                         ((struct sFR$__fJhc_Show_11__showl*)x22)->a1 = v32;
                         ((struct sFR$__fJhc_Show_11__showl*)x22)->a2 = SET_RAW_TAG(CJhc_Prim_Prim_$BE);
                         sptr_t v194635134 = MKLAZY(x22);
-                        {   gc_frame0(gc,1,v194635134);
-                            sptr_t x23 = s_alloc(gc,cFJhc_Show_shows);
+                        {   gc_frame0(gc,1,v194635134); // withRoots(ni194635134)
+                            sptr_t x23 = s_alloc(gc,cFJhc_Show_shows); // ni196335306 <- istore (FJhc.Show.shows ni129 ni194635134)
                             ((struct sFJhc_Show_shows*)x23)->head = TO_FPTR(&E__fJhc_Show_shows);
                             ((struct sFJhc_Show_shows*)x23)->a1 = v129;
                             ((struct sFJhc_Show_shows*)x23)->a2 = v194635134;
                             sptr_t v196335306 = MKLAZY(x23);
-                            {   gc_frame0(gc,1,v196335306);
-                                wptr_t x24 = s_alloc(gc,cCJhc_Prim_Prim_$x3a);
+                            {   gc_frame0(gc,1,v196335306); // withRoots(ni196335306)
+                                wptr_t x24 = s_alloc(gc,cCJhc_Prim_Prim_$x3a); // nd84 <- dstore (CJhc.Prim.Prim.: &(CJhc.Type.Basic.Char 91) ni196335306)
                                 ((struct sCJhc_Prim_Prim_$x3a*)x24)->a1 = ((sptr_t)RAW_SET_UF('['));
                                 ((struct sCJhc_Prim_Prim_$x3a*)x24)->a2 = v196335306;
                                 wptr_t v84 = x24;
-                                v78 = demote(v84);
+                                v78 = demote(v84); // demote nd84
                             }
                         }
                     }
                 }
-                wptr_t v100016 = eval(gc,v78);
-                sptr_t v81465164 = demote(v100016);
-                v10 = v81465164;
-                fJhc_Monad_72__go__25:;
-                {   wptr_t v100020 = eval(gc,v10);
-                    if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100020) {
-                        SET_RAW_TAG(CJhc_Prim_Prim_$LR);
-                    } else {
+                wptr_t v100016 = eval(gc,v78); // nd100016 <- eval ni78
+                sptr_t v81465164 = demote(v100016); // ni81465164 <- demote nd100016
+                v10 = v81465164; // in fJhc.Monad.72_go ni81465164
+                fJhc_Monad_72__go__25:; // let fJhc.Monad.72_go ni10 = do
+                {   wptr_t v100020 = eval(gc,v10); // nd100020 <- eval ni10
+                    if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100020) { // case nd100020 of [] ->
+                        SET_RAW_TAG(CJhc_Prim_Prim_$LR); // return (CJhc.Prim.Prim.())
+                    } else { // (CJhc.Prim.Prim.: ni12 ni260952206) ->
                         sptr_t v12;
                         sptr_t v260952206;
-                        /* ("CJhc.Prim.Prim.:" ni12 ni260952206) */
+                        /* ("CJhc.Prim.Prim.:" ni12 ni260952206) パターンマッチ */
                         v12 = ((struct sCJhc_Prim_Prim_$x3a*)v100020)->a1;
                         v260952206 = ((struct sCJhc_Prim_Prim_$x3a*)v100020)->a2;
                         {   uint32_t v216085086;
-                            gc_frame0(gc,1,v260952206);
-                            wptr_t v100022 = eval(gc,v12);
-                            v216085086 = ((uint32_t)RAW_GET_UF(v100022));
-                            uint32_t v249143450 = v216085086;
-                            saved_gc = gc;
-                            (void)jhc_utf8_putchar((int)v249143450);
-                            v10 = v260952206;
+                            gc_frame0(gc,1,v260952206); // withRoots(ni260952206)
+                            wptr_t v100022 = eval(gc,v12); // nd100022 <- eval ni12
+                            v216085086 = ((uint32_t)RAW_GET_UF(v100022)); // (CJhc.Type.Basic.Char w216085086) <- return nd100022
+                            uint32_t v249143450 = v216085086; // w249143450 <- (bits32)ConvOp B2B bits32 w216085086
+                            saved_gc = gc; // xxxxxxxxxxxxxxxx
+                            (void)jhc_utf8_putchar((int)v249143450); // (void)jhc_utf8_putchar(int) w249143450
+                            v10 = v260952206; // fJhc.Monad.72_go ni260952206
                             goto fJhc_Monad_72__go__25;
                         }
                     }
                 }
-                saved_gc = gc;
-                return (void)jhc_utf8_putchar((int)10);
+                saved_gc = gc; // xxxxxxxxxxxxxxxx
+                return (void)jhc_utf8_putchar((int)10); // (void)jhc_utf8_putchar(int) 10
             }
         }
 }
 ~~~
+
+overwrite ってなんでゲソ？
+saved_gc = gc ってなんでゲソ？
 
 ### Grin由来ではないC言語コード
 
