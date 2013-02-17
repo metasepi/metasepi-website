@@ -879,26 +879,300 @@ ftheMain(gc_t gc)
                             wptr_t v100022 = eval(gc,v12); // nd100022 <- eval ni12
                             v216085086 = ((uint32_t)RAW_GET_UF(v100022)); // (CJhc.Type.Basic.Char w216085086) <- return nd100022
                             uint32_t v249143450 = v216085086; // w249143450 <- (bits32)ConvOp B2B bits32 w216085086
-                            saved_gc = gc; // xxxxxxxxxxxxxxxx
+                            saved_gc = gc; // なにこれ？
                             (void)jhc_utf8_putchar((int)v249143450); // (void)jhc_utf8_putchar(int) w249143450
                             v10 = v260952206; // fJhc.Monad.72_go ni260952206
                             goto fJhc_Monad_72__go__25;
                         }
                     }
                 }
-                saved_gc = gc; // xxxxxxxxxxxxxxxx
+                saved_gc = gc; // なにこれ？
                 return (void)jhc_utf8_putchar((int)10); // (void)jhc_utf8_putchar(int) 10
             }
         }
 }
 ~~~
 
-overwrite ってなんでゲソ？
-saved_gc = gc ってなんでゲソ？
+overwriteという不吉なキーワードはなんでゲソ？
+"overwrite ni856819231 (CJhc.Prim.Prim.: &(CJhc.Type.Word.Int 1) ni220263216)"に着目すると、
+元のコードは...
+
+~~~ {.haskell}
+  nd163 <- dstore (CJhc.Prim.Prim.: ?::I ?::I)
+  ni856819231 <- demote nd163 // 一度目の束縛
+  withRoots(ni856819231)
+    nd168 <- dstore (CJhc.Prim.Prim.: ?::I ?::I)
+    ni220263216 <- demote nd168
+    overwrite ni856819231 (CJhc.Prim.Prim.: &(CJhc.Type.Word.Int 1) ni220263216) // 二度目の束縛
+~~~
+
+これがC言語に変換されると...
+
+~~~ {.c}
+        wptr_t x19 = s_alloc(gc,cCJhc_Prim_Prim_$x3a); // スマートポインタを埋めずallocだけ
+        wptr_t v163 = x19;
+        sptr_t v856819231 = demote(v163); // 一度目のスマートポインタ代入
+        {   gc_frame0(gc,1,v856819231);
+            wptr_t x20 = s_alloc(gc,cCJhc_Prim_Prim_$x3a); // a2に入れるスマートポインタをalloc
+            wptr_t v168 = x20;
+            sptr_t v220263216 = demote(v168);
+            ((struct sCJhc_Prim_Prim_$x3a*)FROM_SPTR(v856819231))->a1 = c3; // alloc済みスマートポインタに代入
+            ((struct sCJhc_Prim_Prim_$x3a*)FROM_SPTR(v856819231))->a2 = v220263216;
+~~~
+
+ということはoverwriteキーワードはdstoreなどと異なりヒープ領域を確保せず、
+第一引数で指定されたスマートポインタを上書きすると考えられるじゃなイカ。
+なんとなく上記の例ではoverwriteを使わず一回のdstoreにしてしまっても問題なさそうでゲソが、
+コンストラクタと初期化を分割したり、再帰の中で次々に値を更新して結果を得たい場合などに重宝しそうでゲソ。
+
+もう一つ気になるのは"saved_gc = gc"でゲソ。Grinにはなかった行がC言語にいきなり現われるでゲソ...
+saved_gcはb__main関数から第一引数として取り回されるので、
+同じものだと思っていたでゲソ。ここはよくわからなかったでゲソ。
+
+~~~ {.c}
+void 
+_amain(void)
+{
+        return (void)b__main(saved_gc);
+}
+
+static void A_STD
+b__main(gc_t gc)
+{
+        return ftheMain(gc);
+}
+~~~
 
 ### Grin由来ではないC言語コード
 
-xxxxxxxx
+さて。Grinの関数がC言語にどう変換されたか見てきたでゲソ。
+でも、とりこぼした要素はないか気にならなイカ？
+チェックでゲソ!
+
+~~~ {.c}
+enum {
+    CJhc_Prim_Prim_$BE = 1,
+    CJhc_Prim_Prim_$LR = 0,
+    CJhc_Prim_Prim_$x3a = 0,
+    CJhc_Type_Basic_Char = 0,
+    CJhc_Type_Word_Int = 0
+};
+~~~
+
+このenumは有意に使われるのは CJhc_Prim_Prim_$BE だけで、
+残りは全く使われていないでゲソ。
+
+CJhc_Prim_Prim_$BE はこれまで見た通り、
+リストの終端である [] を表わしていたでゲソ。
+どこからでも参照され、中身のない要素はこのようにenumで表わされるようでゲソ。
+...しかし16bitしか幅がないので、場合によっては足りなく...
+ってそんなにNilみたいな要素をばかすか作りっこないでゲッソ。
+
+~~~ {.c}
+struct sCJhc_Prim_Prim_$x3a {
+    sptr_t a1;
+    sptr_t a2;
+};
+
+struct sCJhc_Type_Word_Int {
+    uint32_t a1;
+};
+
+struct sFJhc_Show_shows {
+    fptr_t head;
+    sptr_t a1;
+    sptr_t a2;
+};
+
+struct sFR$__fJhc_Basics_$pp {
+    fptr_t head;
+    sptr_t a1;
+    wptr_t a2;
+};
+
+struct sFR$__fJhc_Basics_zipWith {
+    fptr_t head;
+    sptr_t a1;
+    sptr_t a2;
+};
+
+struct sFR$__fJhc_Show_11__showl {
+    fptr_t head;
+    sptr_t a1;
+    wptr_t a2;
+};
+
+struct sFW$__fJhc_Inst_Show_showWord {
+    fptr_t head;
+    sptr_t a2;
+    uint32_t a1;
+};
+
+struct sFW$__fR$__fJhc_List_387__f {
+    fptr_t head;
+    sptr_t a2;
+    uint32_t a1;
+};
+
+struct sFtheMain$d2 {
+    fptr_t head;
+    sptr_t a1;
+    sptr_t a2;
+};
+
+struct sFtheMain$d3 {
+    fptr_t head;
+};
+~~~
+
+これらのstructはこれまで見てきた通り、ヒープに確保される要素群でゲソ。
+特にstructの先頭メンバーがfptr_tになっているstructはサンクでゲソ。
+structのメンバーを見ればサンクかどうか分かるのは
+fptr_tを特別なスマートポインタとして扱っている恩恵でゲッソー。
+
+~~~ {.c}
+void 
+jhc_hs_init(void)
+{
+        find_cache(&cCJhc_Prim_Prim_$x3a,arena,TO_BLOCKS(sizeof(struct sCJhc_Prim_Prim_$x3a)),2);
+        find_cache(&cCJhc_Type_Word_Int,arena,TO_BLOCKS(sizeof(struct sCJhc_Type_Word_Int)),0);
+        find_cache(&cFW$__fR$__fJhc_List_387__f,arena,TO_BLOCKS(sizeof(struct sFW$__fR$__fJhc_List_387__f)),2);
+        find_cache(&cFR$__fJhc_Basics_zipWith,arena,TO_BLOCKS(sizeof(struct sFR$__fJhc_Basics_zipWith)),3);
+        find_cache(&cFR$__fJhc_Basics_$pp,arena,TO_BLOCKS(sizeof(struct sFR$__fJhc_Basics_$pp)),3);
+        find_cache(&cFtheMain$d2,arena,TO_BLOCKS(sizeof(struct sFtheMain$d2)),3);
+        find_cache(&cFR$__fJhc_Show_11__showl,arena,TO_BLOCKS(sizeof(struct sFR$__fJhc_Show_11__showl)),3);
+        find_cache(&cFJhc_Show_shows,arena,TO_BLOCKS(sizeof(struct sFJhc_Show_shows)),3);
+        find_cache(&cFW$__fJhc_Inst_Show_showWord,arena,TO_BLOCKS(sizeof(struct sFW$__fJhc_Inst_Show_showWord)),2);
+}
+~~~
+
+xxxxxxxxxxx
+
+~~~ {.c}
+static wptr_t A_STD A_FALIGNED
+E__fJhc_Show_shows(gc_t gc,struct sFJhc_Show_shows* arg)
+{
+        {   wptr_t r;
+            gc_frame0(gc,1,MKLAZY(arg));
+            r = fJhc_Show_shows(gc,arg->a1,arg->a2);
+            update(arg,r);
+            return r;
+        }
+}
+
+static wptr_t A_STD A_FALIGNED
+E__fR$__fJhc_Basics_$pp(gc_t gc,struct sFR$__fJhc_Basics_$pp* arg)
+{
+        {   wptr_t r;
+            gc_frame0(gc,1,MKLAZY(arg));
+            r = fR$__fJhc_Basics_$pp(gc,arg->a1,arg->a2);
+            update(arg,r);
+            return r;
+        }
+}
+
+static wptr_t A_STD A_FALIGNED
+E__fR$__fJhc_Basics_zipWith(gc_t gc,struct sFR$__fJhc_Basics_zipWith* arg)
+{
+        {   wptr_t r;
+            gc_frame0(gc,1,MKLAZY(arg));
+            r = fR$__fJhc_Basics_zipWith(gc,arg->a1,arg->a2);
+            update(arg,r);
+            return r;
+        }
+}
+
+static wptr_t A_STD A_FALIGNED
+E__fR$__fJhc_Show_11__showl(gc_t gc,struct sFR$__fJhc_Show_11__showl* arg)
+{
+        {   wptr_t r;
+            gc_frame0(gc,1,MKLAZY(arg));
+            r = fR$__fJhc_Show_11__showl(gc,arg->a1,arg->a2);
+            update(arg,r);
+            return r;
+        }
+}
+
+static wptr_t A_STD A_FALIGNED
+E__fW$__fJhc_Inst_Show_showWord(gc_t gc,struct sFW$__fJhc_Inst_Show_showWord* arg)
+{
+        {   wptr_t r;
+            gc_frame0(gc,1,MKLAZY(arg));
+            r = fW$__fJhc_Inst_Show_showWord(gc,arg->a1,arg->a2);
+            update(arg,r);
+            return r;
+        }
+}
+
+static wptr_t A_STD A_FALIGNED
+E__fW$__fR$__fJhc_List_387__f(gc_t gc,struct sFW$__fR$__fJhc_List_387__f* arg)
+{
+        {   wptr_t r;
+            gc_frame0(gc,1,MKLAZY(arg));
+            r = fW$__fR$__fJhc_List_387__f(gc,arg->a1,arg->a2);
+            update(arg,r);
+            return r;
+        }
+}
+
+static wptr_t A_STD A_FALIGNED
+E__ftheMain$d2(gc_t gc,struct sFtheMain$d2* arg)
+{
+        {   wptr_t r;
+            gc_frame0(gc,1,MKLAZY(arg));
+            r = ftheMain$d2(gc,arg->a1,arg->a2);
+            update(arg,r);
+            return r;
+        }
+}
+
+static wptr_t A_STD A_FALIGNED
+E__ftheMain$d3(gc_t gc,struct sFtheMain$d3* arg)
+{
+        wptr_t r;
+        r = ftheMain$d3(gc);
+        update(arg,r);
+        gc_add_root(gc,(sptr_t)r);
+        return r;
+}
+~~~
+
+この"E__f"で始まる関数群はほぼ同じことをしているでゲソ。
+
+1. gc_frame0(gc,1,MKLAZY(arg));
+2. 関数名から"E__f"プレフィックスを除いた関数を呼び出す
+3. update(arg,r);
+4. return r;
+
+まず最初のgc_frame0はイカのようなマクロで、
+引数argはポインタで、lazy locationフラグを立ててGCルートに追加するでゲソ。
+
+~~~ {.c}
+#define TO_SPTR(t,x)   (typeof (x))((uintptr_t)(x) | (t))
+#define MKLAZY(fn)    TO_SPTR(P_LAZY,(sptr_t)fn)
+#define gc_frame0(gc,n,...) void *ptrs[n] = { __VA_ARGS__ }; \
+        for(int i = 0; i < n; i++) gc[i] = (sptr_t)ptrs[i]; \
+        gc_t sgc = gc;  gc_t gc = sgc + n;
+~~~
+
+update関数は"E__f"プレフィックスを除いた関数の返値でargのhead、
+つまりfptr_tを上書きするでゲソ。
+これは未評価サンクの評価を行なっているんじゃなイカ？
+
+~~~ {.c}
+typedef struct node {
+        fptr_t head;
+        sptr_t rest[];
+} A_MAYALIAS node_t;
+#define NODEP(x)     ((node_t *)(x))
+#define GETHEAD(x)   (NODEP(x)->head)
+inline static void update(void *t, wptr_t n) { GETHEAD(t) = (fptr_t)n; }
+~~~
+
+もう一度、"1. Caf: v-930757141"を振り替えってみるでゲソ。
+詳細に図を描いてみたら未評価サンクが評価される動作がはっきり解ったじゃなイカ!
+
+![](/draw/2013-02-14-jhc_grin_to_c_E__f.png)
 
 ## ソースコード分析 (実装からの理解)
 
