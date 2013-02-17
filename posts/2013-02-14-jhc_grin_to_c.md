@@ -372,12 +372,166 @@ showWord w rest = w `seq` case quotRem w 10 of
 ~~~
 
 ### 5. Func: fR@.fJhc.Show.11_showl :: (I,N) -> (N)
+
+~~~ {.haskell}
+-- Grin --
+fR@.fJhc.Show.11_showl :: (I,N) -> (N)
+fR@.fJhc.Show.11_showl ni108431528 nd267777212 = do
+  ni267777293 <- demote nd267777212
+  withRoots(nd267777212,ni267777293)
+    nd100036 <- eval ni108431528
+    (ni126,ni95) <- case nd100036 of
+      (CJhc.Prim.Prim.: ni26 ni67) -> withRoots(ni26,ni67)
+        ni110947984 <- istore (FR@.fJhc.Show.11_showl ni67 nd267777212)
+        withRoots(ni110947984)
+          ni215884490 <- istore (FJhc.Show.shows ni26 ni110947984)
+          return (&(CJhc.Type.Basic.Char 44),ni215884490)
+      [] -> return (&(CJhc.Type.Basic.Char 93),ni267777293)
+    withRoots(ni95,ni126)
+      dstore (CJhc.Prim.Prim.: ni126 ni95)
+~~~
+
+~~~ {.c}
+/* C言語 */
+static wptr_t A_STD A_MALLOC
+fR$__fJhc_Show_11__showl(gc_t gc,sptr_t v108431528,wptr_t v267777212)
+{
+        sptr_t v267777293 = demote(v267777212); // ni267777293 <- demote nd267777212
+        {   sptr_t v126;
+            sptr_t v95;
+            struct tup1 x7;
+            gc_frame0(gc,2,v267777212,v267777293); // withRoots(nd267777212,ni267777293)
+            wptr_t v100036 = eval(gc,v108431528); // nd100036 <- eval ni108431528
+            if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100036) { // case nd100036 of [] ->
+                x7.t0 = ((sptr_t)RAW_SET_UF(']')); // return (&(CJhc.Type.Basic.Char 93),ni267777293)
+                x7.t1 = v267777293;
+            } else { // (CJhc.Prim.Prim.: ni26 ni67) ->
+                sptr_t v26;
+                sptr_t v67;
+                /* ("CJhc.Prim.Prim.:" ni26 ni67) パターンマッチ */
+                v26 = ((struct sCJhc_Prim_Prim_$x3a*)v100036)->a1;
+                v67 = ((struct sCJhc_Prim_Prim_$x3a*)v100036)->a2;
+                {   gc_frame0(gc,2,v26,v67); // withRoots(ni26,ni67)
+                    sptr_t x8 = s_alloc(gc,cFR$__fJhc_Show_11__showl); // ni110947984 <- istore (FR@.fJhc.Show.11_showl ni67 nd267777212)
+                    ((struct sFR$__fJhc_Show_11__showl*)x8)->head = TO_FPTR(&E__fR$__fJhc_Show_11__showl);
+                    ((struct sFR$__fJhc_Show_11__showl*)x8)->a1 = v67;
+                    ((struct sFR$__fJhc_Show_11__showl*)x8)->a2 = v267777212;
+                    sptr_t v110947984 = MKLAZY(x8);
+                    {   gc_frame0(gc,1,v110947984); // withRoots(ni110947984)
+                        sptr_t x9 = s_alloc(gc,cFJhc_Show_shows); // ni215884490 <- istore (FJhc.Show.shows ni26 ni110947984)
+                        ((struct sFJhc_Show_shows*)x9)->head = TO_FPTR(&E__fJhc_Show_shows);
+                        ((struct sFJhc_Show_shows*)x9)->a1 = v26;
+                        ((struct sFJhc_Show_shows*)x9)->a2 = v110947984;
+                        sptr_t v215884490 = MKLAZY(x9);
+                        x7.t0 = ((sptr_t)RAW_SET_UF(',')); // return (&(CJhc.Type.Basic.Char 44),ni215884490)
+                        x7.t1 = v215884490;
+                    }
+                }
+            }
+            v126 = x7.t0; // (ni126,ni95) <-
+            v95 = x7.t1;
+            {   gc_frame0(gc,2,v95,v126); // withRoots(ni95,ni126)
+                wptr_t x10 = s_alloc(gc,cCJhc_Prim_Prim_$x3a); // dstore (CJhc.Prim.Prim.: ni126 ni95)
+                ((struct sCJhc_Prim_Prim_$x3a*)x10)->a1 = v126;
+                ((struct sCJhc_Prim_Prim_$x3a*)x10)->a2 = v95;
+                return x10;
+            }
+        }
+}
+~~~
+
+ここまで来るとほぼこれまで仕入れた知識で読めるでゲソ!
+新しく出てきた表現をあえて挙げるならタプルでゲソ。
+
+~~~ {.c}
+struct tup1 {
+    sptr_t t0;
+    sptr_t t1;
+};
+~~~
+
+これはもう見たままでゲソ。タプルじゃなイカ。
+ところでなんでいきなりタプルを使うことになったんでゲソ？
+
+この関数はjhcライブラリのshowList関数の中にあるshowlローカル関数に由来しているでゲソ。
+どうもShowS型の合成を (文字,サンク) というタプルでの表現に変換しているようじゃなイカ。
+コンパイルパイプラインの最適化のどこでこの変換が行なわれるのか興味が出てきたでゲソ。
+
+~~~ {.haskell}
+-- jhc/lib/jhc/Jhc/Show.hs
+type  ShowS    = String -> String
+
+class  Show a  where
+-- snip --
+    showList         :: [a] -> ShowS
+-- snip --
+    showList []       = showString "[]"
+    showList (x:xs)   = showChar '[' . shows x . showl xs
+                        where showl []     = showChar ']'
+                              showl (x:xs) = showChar ',' . shows x .
+                                             showl xs
+~~~
+
 ### 6. Func: ftheMain$2 :: (I,I) -> (N)
+
+~~~ {.haskell}
+-- Grin --
+~~~
+
+~~~ {.c}
+/* C言語 */
+~~~
+
 ### 7. Func: fR@.fJhc.Basics.++ :: (I,N) -> (N)
+
+~~~ {.haskell}
+-- Grin --
+~~~
+
+~~~ {.c}
+/* C言語 */
+~~~
+
 ### 8. Func: ftheMain$3 :: () -> (N)
+
+~~~ {.haskell}
+-- Grin --
+~~~
+
+~~~ {.c}
+/* C言語 */
+~~~
+
 ### 9. Func: fR@.fJhc.Basics.zipWith :: (I,I) -> (N)
+
+~~~ {.haskell}
+-- Grin --
+~~~
+
+~~~ {.c}
+/* C言語 */
+~~~
+
 ### 10. Func: fW@.fR@.fJhc.List.387_f :: (bits32,I) -> (N)
+
+~~~ {.haskell}
+-- Grin --
+~~~
+
+~~~ {.c}
+/* C言語 */
+~~~
+
 ### 11. Func: ftheMain :: () -> ()
+
+~~~ {.haskell}
+-- Grin --
+~~~
+
+~~~ {.c}
+/* C言語 */
+~~~
+
 ### Grin由来ではないC言語コード
 
 xxxxxxxx
