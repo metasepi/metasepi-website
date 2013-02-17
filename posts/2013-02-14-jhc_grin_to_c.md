@@ -649,40 +649,40 @@ fR@.fJhc.Basics.zipWith ni182639120 ni132127014 = do
 static wptr_t A_STD A_MALLOC
 fR$__fJhc_Basics_zipWith(gc_t gc,sptr_t v182639120,sptr_t v132127014)
 {
-        {   gc_frame0(gc,1,v132127014);
-            wptr_t v100028 = eval(gc,v182639120);
-            if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100028) {
-                return v100028;
-            } else {
+        {   gc_frame0(gc,1,v132127014); // withRoots(ni132127014)
+            wptr_t v100028 = eval(gc,v182639120); // nd100028 <- eval ni182639120
+            if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100028) { // case nd100028 of [] ->
+                return v100028; // return []
+            } else { // (CJhc.Prim.Prim.: ni40405740 ni40) ->
                 sptr_t v40;
                 sptr_t v40405740;
-                /* ("CJhc.Prim.Prim.:" ni40405740 ni40) */
+                /* ("CJhc.Prim.Prim.:" ni40405740 ni40) パターンマッチ */
                 v40405740 = ((struct sCJhc_Prim_Prim_$x3a*)v100028)->a1;
                 v40 = ((struct sCJhc_Prim_Prim_$x3a*)v100028)->a2;
-                {   gc_frame0(gc,2,v40,v40405740);
-                    wptr_t v100030 = eval(gc,v132127014);
-                    if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100030) {
-                        return v100030;
-                    } else {
+                {   gc_frame0(gc,2,v40,v40405740); // withRoots(ni40,ni40405740)
+                    wptr_t v100030 = eval(gc,v132127014); // nd100030 <- eval ni132127014
+                    if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100030) { // case nd100030 of [] ->
+                        return v100030; // return []
+                    } else { // (CJhc.Prim.Prim.: ni194635132 ni116) ->
                         sptr_t v116;
                         sptr_t v194635132;
-                        /* ("CJhc.Prim.Prim.:" ni194635132 ni116) */
+                        /* ("CJhc.Prim.Prim.:" ni194635132 ni116) パターンマッチ */
                         v194635132 = ((struct sCJhc_Prim_Prim_$x3a*)v100030)->a1;
                         v116 = ((struct sCJhc_Prim_Prim_$x3a*)v100030)->a2;
-                        {   gc_frame0(gc,2,v116,v194635132);
-                            sptr_t x14 = s_alloc(gc,cFR$__fJhc_Basics_zipWith);
+                        {   gc_frame0(gc,2,v116,v194635132); // withRoots(ni116,ni194635132)
+                            sptr_t x14 = s_alloc(gc,cFR$__fJhc_Basics_zipWith); // ni248061794 <- istore (FR@.fJhc.Basics.zipWith ni40 ni116)
                             ((struct sFR$__fJhc_Basics_zipWith*)x14)->head = TO_FPTR(&E__fR$__fJhc_Basics_zipWith);
                             ((struct sFR$__fJhc_Basics_zipWith*)x14)->a1 = v40;
                             ((struct sFR$__fJhc_Basics_zipWith*)x14)->a2 = v116;
                             sptr_t v248061794 = MKLAZY(x14);
-                            {   gc_frame0(gc,1,v248061794);
-                                sptr_t x15 = s_alloc(gc,cFtheMain$d2);
+                            {   gc_frame0(gc,1,v248061794); // withRoots(ni248061794)
+                                sptr_t x15 = s_alloc(gc,cFtheMain$d2); // ni229109160 <- istore (FtheMain$2 ni40405740 ni194635132)
                                 ((struct sFtheMain$d2*)x15)->head = TO_FPTR(&E__ftheMain$d2);
                                 ((struct sFtheMain$d2*)x15)->a1 = v40405740;
                                 ((struct sFtheMain$d2*)x15)->a2 = v194635132;
                                 sptr_t v229109160 = MKLAZY(x15);
-                                {   gc_frame0(gc,1,v229109160);
-                                    wptr_t x16 = s_alloc(gc,cCJhc_Prim_Prim_$x3a);
+                                {   gc_frame0(gc,1,v229109160); // withRoots(ni229109160)
+                                    wptr_t x16 = s_alloc(gc,cCJhc_Prim_Prim_$x3a); // dstore (CJhc.Prim.Prim.: ni229109160 ni248061794)
                                     ((struct sCJhc_Prim_Prim_$x3a*)x16)->a1 = v229109160;
                                     ((struct sCJhc_Prim_Prim_$x3a*)x16)->a2 = v248061794;
                                     return x16;
@@ -695,6 +695,8 @@ fR$__fJhc_Basics_zipWith(gc_t gc,sptr_t v182639120,sptr_t v132127014)
         }
 }
 ~~~
+
+うむ。これも今の知識で読めるでゲソ。次の人!っでゲッソ。
 
 ### 10. Func: fW@.fR@.fJhc.List.387_f :: (bits32,I) -> (N)
 
