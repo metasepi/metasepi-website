@@ -3,6 +3,7 @@
 *.o
 *~
 hakyll
+_site.tar.gz
 _cache/
 _site/
 draft/
