@@ -4,7 +4,7 @@
 
 Secret yet.
 
-![](img/cuttlefish.jpg)
+![](img/metasepi_logo_beta.jpg)
 
 ## What is Arafura?
 
