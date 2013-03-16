@@ -4,7 +4,9 @@
 
 Secret yet.
 
-![](img/metasepi_logo_beta.jpg)
+![](img/metasepi_logo_beta2.jpg)
+
+Photo: [Copyright (C) 2007 Silke Baron All Rights Reserved](http://www.flickr.com/photos/silkebaron/931247866/).
 
 ## What is Arafura?
 
