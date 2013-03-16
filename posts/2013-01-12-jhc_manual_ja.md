@@ -1,5 +1,5 @@
 ---
-title: jhcユーザーズマニュアル日本語訳 (2013/01/15更新')
+title: jhcユーザーズマニュアル日本語訳 (2013/03/16更新)
 description: jhcの使い方を理解するでゲッソ!
 tags: haskell, jhc, specification, translation
 ---
@@ -22,6 +22,14 @@ tags: haskell, jhc, specification, translation
 を使っていて、gettextの翻訳データは
 [po/ja.po - jhc-arafura in Metasepi - Gitorious](https://gitorious.org/metasepi/jhc-arafura/blobs/feature/po4a/po/ja.po)
 にあるので、po4aとgitを使える人はpull requestを送ってくれるのも歓迎でゲッソ!
+
+_2013/03/16追記:_ Metasepi向けのjhcの開発は
+[Ajhc](http://ajhc.masterq.net/)
+で行なうことになったでゲソ。
+Ajhcで追加された機能は
+[Ajhc User's Manual](http://ajhc.github.com/manual.html)
+([日本語訳](http://ajhc.github.com/manual_ja.html))
+を参照のこと、でゲッソ!
 
 ---------------------------------------
 
