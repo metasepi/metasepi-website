@@ -91,7 +91,7 @@ main = hakyll $ do
     route idRoute
     compile compressCssCompiler
 
-  match (list ["favicon.ico", "404.html", "50x.html"]) $ do
+  match (list ["favicon.ico", "404.html", "50x.html", "googlef5fb4c1f27601161.html"]) $ do
     route idRoute
     compile copyFileCompiler
 
