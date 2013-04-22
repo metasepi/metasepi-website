@@ -69,6 +69,7 @@ Easy come. Easy go. 気楽にいこうでゲッソ!
 ![](/img/20130203-meeting1.jpg)
 ![](/img/20130203-meeting2.jpg)
 ![](/img/20130203-meeting_q.jpg)
+
 その他の写真は
 [koie blog](http://blog.livedoor.jp/hkoie/archives/54372728.html)
 で見れるでゲソ。koieさんありがとうでゲソー。
