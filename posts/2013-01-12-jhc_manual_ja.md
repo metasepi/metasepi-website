@@ -24,11 +24,11 @@ tags: haskell, jhc, specification, translation
 にあるので、po4aとgitを使える人はpull requestを送ってくれるのも歓迎でゲッソ!
 
 _2013/03/16追記:_ Metasepi向けのjhcの開発は
-[Ajhc](http://ajhc.masterq.net/)
+[Ajhc](http://ajhc.metasepi.org/)
 で行なうことになったでゲソ。
 Ajhcで追加された機能は
-[Ajhc User's Manual](http://ajhc.github.com/manual.html)
-([日本語訳](http://ajhc.github.com/manual_ja.html))
+[Ajhc User's Manual](http://ajhc.metasepi.org/manual.html)
+([日本語訳](http://ajhc.metasepi.org/manual_ja.html))
 を参照のこと、でゲッソ!
 
 ---------------------------------------
