@@ -1,7 +1,9 @@
 ODGS := $(wildcard draw/*.odg)
 PNGS := $(patsubst %.odg,%.png,${ODGS})
+DOCS := $(wildcard doc/*.doc)
+PDFS := $(patsubst %.doc,%.pdf,${DOCS})
 
-all: ${PNGS} build
+all: ${PNGS} ${PDFS} build
 
 %.png: %.odg
 	unoconv -n -f png -o $@.tmp $< 2> /dev/null   || \
@@ -10,6 +12,13 @@ all: ${PNGS} build
           unoconv -f png -o $@.tmp $<
 	convert -resize 500x $@.tmp $@
 	rm -f $@.tmp
+
+%.pdf: %.doc
+	unoconv -n -f pdf -o $@.tmp $< 2> /dev/null   || \
+          unoconv -f pdf -o $@.tmp $<                 || \
+	  unoconv -n -f pdf -o $@.tmp $< 2> /dev/null || \
+          unoconv -f pdf -o $@.tmp $<
+	mv $@.tmp $@
 
 hakyll: hakyll.hs
 	ghc --make -Wall -Werror hakyll.hs -o hakyll
@@ -38,6 +47,6 @@ clean:
 	rm -rf `find . -name "*~"`
 
 distclean: clean
-	rm -f draw/*.png draw/*.tmp
+	rm -f draw/*.png draw/*.tmp doc/*.pdf doc/*.tmp
 
 .PHONY: lint clean
