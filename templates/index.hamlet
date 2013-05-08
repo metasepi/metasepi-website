@@ -24,7 +24,7 @@
     <li><a href="http://www.linkedin.com/groups/Metasepi-4772278">LinkedIn</a>
 
 <div.right-column-nowidth>
-  <a class="twitter-timeline" width="350" height="300" href="https://twitter.com/metasepi" data-widget-id="332092551957987328">Tweets by @metasepi</a>
+  <a class="twitter-timeline" width="400" height="280" href="https://twitter.com/metasepi" data-widget-id="332092551957987328">Tweets by @metasepi</a>
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 <div.clearfix>
