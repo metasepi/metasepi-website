@@ -83,6 +83,10 @@ main = hakyll $ do
     route idRoute
     compile copyFileCompiler
 
+  void $ match "doc/**" $ do
+    route idRoute
+    compile copyFileCompiler
+
   void $ match "js/**" $ do
     route idRoute
     compile copyFileCompiler
