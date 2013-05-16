@@ -1,5 +1,5 @@
 ---
-title: (作成中) jhcコンパイルパイプライン: Grin => C
+title: Jhc compile pipeline: Grin => C
 description: jhcコンパイルパイプラインを後段から順番に読んでいかなイカ？
 tags: compiler, jhc, c, grin
 ---
@@ -1098,7 +1098,14 @@ new_cache(struct s_arena *arena, unsigned short size, unsigned short num_ptrs)
 }
 ~~~
 
-xxxxxxxxxxx
+struct s_arenaのcachesメンバーには、
+サイズとポインタの数で種類分けされたcacheと呼ばれるエントリが列になっているでゲソ。
+find_cache関数の第三引数はサイズ、第四引数はポインタの数で、
+呼び元が欲しいcacheが既にcachesメンバーに確保されているのかチェックするのがfind_cache関数のでゲソ。
+もし対応するエントリがcachesに入ってなかった場合、
+find_cache関数はnew_cache関数を呼び出して新しいエントリを確保するんじゃなイカ。
+...でもこのcachesメンバーはコンパイル時に静的に確保してしまうこともできそうなもんでゲソ。
+ここらへんは改善できそうでゲソ。
 
 ~~~ {.c}
 static wptr_t A_STD A_FALIGNED
@@ -1226,10 +1233,5 @@ inline static void update(void *t, wptr_t n) { GETHEAD(t) = (fptr_t)n; }
 
 ![](/draw/2013-02-14-jhc_grin_to_c_E__f.png)
 
-## ソースコード分析 (実装からの理解)
-
 うん。なんとなくGrin=>Cがどんな変換なのかイメージがつかめたでゲソ。
-そろそろ例による理解ではなく、jhcのソースコードそのものを理解することもできるんじゃなイカ？
-読んでみるでゲッソ!
-
-xxxxxxxx
+次は例による理解ではなく、jhcのソースコードそのものを理解することもできるんじゃなイカ？
