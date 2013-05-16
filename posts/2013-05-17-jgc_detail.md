@@ -7,7 +7,7 @@ tags: jhc, jgc, gc, haskell
 AjhcのデフォルトのGCはjgcでゲソ。
 このjgcについての解説は
 [@dec9ue](https://twitter.com/dec9ue)
-氏のプレゼン資料が詳しいかったでゲソ。
+氏のプレゼン資料が詳しかったでゲソ。
 
 <iframe src="http://www.slideshare.net/slideshow/embed_code/16298437" width="427" height="356" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen webkitallowfullscreen mozallowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="http://www.slideshare.net/dec9ue/gc-16298437" title="小二病でもGCやりたい" target="_blank">小二病でもGCやりたい</a> </strong> from <strong><a href="http://www.slideshare.net/dec9ue" target="_blank">dec9ue</a></strong> </div>
 
@@ -135,6 +135,111 @@ wptr_t c_newStablePtr(sptr_t c) {
 ### 他にGCルートになるものは？
 
 さすがに上の2つだけがGCルートのはずないでゲソ。根っこがスカスカじゃなイカ。
+もう一つGCルートがあり、それはC言語のスタックでゲソ。
+gc_perform_gc関数の続きを読むと...
+
+~~~ {.c}
+        stack_check(&stack, gc - gc_stack_base);
+        number_stack = gc - gc_stack_base;
+        for(unsigned i = 0; i < number_stack; i++) {
+                debugf(" |");
+                // TODO - short circuit redirects on stack
+                sptr_t ptr = gc_stack_base[i];
+                if(1 && (IS_LAZY(ptr))) {
+                        assert(GET_PTYPE(ptr) == P_LAZY);
+                        VALGRIND_MAKE_MEM_DEFINED(FROM_SPTR(ptr), sizeof(uintptr_t));
+                        if(!IS_LAZY(GETHEAD(FROM_SPTR(ptr)))) {
+                                void *gptr = TO_GCPTR(ptr);
+                                if(gc_check_heap(gptr))
+                                        s_set_used_bit(gptr);
+                                number_redirects++;
+                                debugf(" *");
+                                ptr = (sptr_t)GETHEAD(FROM_SPTR(ptr));
+                        }
+                }
+                if(__predict_false(!IS_PTR(ptr))) {
+                        debugf(" -");
+                        continue;
+                }
+                number_ptr++;
+                entry_t *e = TO_GCPTR(ptr);
+                debugf(" %p",(void *)e);
+                gc_add_grey(&stack, e);
+        }
+~~~
+
+このコードはgcからgc_stack_baseまでの領域の差す先を
+entry_tポインタとしてgc_add_grey関数に食わせるでゲソ。
+gcとgc_stack_baseはプログラム起動時には同じ場所を指しているでゲソ。
+
+~~~ {.c}
+void
+jhc_alloc_init(void) {
+        VALGRIND_PRINTF("Jhc-Valgrind mode active.\n");
+#ifdef _JHC_JGC_FIXED_MEGABLOCK
+        saved_gc = gc_stack_base = (void *) gc_stack_base_area;
+#else
+        saved_gc = gc_stack_base = malloc((1UL << 18)*sizeof(gc_stack_base[0]));
+#endif
+        arena = new_arena();
+~~~
+
+ところがミューテターの中にgc_frame0関数というのがよくあらわれるでゲソ。
+
+~~~ {.c}
+static wptr_t A_STD A_MALLOC
+fR$__fJhc_Basics_$pp(gc_t gc,sptr_t v80776080,sptr_t v58800110)
+{
+        {   gc_frame0(gc,1,v58800110); // <= GCルートにv58800110を登録
+            wptr_t v100444 = eval(gc,v80776080);
+            if (SET_RAW_TAG(CJhc_Prim_Prim_$BE) == v100444) {
+                return eval(gc,v58800110);
+            } else {
+                sptr_t v106;
+                sptr_t v108;
+                /* ("CJhc.Prim.Prim.:" ni106 ni108) */
+                v106 = ((struct sCJhc_Prim_Prim_$x3a*)v100444)->a1;
+                v108 = ((struct sCJhc_Prim_Prim_$x3a*)v100444)->a2;
+                {   gc_frame0(gc,2,v106,v108); // <= GCルートにv106とv108を登録
+                    sptr_t x7 = s_alloc(gc,cFR$__fJhc_Basics_$pp);
+                    ((struct sFR$__fJhc_Basics_$pp*)x7)->head = TO_FPTR(&E__fR$__fJhc_Basics_$pp);
+                    ((struct sFR$__fJhc_Basics_$pp*)x7)->a1 = v108;
+                    ((struct sFR$__fJhc_Basics_$pp*)x7)->a2 = v58800110;
+                    sptr_t v69834446 = MKLAZY(x7);
+                    {   gc_frame0(gc,1,v69834446); // <= GCルートにv69834446を登録
+                        wptr_t x8 = s_alloc(gc,cCJhc_Prim_Prim_$x3a);
+                        ((struct sCJhc_Prim_Prim_$x3a*)x8)->a1 = v106;
+                        ((struct sCJhc_Prim_Prim_$x3a*)x8)->a2 = v69834446;
+                        return x8;
+                    }
+                }
+            }
+        }
+}
+~~~
+
+このgc_frame0関数はイカのような実装で、つまり上のミューテターはGCルートに
+
+* v58800110: 関数の引数の一つ
+* v106とv108: v100444のメンバー。v100444自体はGCルートに登録されない
+* v69834446: s_alloc関数で確保したx7スマートポインタに遅延ビットを立てたもの
+
+の4つを登録しているでゲソ。
+
+~~~ {.c}
+#define gc_frame0(gc,n,...) void *ptrs[n] = { __VA_ARGS__ }; \
+        for(int i = 0; i < n; i++) gc[i] = (sptr_t)ptrs[i]; \
+        gc_t sgc = gc;  gc_t gc = sgc + n;
+~~~
+
+どーせs_alloc関数を呼ばないかぎりはGCは走らないので、
+GCルートに追加するタイミングはs_alloc関数の直前まではあんまり厳密にしなくても良いはずでゲソ。
+また、eval関数はサンクの評価を行なう可能性があり、その中でs_alloc関数を呼び出す可能性があるので、
+その直前でGCルートを最新の情報に更新しておく必要があるはずでゲソ。
+
+ミューテターをC言語で書いていても、コンパイルパイプラインで自動生成するようにすれば、
+gc_frame0関数の挿入のようなアイデアも実装漏れが起きることを気にしないで実現できるでゲソ。
+いいじゃなイカ!
 
 xxxxx
 
