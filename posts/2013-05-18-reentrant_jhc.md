@@ -4,6 +4,8 @@ description: 再入可能を実現せよ。でゲソ!
 tags: jhc, ajhc, reentrant, interrupt, lock
 ---
 
+いきなりAjhcの吐くコードを並列実行可能にすることはハードルが高すぎるでゲソ。
+まず再入可能を実現しなイカ？
 
 ## スナッチ対象を決めるでゲソ
 
