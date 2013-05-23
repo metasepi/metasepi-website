@@ -2,7 +2,7 @@
 
 ## What is Metasepi?
 
-Secret yet.
+Challenge spawning a free software Unix-like operating system written with type system.
 
 ![](img/metasepi_logo_beta2.jpg)
 
