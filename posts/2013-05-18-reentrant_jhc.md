@@ -101,14 +101,15 @@ kernelのほとんどの部分はイベントドリブンであることを考�
 
 * TimingDelay変数はPtr Word32型に
 * SysTick_Handler関数はforeign export ccall SysTick_Handler :: IO ()
-* foreign exportな関数は呼び出される度にGCスタックとヒープを割り当てられる
-* foreign exportな関数が終了したら自GCスタックとヒープを解放
+* foreign export ccallな関数は呼び出される度にGCスタックとヒープを割り当て
+* foreign export ccallな関数が終了したら自GCスタックとヒープを解放
 * GCスタック毎に別々のHaskellヒープを持つ
+* s_alloc関数はコンテキストによって使うヒープを切り換え
 * GC関連関数の実行を排他するためのロックプリミティブ
 
 それぞれについて実施できそうか調べてみようじゃなイカ。
 
-## foreign exportは(A)jhcでも使えるか
+## foreign export ccallは(A)jhcでも使えるか
 
 Main.main関数がないとコンパイルエラーになるでゲソが、いちおう使えるでゲソ。
 [SlimHaskell/FibHs_ajhc](https://github.com/master-q/SlimHaskell/tree/master/FibHs_ajhc)
@@ -141,11 +142,110 @@ $ size */FibHs | sort -n -k 6
 
 ## GCスタックとHaskellヒープのコンテキストへの割り当てと解放
 
-### コンパイルパイプラインを修正してforeign exportの入口/出口でGCスタックとHaskellヒープの割り当て/解放
+### コンパイルパイプラインを修正してforeign export ccallの入口/出口でGCスタックとHaskellヒープの割り当て/解放
+
+foreign export ccallがgrinの中でどう扱われているのか気になったので、
+foreign export ccallを使うHaskellコードを[ダンプしてみた](https://github.com/ajhc/ajhc-dumpyard/tree/master/use_foreign_export)でゲソ。
+このダンプの中にあるgrinコード
+[hs_main.c_final.grin](https://github.com/ajhc/ajhc-dumpyard/blob/master/use_foreign_export/hs_main.c_final.grin)
+
+~~~
+fFE@.CCall.fib :: (bits32) -> (bits32)
+fFE@.CCall.fib w8 = do
+  h100016 <- 0 `Lte` w8
+  nd68 <- case h100016 of
+    0 -> return (CJhc.Type.Word.Int 0)
+    1 -> do
+      h100018 <- 40 `Gte` w8
+      case h100018 of
+        1 -> do
+~~~
+
+と出力されたC言語コード
+[hs_main.c](https://github.com/ajhc/ajhc-dumpyard/blob/master/use_foreign_export/hs_main.c)
+
+~~~ {.c}
+static uint32_t A_STD
+fFE$__CCall_fib(gc_t gc,uint32_t v8)
+{
+        wptr_t v68;
+        uint32_t v35;
+        uint16_t v100016 = (((int32_t)0) <= ((int32_t)v8));
+        if (0 == v100016) {
+/* --snip-- */
+int 
+fib(int x11)
+{
+        return (int)fFE$__CCall_fib(saved_gc,(uint32_t)x11);
+}
+~~~
+
+を見比べると、どうやら"fFE$__CCall_fib"という関数がforeign export ccallした関数のようでゲソ。
+また
+[hs_main.c_final.datalog](https://github.com/ajhc/ajhc-dumpyard/blob/master/use_foreign_export/hs_main.c_final.datalog)
+を読むとイカのように型の定義まであるじゃなイカ。
+
+~~~
+% functions
+-- snip --
+func('fFE@.CCall.fib',1).
+perform(assign,'v8','fFE@.CCall.fib@arg@0').
+what('fFE@.CCall.fib@arg@0',funarg).
+typeof('fFE@.CCall.fib@arg@0','bits32').
+typeof('v8','bits32').
+what('fFE@.CCall.fib@ret@0',funret).
+typeof('fFE@.CCall.fib@ret@0','bits32').
+-- snip --
+subfunc('fW@.fR@.fJhc.List.243_sub','fFE@.CCall.fib').
+-- snip --
+perform(assign,'fFE@.CCall.fib@ret@0','v35').
+~~~
+
+このforeign export ccallな関数はgrinの中ではそのまんまCCallという型で表現されているでゲソ。
+ということはイカのconvertFunc関数を修正すれば、
+GCスタックとHaskellヒープの割り当て/解放処理をforeign export ccallな関数に注入できそうじゃなイカ。
+
+~~~ {.haskell}
+-- ajhc/src/C/FFI.hs
+data FfiExport = FfiExport {
+    ffiExportCName    :: CName,
+    ffiExportSafety   :: Safety,
+    ffiExportCallConv :: CallConv,
+    ffiExportArgTypes :: [ExtType],
+    ffiExportRetType  :: ExtType
+    }
+ deriving(Eq,Ord,Show,Typeable)
+-- ajhc/src/C/Prims.hs
+data CallConv = CCall | StdCall | CApi | Primitive | DotNet
+    deriving(Eq,Ord,Show)
+-- ajhc/src/C/FromGrin2.hs
+convertFunc :: Maybe FfiExport -> (Atom,Lam) -> C [Function]
+convertFunc ffie (n,as :-> body) = do
+--snip--
+        mstub <- case ffie of
+                Nothing -> return []
+                Just ~(FfiExport cn Safe CCall argTys retTy) -> do
+                    newVars <- mapM (liftM (name . show) . newVar . basicType') argTys
+
+                    let fnname2 = name cn
+                        as2 = zip (newVars) (map basicType' argTys)
+                        fr2 = basicType' retTy
+
+                    return [function fnname2 fr2 as2 [Public]
+                                     (creturn $ cast fr2 $ functionCall fnname $ (if fopts FO.Jgc then (variable (name "saved_gc"):) else id) $
+                                      zipWith cast (map snd as')
+                                                   (map variable newVars))]
+
+        return (function fnname fr (mgct as') ats s : mstub)
+~~~
 
 ### 使用済みGCスタックとHaskellヒープを次回確保用にプール
 
 xxx
+
+### RTSのAPI修正
+
+xxx s_alloc関数など
 
 ## Ajhcに求められる排他制御とは何か
 
