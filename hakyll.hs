@@ -1,126 +1,109 @@
-#! /usr/bin/env runhaskell
 {-# LANGUAGE OverloadedStrings #-}
 
-import Control.Arrow
-import Control.Monad (void)
-import Data.Monoid
-
+-- import Control.Monad (when)
+-- import Data.Binary   (Binary (..))
+import Data.Char     (toLower)
+import Data.Monoid   (mappend, mconcat)
+-- import Data.Typeable (Typeable (..))
 import Hakyll
-import Text.Pandoc
+-- import System.Cmd    (system)
+-- import System.Exit   (ExitCode (..))
 
 main :: IO ()
 main = hakyll $ do
-  -- Tags
-  void $ create "tags" $
-    requireAll "posts/*" (\_ ps -> readTags ps :: Tags String)
-
-  -- Add a tag list compiler for every tag
-  match "tags/*" $ route $ setExtension ".html"
-  metaCompile $ require_ "tags"
-    >>> arr tagsMap
-    >>> arr (map (\(t, q) -> (tagIdentifier t, makeTagList t q)))
-
-  -- RSS
-  match "rss.xml" $ route idRoute
-  void $ create "rss.xml" $ requireAll_ "posts/*" >>> renderRss feedConfiguration
-
-  -- index
-  match "index.html" $ route idRoute
-  void $ create "index.html" $ constA mempty
-    >>> arr (setField "title" "Home")
-    >>> requireA "tags" (setFieldA "tags" (renderTagList'))
-    >>> setFieldPageList (take 3 . recentFirst)
-          "templates/postitem.hamlet" "posts" "posts/*"
-    >>> applyTemplateCompiler "templates/index.hamlet"
-    >>> applyTemplateCompiler "templates/default.hamlet"
-
-  -- pages
-  void $ match (list ["about.md", "map.md"]) $ do
-    route $ setExtension "html"
-    compile $
-      pageCompilerWithPandoc
-        defaultHakyllParserState
-        defaultHakyllWriterOptions
-        id
-      >>> applyTemplateCompiler "templates/default.hamlet"
-      >>> relativizeUrlsCompiler
-
-  -- blog posts
-  void $ match "posts/*.md" $ do
-    route $ setExtension "html"
-    compile $
-      pageCompilerWithPandoc
-        defaultHakyllParserState
-        defaultHakyllWriterOptions { writerHTMLMathMethod = MathJax "http://cdn.mathjax.org/mathjax/latest/MathJax.js" }
-        id
-      >>> arr (renderDateField "date" "%Y/%m/%e" "Date unknown")
-      >>> arr (renderDateField "d_year" "%Y" "Date unknown")
-      >>> arr (renderDateField "d_month" "%b" "Date unknown")
-      >>> arr (renderDateField "d_date" "%e" "Date unknown")
-      >>> renderTagsField "prettytags" (fromCapture "tags/*")
-      >>> applyTemplateCompiler "templates/post.hamlet"
-      >>> applyTemplateCompiler "templates/default.hamlet"
-      >>> relativizeUrlsCompiler
-
-  -- Post list
-  match "posts.html" $ route idRoute
-  void $ create "posts.html" $ constA mempty
-    >>> arr (setField "title" "Posts")
-    >>> setFieldPageList recentFirst "templates/postitem.hamlet" "posts" "posts/*"
-    >>> applyTemplateCompiler "templates/posts.hamlet"
-    >>> applyTemplateCompiler "templates/default.hamlet"
-    >>> relativizeUrlsCompiler
-
-  -- templates
-  void $ match "templates/*" $ compile templateCompiler
-
-  -- static contents
-  void $ match "draw/*.png" $ do
-    route idRoute
-    compile copyFileCompiler
-
-  void $ match "img/**" $ do
-    route idRoute
-    compile copyFileCompiler
-
-  void $ match "doc/**" $ do
-    route idRoute
-    compile copyFileCompiler
-
-  void $ match "js/**" $ do
-    route idRoute
-    compile copyFileCompiler
-
-  void $ match "css/*" $ do
-    route idRoute
+  match "css/*" $ do
+    route   idRoute
     compile compressCssCompiler
 
-  match (list ["favicon.ico", "404.html", "50x.html", "googlef5fb4c1f27601161.html"]) $ do
+  match ("img/**" .||. "js/**" .||. "doc/**" .||. "draw/*.png" .||.
+         "favicon.ico" .||. "404.html" .||. "50x.html" .||. "googlef5fb4c1f27601161.html") $ do
     route idRoute
     compile copyFileCompiler
 
-  where
-    renderTagList' :: Compiler (Tags String) String
-    renderTagList' = renderTagList tagIdentifier
+  match (fromList ["about.md", "map.md"]) $ do
+    route   $ setExtension "html"
+    compile $ pandocCompiler
+      >>= loadAndApplyTemplate "templates/default.html" defaultContext
+      >>= relativizeUrls
 
-    tagIdentifier :: String -> Identifier (Page String)
-    tagIdentifier = fromCapture "tags/*"
+  tags <- buildTags "posts/*.md" (fromCapture "tags/*.html" . map toLower)
 
-makeTagList :: String
-               -> [Page String]
-               -> Compiler () (Page String)
-makeTagList tagg posts =
-  constA posts
-  >>> pageListCompiler recentFirst "templates/postitem.hamlet"
-  >>> arr (copyBodyToField "posts" . fromBody)
-  >>> arr (setField "title" ("Posts tagged " ++ tagg))
-  >>> applyTemplateCompiler "templates/posts.hamlet"
-  >>> applyTemplateCompiler "templates/default.hamlet"
+  match "posts/*.md" $ do
+    route $ setExtension "html"
+    compile $ pandocCompiler
+      >>= loadAndApplyTemplate "templates/post.html"    (postCtx tags)
+      >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
+      >>= relativizeUrls
+
+  create ["posts.html"] $ do
+        route idRoute
+        compile $ do
+            let archiveCtx =
+                  field "posts" (\_ -> postList tags "posts/*.md" recentFirst) `mappend`
+                  constField "title" "Posts"              `mappend`
+                  defaultContext
+            makeItem ""
+                >>= loadAndApplyTemplate "templates/posts.html" archiveCtx
+                >>= loadAndApplyTemplate "templates/default.html" archiveCtx
+                >>= relativizeUrls
+
+  -- Post tags
+  tagsRules tags $ \tag pattern -> do
+    let title = "Posts tagged " ++ tag
+    -- Copied from posts, need to refactor
+    route idRoute
+    compile $ do
+      list <- postList tags pattern recentFirst
+      makeItem ""
+        >>= loadAndApplyTemplate "templates/posts.html"
+                (constField "title" title `mappend`
+                    constField "posts" list `mappend`
+                    defaultContext)
+        >>= loadAndApplyTemplate "templates/default.html" defaultContext
+        >>= relativizeUrls
+
+  create ["rss.xml"] $ do
+    route idRoute
+    compile $ do
+      let feedCtx = dateField "date" "%B %e, %Y"
+                      `mappend` defaultContext
+                      `mappend` constField "description" "This is the post description"
+      posts <- fmap (take 10) . recentFirst =<< loadAll "posts/*"
+      renderAtom feedConfiguration feedCtx posts
+
+  match "index.html" $ do
+    route idRoute
+    compile $ do
+      let indexCtx = field "posts" $ \_ ->
+                          postList tags "posts/*.md" $ fmap (take 3) . recentFirst
+      getResourceBody
+        >>= applyAsTemplate indexCtx
+        >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
+        >>= relativizeUrls
+
+  match "templates/*" $ compile templateCompiler
 
 feedConfiguration :: FeedConfiguration
 feedConfiguration = FeedConfiguration
   { feedTitle       = "Metasepi Logbook"
   , feedDescription = "A diary to develop Metasepi kernel."
   , feedAuthorName  = "Kiwamu Okabe"
+  , feedAuthorEmail = "kiwamu@debian.or.jp"
   , feedRoot        = "http://metasepi.masterq.net/"
   }
+
+--------------------------------------------------------------------------------
+postCtx :: Tags -> Context String
+postCtx tags = mconcat
+    [ modificationTimeField "mtime" "%U"
+    , dateField "date" "%B %e, %Y"
+    , tagsField "tags" tags
+    , defaultContext
+    ]
+
+--------------------------------------------------------------------------------
+postList :: Tags -> Pattern -> ([Item String] -> Compiler [Item String]) -> Compiler String
+postList tags pattern sortFilter = do
+    posts   <- sortFilter =<< loadAll pattern
+    itemTpl <- loadBody "templates/postitem.html"
+    applyTemplateList itemTpl (postCtx tags) posts
