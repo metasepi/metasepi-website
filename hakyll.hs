@@ -1,13 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 
--- import Control.Monad (when)
--- import Data.Binary   (Binary (..))
 import Data.Char     (toLower)
 import Data.Monoid   (mappend, mconcat)
--- import Data.Typeable (Typeable (..))
 import Hakyll
--- import System.Cmd    (system)
--- import System.Exit   (ExitCode (..))
+import Text.Pandoc
 
 main :: IO ()
 main = hakyll $ do
@@ -30,7 +26,7 @@ main = hakyll $ do
 
   match "posts/*.md" $ do
     route $ setExtension "html"
-    compile $ pandocCompiler
+    compile $ pandocCompilerWith defaultHakyllReaderOptions pandocOptions
       >>= loadAndApplyTemplate "templates/post.html"    (postCtx tags)
       >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
       >>= relativizeUrls
@@ -91,6 +87,13 @@ feedConfiguration = FeedConfiguration
   , feedAuthorEmail = "kiwamu@debian.or.jp"
   , feedRoot        = "http://metasepi.masterq.net/"
   }
+
+pandocOptions :: WriterOptions
+pandocOptions = defaultHakyllWriterOptions
+    { writerTableOfContents = True
+    , writerTemplate = "<h2>Table of contents</h2>\n$toc$\n<hr>\n$body$"
+    , writerStandalone = True
+    }
 
 --------------------------------------------------------------------------------
 postCtx :: Tags -> Context String
