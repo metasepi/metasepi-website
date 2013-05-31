@@ -16,9 +16,7 @@ body, button, input, select, textarea { font-family: sans-serif; color: #222; }
 
 a { color: #f26711; }
 a:visited { color: #880000; }
-a:hover { color: #06e; }
-a:focus { outline: thin dotted; }
-a:hover, a:active { outline: 0; }
+a:hover, a:focus, a:active { color: #fff; background-color: #b84e0D; }
 
 abbr[title] { border-bottom: 1px dotted; }
 b, strong { font-weight: bold; }
