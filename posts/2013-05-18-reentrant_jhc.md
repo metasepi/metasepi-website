@@ -246,24 +246,82 @@ convertFunc ffie (n,as :-> body) = do
 * GCスタック: mallocで確保。サイズは1<<18エントリ
 * Haskellヒープ: 1MBずつmegablockが補給される
 
-_JHC_JGC_FIXED_MEGABLOCK defineが有効な場合、
-GCスタックとHaskellヒープはどちらも固定サイズで唯一一つだけ確保されるでゲソ。
-冗長になるでゲソが、Cortex-M4に対応するにはイカのコンパイルフラグが必要になりそうでゲソ。
+"_JHC_JGC_FIXED_MEGABLOCK" defineが有効な場合、
+GCスタックとHaskellヒープはどちらも固定サイズで唯一一つだけ確保されるのだったでゲソ。
+少し冗長になるでゲソが、Cortex-M4に対応するにはイカのコンパイルフラグが必要になりそうでゲソ。
 
-* GCスタックのサイズ指定
-* GCスタックの個数
-* megablockのサイズ指定
-* blockのサイズ指定
-* megablockの個数
+* "_JHC_JGC_GCSTACK_SIZE": GCスタックのサイズ指定
+* "_JHC_JGC_FIXEDNUM_GCSTACK": GCスタックの個数(個数限定)
+* "_JHC_JGC_MEGABLOCK_SHIFT": megablockのサイズ指定
+* "_JHC_JGC_BLOCK_SHIFT": blockのサイズ指定
+* "_JHC_JGC_FIXEDNUM_MEGABLOCK": megablockの個数(個数限定)
 
-イカのコンパイルフラグを用意する必要があるでゲソ。
-少し冗長になるでゲソがまぁ必要なのだからしょうがないんじゃなイカ？
+"_JHC_JGC_FIXED_MEGABLOCK"フラグは意味が変更になってしまうので撤廃するでゲソ。
 
-xxx
+また、GCスタックとHaskellヒープを動的に確保する場合も固定で確保する場合も
+Ajhcランタイム内部のリストにプールしておき、
+要求された時にmallocを呼ばずにミューテターに渡せるようにしたいでゲソ。
+GCスタックもmegablockも一つのエントリは固定サイズなので、
+見分けがつかないはずでゲソ。
 
-### RTSのAPI修正
+### ランタイムのAPI修正
 
-xxx s_alloc関数など
+今回の変更でstruct s_arenaを文脈毎に分割して持つことになるでゲソ。
+そこで、AjhcランタイムのAPIもそれに合わせて修正が必要になるでゲソ。
+
+* struct s_arenaを全ての関数の第二引数でひきまわす (第一引数はGCスタックへのポインタ)
+* struct s_arenaにgc_stack_baseメンバーを追加 (saved_gcメンバーも必要？)
+* ミューテターから呼び出される関数の引数にstruct s_arenaを追加、そのような関数は...
+    * eval
+    * gc_add_root
+    * gc_alloc
+    * gc_array_alloc
+    * gc_array_alloc_atomic
+    * gc_perform_gc
+    * s_alloc
+
+gc_new_foreignptrとかは対応しなくていいんだろうかちょっと不安でゲソ
+
+~~~ {.haskell}
+-- File: ajhc/lib/jhc/Jhc/ForeignPtr.hs
+foreign import safe ccall gc_malloc_foreignptr
+    :: Word     -- alignment in words
+    -> Word     -- size in words
+    -> Bool     -- false for plain foreignptrs, true for ones with finalizers.
+    -> UIO (Bang_ (ForeignPtr a))
+
+foreign import safe ccall gc_new_foreignptr ::
+    Ptr a -> UIO (Bang_ (ForeignPtr a))
+
+foreign import unsafe ccall gc_add_foreignptr_finalizer
+    :: Bang_ (ForeignPtr a)
+    -> FinalizerPtr a
+    -> IO ()
+~~~
+
+と、GCスタックへのポインタを渡していないライブラリがあるでゲソ。
+そしてランタイムのGC側ではグローバル変数saved_gcからGCスタックを取り出しているでゲソ。
+
+~~~ {.c}
+/* File: ajhc/rts/rts/gc_jgc.c */
+heap_t A_STD
+gc_new_foreignptr(HsPtr ptr) {
+        HsPtr *res = gc_array_alloc_atomic(saved_gc, 2, SLAB_FLAG_FINALIZER);
+        res[0] = ptr;
+        res[1] = NULL;
+        return TO_SPTR(P_WHNF, res);
+}
+~~~
+
+このように一旦GCスタックへのポインタの受け渡しが途切れる箇所がいくつかあり、それは
+
+* gc_malloc_foreignptr
+* gc_new_foreignptr
+* hs_perform_gc
+* jhc_alloc_init
+
+の4つのようでゲソ。これはまずいでゲソ...
+なんとかstruct arenaとGCスタックへのポインタを渡せるようにすべきでゲソ。
 
 ## Ajhcに求められる排他制御とは何か
 
@@ -294,9 +352,18 @@ xxx
 
 ### グローバルサンクの評価での排他とBLACKHOLE
 
+アドレスnh_startからnh_endまでの領域にはグローバルサンクが配置されている。
+
 xxx
 
 ### シグナルハンドラはsigwaitで取り扱う
+
+## モジュール分割
+
+### Haskell側に追加する公開API
+
+* data ThreadId
+* forkOS
 
 ## pthreadを使ってTimingDelayをエミュレートしてみる
 
