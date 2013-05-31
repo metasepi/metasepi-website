@@ -78,6 +78,14 @@ body {
     margin:      0px;
 }
 
+h2 {
+    text-align: left;
+    border-left: 10px solid #ee6611;
+    padding-left: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
 .container > footer {
     clear: both;
     text-align: center;
