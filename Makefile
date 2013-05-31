@@ -27,7 +27,7 @@ build: hakyll
 	./hakyll build
 
 server: all
-	./hakyll server
+	./hakyll preview
 
 publish: all
 	ssh sakura.masterq.net rm -rf ~/vhosts/_site ~/vhosts/_site.tar.gz
