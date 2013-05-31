@@ -386,10 +386,28 @@ sigwaitループさせた方が良さそうでゲソ。
 今回コイツも復活させてやった方がいいんじゃなイカ？
 SelfTestがたまに失敗する原因はこいつなような気がしてきたでゲッソ。
 
+### GHCで該当するAPI
+
+せっかくAPIを切るのだからGHCと同じ名前にしておいた方が後々楽ができるんじゃなイカ？
+
+* type Signal = CInt
+* setHandler :: Signal -> Maybe (HandlerFun, Dynamic) -> IO (Maybe (HandlerFun, Dynamic))
+* int stg_sig_install(int sig, int spi, void *mask)
+* forkIO :: IO () -> IO ThreadId
+* int forkOS_createThread ( HsStablePtr entry )
+* typedef pthread_mutex_t Mutex
+* void initMutex ( Mutex* pMut )
+* #define ACQUIRE_LOCK(mutex) foreign "C" pthread_mutex_lock(mutex)
+* #define RELEASE_LOCK(mutex) foreign "C" pthread_mutex_unlock(mutex)
+
+xxx
+
 ### Haskell側に公開するAPI
 
 * data ThreadId
 * forkOS
+
+xxx シグナル操作関数
 
 ### ランタイム側に公開するAPI
 
@@ -400,3 +418,5 @@ SelfTestがたまに失敗する原因はこいつなような気がしてきた
 ## pthreadを使ってTimingDelayをエミュレートしてみる
 
 ## Cortex-M4実機での検証
+
+## Windows MinGWでの動作確認
