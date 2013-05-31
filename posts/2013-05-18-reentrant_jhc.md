@@ -241,6 +241,24 @@ convertFunc ffie (n,as :-> body) = do
 
 ### 使用済みGCスタックとHaskellヒープを次回確保用にプール
 
+今のAjhcは通常イカのようにGCスタックとHaskellヒープを管理しているでゲソ。
+
+* GCスタック: mallocで確保。サイズは1<<18エントリ
+* Haskellヒープ: 1MBずつmegablockが補給される
+
+_JHC_JGC_FIXED_MEGABLOCK defineが有効な場合、
+GCスタックとHaskellヒープはどちらも固定サイズで唯一一つだけ確保されるでゲソ。
+冗長になるでゲソが、Cortex-M4に対応するにはイカのコンパイルフラグが必要になりそうでゲソ。
+
+* GCスタックのサイズ指定
+* GCスタックの個数
+* megablockのサイズ指定
+* blockのサイズ指定
+* megablockの個数
+
+イカのコンパイルフラグを用意する必要があるでゲソ。
+少し冗長になるでゲソがまぁ必要なのだからしょうがないんじゃなイカ？
+
 xxx
 
 ### RTSのAPI修正
@@ -273,3 +291,13 @@ Cortex-M3ぐらいの小さなCPUではロックを作らなくても、割り�
 具体的なインターフェイスはイカのように実装しておけば良さそうでゲソ。
 
 xxx
+
+### グローバルサンクの評価での排他とBLACKHOLE
+
+xxx
+
+### シグナルハンドラはsigwaitで取り扱う
+
+## pthreadを使ってTimingDelayをエミュレートしてみる
+
+## Cortex-M4実機での検証
