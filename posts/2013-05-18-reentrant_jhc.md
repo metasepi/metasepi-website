@@ -397,20 +397,23 @@ SelfTestがたまに失敗する原因はこいつなような気がしてきた
 * int forkOS_createThread ( HsStablePtr entry )
 * typedef pthread_mutex_t Mutex
 * void initMutex ( Mutex* pMut )
-* #define ACQUIRE_LOCK(mutex) foreign "C" pthread_mutex_lock(mutex)
-* #define RELEASE_LOCK(mutex) foreign "C" pthread_mutex_unlock(mutex)
+* \#define ACQUIRE_LOCK(mutex) foreign "C" pthread_mutex_lock(mutex)
+* \#define RELEASE_LOCK(mutex) foreign "C" pthread_mutex_unlock(mutex)
 
-xxx
+xxx signalを扱うのは時期尚早な気がする。MVarも全うに使えない状況では...
+
+ということでこのGHCのAPIを真似てAjhcでの公開APIを決めるでゲソ。
 
 ### Haskell側に公開するAPI
 
 * data ThreadId
-* forkOS
+* forkIO
 
 xxx シグナル操作関数
 
 ### ランタイム側に公開するAPI
 
+* jhc_signal_init
 * jhc_mutex_init
 * jhc_mutex_lock
 * jhc_mutex_unlock

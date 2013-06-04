@@ -145,11 +145,55 @@ wrapperというforeign import宣言
 wrapperを使えば簡単にpthread\_createにHaskellのIOを呼び出してもらえるじゃなイカ？
 やってみるでゲソ!
 
+...と、
+[ものすごくいい加減なコード](https://github.com/ajhc/ajhc-dumpyard/tree/master/try_pthread2)
+を書いてみたでゲソ。
+ところが今度はFunPtrというC言語の型がみつからないとGCCに怒られるでゲソ。
 
+~~~
+Running: gcc tmp/rts/profile.c tmp/rts/rts_support.c tmp/rts/gc_none.c tmp/rts/jhc_rts.c tmp/lib/lib_cbits.c tmp/rts/gc_jgc.c tmp/rts/stableptr.c -Itmp/cbits -Itmp tmp/main_code.c -o Main '-std=gnu99' -D_GNU_SOURCE '-falign-functions=4' -ffast-math -Wextra -Wall -Wno-unused-parameter -fno-strict-aliasing -DNDEBUG -O3 '-D_JHC_GC=_JHC_GC_JGC'
+tmp/main_code.c: In function ‘fFE$__CCall_testThread’:
+tmp/main_code.c:659:17: warning: statement with no effect [-Wunused-value]
+tmp/main_code.c: In function ‘ftheMain’:
+tmp/main_code.c:1146:68: error: ‘FunPtr’ undeclared (first use in this function)
+tmp/main_code.c:1146:68: note: each undeclared identifier is reported only once for each function it appears in
+Exiting abnormally. Work directory is 'tmp'
+ajhc: user error (C code did not compile.)
+~~~
 
+これはイカのようなC言語コードをAjhcが吐き出すためでゲソ。
+もうちょっと小細工すれば関数ポインタが使えるようになりそうじゃなイカ？
+
+~~~ {.c}
+static void A_STD
+ftheMain(gc_t gc)
+{
+        saved_gc = gc;
+        (uint32_t)pthread_create((pthread_t*)0,(pthread_attr_t*)0,(FunPtr)((uintptr_t)&testThread),(HsPtr)0);
+        return;
+}
+
+HsPtr
+testThread(HsPtr x30)
+{
+        return (HsPtr)fFE$__CCall_testThread(saved_gc,(uintptr_t)x30);
+}
+~~~
+
+しかし仮にこれでFunPtrを使った関数ポインタを実現できても、
+任意のIOを関数ポインタ化できることにはならないでゲソ。
+GHCはどんな魔法を使っているのでゲソ？
+[GHCでforeign import ccall "wrapper"を使う例](https://github.com/ajhc/ajhc-dumpyard/tree/master/ghc_foreign_wrapper)
+を解析すれば何かわかるかもしれないでゲソ。
 
 ### グローバル関数テーブルのインデックスを引数渡し
 
+StablePtrを使わずにコンテキスト間でIOを授受する方法として無理矢理考えてみたでゲソ。
+結局インデックスの意味がC言語側に漏れるので、
+StablePtrを直接C言語に渡すケースと比較して危険度はほとんど変わらない気もするでゲソ...
 
+### ラムダ式を使うために-std=gnu++11でコンパイル
+
+さすがにこれは筋が悪すぎるので、困った時の隠し玉に取っておかなイカ？
 
 ## 実装
