@@ -357,7 +357,8 @@ Cortex-M3ぐらいの小さなCPUではロックを作らなくても、割り�
 
 ### グローバルサンクの評価での排他とBLACKHOLE
 
-アドレスnh_startからnh_endまでの領域にはグローバルサンクが配置されている。
+アドレスnh_startからnh_endまでの領域にはグローバルサンクが配置されているでゲソ。
+少なくともグローバルサンクは複数のコンテキストで共有するので、なにか排他をするべきじゃなイカ？
 
 xxx
 
@@ -393,30 +394,32 @@ SelfTestがたまに失敗する原因はこいつなような気がしてきた
 * type Signal = CInt
 * setHandler :: Signal -> Maybe (HandlerFun, Dynamic) -> IO (Maybe (HandlerFun, Dynamic))
 * int stg_sig_install(int sig, int spi, void *mask)
-* forkIO :: IO () -> IO ThreadId
+* forkOS :: IO () -> IO ThreadId
 * int forkOS_createThread ( HsStablePtr entry )
 * typedef pthread_mutex_t Mutex
 * void initMutex ( Mutex* pMut )
 * \#define ACQUIRE_LOCK(mutex) foreign "C" pthread_mutex_lock(mutex)
 * \#define RELEASE_LOCK(mutex) foreign "C" pthread_mutex_unlock(mutex)
 
-xxx signalを扱うのは時期尚早な気がする。MVarも全うに使えない状況では...
-
-ということでこのGHCのAPIを真似てAjhcでの公開APIを決めるでゲソ。
+書きだしたけれど、とりあえず今はスレッドが扱えれば良いので、シグナルの抽象化はやめておこうと思うでゲソ。
+ということでこのGHCのAPIを真似てAjhcでの公開APIを決めるでゲソ〜。
 
 ### Haskell側に公開するAPI
 
 * data ThreadId
-* forkIO
+* forkOS :: IO () -> IO ThreadId
 
-xxx シグナル操作関数
+xxx 今の型は forkOS :: FunPtr (Ptr () -> IO (Ptr ())) -> IO ThreadId
+xxx 限定的にでもwrapperを使えるようにすること
 
 ### ランタイム側に公開するAPI
 
-* jhc_signal_init
-* jhc_mutex_init
-* jhc_mutex_lock
-* jhc_mutex_unlock
+* typedef pthread_t jhc_threadid_t
+* typedef pthread_mutex_t jhc_mutex_t
+* jhc_threadid_t forkOS_createThread(void *entry, int *err)
+* void jhc_mutex_init(jhc_mutex_t *mutex)
+* int jhc_mutex_lock(jhc_mutex_t *mutex)
+* int jhc_mutex_unlock(jhc_mutex_t *mutex)
 
 ## pthreadを使ってTimingDelayをエミュレートしてみる
 
