@@ -423,6 +423,44 @@ xxx 限定的にでもwrapperを使えるようにすること
 
 ## pthreadを使ってTimingDelayをエミュレートしてみる
 
+xxx arenaを全ての関数の第二引数に追加
+
+~~~
+$ git grep import lib|grep " safe"
+lib/jhc/Jhc/ForeignPtr.hs:foreign import safe ccall gc_malloc_foreignptr
+lib/jhc/Jhc/ForeignPtr.hs:foreign import safe ccall gc_new_foreignptr ::
+lib/jhc/System/Mem.hs:foreign import ccall safe "hs_perform_gc" performGC :: IO ()
+~~~
+
+ということはこの3つの関数だけgcとarenaを直接RTSに渡すようにすれば良いはずでゲソ。
+
+~~~ {.haskell}
+doForeign :: Monad m => SrcLoc -> [Name] -> Maybe (String,Name) -> HsQualType -> m HsDecl
+doForeign srcLoc names ms qt = ans where
+--snip--
+            f ("import":rs) cname = do
+                let (safe,conv) = pconv rs
+                im <- parseImport conv mstring vname
+                conv <- return (if conv == CApi then CCall else conv)
+                return $ HsForeignDecl srcLoc (FfiSpec im safe conv) vname qt
+--snip--
+    pconv rs = g Safe CCall rs where
+        g _ cc ("safe":rs) = g Safe cc rs
+        g _ cc ("unsafe":rs) = g Unsafe cc rs
+        g s _  ("ccall":rs)  = g s CCall rs
+        g s _  ("capi":rs)  = g s CApi rs
+        g s _  ("stdcall":rs) = g s StdCall rs
+        g s c  [] = (s,c)
+        g _ _ rs = error $ "FrontEnd.ParseUtils: unknown foreign flags " ++ show rs
+~~~
+
+このpconvに"jhc_gc_stack"みたいな特殊なimport種別を決めてしまえば良さそうでゲソ。
+
+ところで
+[Haskell 2010: 8 Foreign Function Interface](http://www.haskell.org/onlinereport/haskell2010/haskellch8.html)
+によると、hs\_perform\_gc関数には引数を取れない決まりでゲソ。
+するとRTSをロックして次回s_alloc時にGCを実行するようなフラグをarenaに立ててやる必要がありそうでゲソ。
+
 ## Cortex-M4実機での検証
 
 ## Windows MinGWでの動作確認
