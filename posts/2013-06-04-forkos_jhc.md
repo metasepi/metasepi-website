@@ -137,6 +137,39 @@ processDecls cho ho' tiData = withStackStatus "processDecls" $  do
         (hoClassHierarchy $ hoTcInfo ho') allAssumps  fullDataTable decls
 ~~~
 
+もう一つ気になるのはdeRefStablePtrを使ってIOを元に戻しても実行不能という点でゲソ。
+
+~~~ {.haskell}
+import Foreign.StablePtr
+
+main :: IO ()
+main = do
+  p <- newStablePtr $ print "hoge"
+  d <- deRefStablePtr p
+  d
+~~~
+
+上のコードをコンパイルすると、イカのようなエラーになるでゲソ。
+
+~~~
+$ ajhc --tdir=tmp -o Main Main.hs
+--snip--
+Typechecking...
+Compiling...
+Collected Compilation...
+-- TypeAnalyzeMethods
+-- BoxifyProgram
+-- Boxy WorkWrap
+-- LambdaLift
+Converting to Grin...
+Updatable CAFS: 0
+Constant CAFS:  0
+Recursive CAFS: 0
+Exiting abnormally. Work directory is 'tmp'
+ajhc: Grin.FromE.compile'.ce in function: theMain
+can't grok expression: <fromBang_ x128471745∷IO ()> x62470114
+~~~
+
 ### foreign import ccall "wrapper"で関数ポインタを作る
 
 wrapperというforeign import宣言
@@ -180,11 +213,36 @@ testThread(HsPtr x30)
 }
 ~~~
 
-しかし仮にこれでFunPtrを使った関数ポインタを実現できても、
+どうも上の不具合はイカのpatchで簡単に修正できるようでゲソ。たぶんこれはイージーミスだと思うでゲソ。
+
+~~~ {.diff}
+--- a/lib/jhc/Jhc/Type/Ptr.hs
++++ b/lib/jhc/Jhc/Type/Ptr.hs
+@@ -3,4 +3,4 @@ module Jhc.Type.Ptr where
+ import Jhc.Prim.Bits
+
+ data {-# CTYPE "HsPtr" #-} Ptr a = Ptr Addr_
+-data {-# CTYPE "FunPtr" #-} FunPtr a = FunPtr FunAddr_
++data {-# CTYPE "HsFunPtr" #-} FunPtr a = FunPtr FunAddr_
+~~~
+
+しかしこれでFunPtrを使った関数ポインタを実現できたんでゲソが、
 任意のIOを関数ポインタ化できることにはならないでゲソ。
+具体的にはイカのような型になってしまっているforkOSの引数をIO ()にしたいでゲソ。
+
+~~~ {.haskell}
+forkOS :: FunPtr (Ptr () -> IO (Ptr ())) -> IO Int
+~~~
+
 GHCはどんな魔法を使っているのでゲソ？
 [GHCでforeign import ccall "wrapper"を使う例](https://github.com/ajhc/ajhc-dumpyard/tree/master/ghc_foreign_wrapper)
 を解析すれば何かわかるかもしれないでゲソ。
+freeHaskellFunPtrの行方を探ったところ、
+どうもghc/rts/Adjustor.cでwrapperが作ったコード片のラッパーを作るようでゲソ。
+createAdjustorというのが主犯のようじゃなイカ。
+
+とりあえず任意のIOをFunPtrに変換するのはキツいにしても、
+定数的なIOはラベルをふるだけなのだから比較的簡単にFunPtr化できるんじゃなイカ？
 
 ### グローバル関数テーブルのインデックスを引数渡し
 
