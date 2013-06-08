@@ -461,6 +461,57 @@ doForeign srcLoc names ms qt = ans where
 によると、hs\_perform\_gc関数には引数を取れない決まりでゲソ。
 するとRTSをロックして次回s_alloc時にGCを実行するようなフラグをarenaに立ててやる必要がありそうでゲソ。
 
+さらにs\_cacheがグローバル管理されているのもなんとかしたいでゲソ。
+s\_cacheの定義を新規structにまとめて、arenaの下にそのstructを配置すればなんとかなりそうじゃなイカ。
+
+~~~ {.c}
+/* File: ajhc/rts/rts/gc_jgc_internal.h */
+struct s_cache {
+        SLIST_ENTRY(s_cache) next;
+        SLIST_HEAD(,s_block) blocks;
+        SLIST_HEAD(,s_block) full_blocks;
+        unsigned char color;
+        unsigned char size;
+        unsigned char num_ptrs;
+        unsigned char flags;
+        unsigned short num_entries;
+        struct s_arena *arena;
+#if _JHC_PROFILE
+        unsigned allocations;
+#endif
+};
+
+/* File: hs_main.c */
+#include "jhc_rts_header.h"
+static struct s_cache *cCJhc_Prim_Prim_$x3a;
+static struct s_cache *cCJhc_Type_Basic_Just;
+/* snip */
+void 
+jhc_hs_init(void)
+{
+        find_cache(&cCJhc_Prim_Prim_$x3a,saved_arena,TO_BLOCKS(sizeof(struct sCJhc_Prim_Prim_$x3a)),2);
+        find_cache(&cCJhc_Type_Basic_Just,saved_arena,TO_BLOCKS(sizeof(struct sCJhc_Type_Basic_Just)),1);
+/* snip */
+                    sptr_t v69834446 = MKLAZY(x6);
+                    {   gc_frame0(gc,1,v69834446);
+                        wptr_t x7 = s_alloc(gc,arena,cCJhc_Prim_Prim_$x3a);
+                        ((struct sCJhc_Prim_Prim_$x3a*)x7)->a1 = v106;
+                        ((struct sCJhc_Prim_Prim_$x3a*)x7)->a2 = v69834446;
+                        return x7;
+~~~
+
+同様にランタイムにあるグローバルs\_cacheもarenaの下に移動すべきでゲソ。
+
+~~~ {.c}
+/* File: ajhc/rts/rts/gc_jgc.c */
+// 7 to share caches with the first 7 tuples
+#define GC_STATIC_ARRAY_NUM 7
+#define GC_MAX_BLOCK_ENTRIES 150
+
+static struct s_cache *array_caches[GC_STATIC_ARRAY_NUM];
+static struct s_cache *array_caches_atomic[GC_STATIC_ARRAY_NUM];
+~~~
+
 ## Cortex-M4実機での検証
 
 ## Windows MinGWでの動作確認
