@@ -28,8 +28,7 @@ tags: haskell, design, specification, bootloader
 
 ![](/draw/2012-12-27-arafura_design.png)
 
-この「NetBSD kernelを型付き言語で少しずつスナッチ
-^[参考: [スナッチャー](http://ja.wikipedia.org/wiki/%E3%82%B9%E3%83%8A%E3%83%83%E3%83%81%E3%83%A3%E3%83%BC)]
+この「NetBSD kernelを型付き言語で少しずつ [スナッチ](http://ja.wikipedia.org/wiki/%E3%82%B9%E3%83%8A%E3%83%83%E3%83%81%E3%83%A3%E3%83%BC)
 する」というデザインを
 [アラフラ](http://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%A9%E3%83%95%E3%83%A9%E6%B5%B7)
 ([Arafura](http://en.wikipedia.org/wiki/Arafura_Sea))と呼ぼうと思うでゲソ。
