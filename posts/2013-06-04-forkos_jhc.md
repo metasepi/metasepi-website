@@ -13,7 +13,7 @@ tags: jhc, ajhc, thread, pthread
 
 作る前にまずは作戦をねるでゲソー。
 
-### GHC baseパッケージの設計をまねる
+### (1) GHC baseパッケージの設計をまねる
 
 [GHCでのforkOSの実装](http://hackage.haskell.org/packages/archive/base/latest/doc/html/src/Control-Concurrent.html#forkOS)
 を見ると、StablePtrにIO関数を包んで、C言語のforkOS\_createThread関数に渡しているでゲソ。
@@ -170,7 +170,7 @@ ajhc: Grin.FromE.compile'.ce in function: theMain
 can't grok expression: <fromBang_ x128471745∷IO ()> x62470114
 ~~~
 
-### foreign import ccall "wrapper"で関数ポインタを作る
+### (2) foreign import ccall "wrapper"で関数ポインタを作る
 
 wrapperというforeign import宣言
 ^[[本物のプログラマはHaskellを使う - 第22回　FFIを使って他の言語の関数を呼び出す：ITpro](http://itpro.nikkeibp.co.jp/article/COLUMN/20080805/312151/?ST=develop&P=4)]
@@ -244,14 +244,230 @@ createAdjustorというのが主犯のようじゃなイカ。
 とりあえず任意のIOをFunPtrに変換するのはキツいにしても、
 定数的なIOはラベルをふるだけなのだから比較的簡単にFunPtr化できるんじゃなイカ？
 
-### グローバル関数テーブルのインデックスを引数渡し
+[Commentary/Rts/FFI – GHC](http://hackage.haskell.org/trac/ghc/wiki/Commentary/Rts/FFI)
+を読んでみたでゲソが、具体的な実現方法については言及がないでゲソ。
+
+### (3) グローバル関数テーブルのインデックスを引数渡し
 
 StablePtrを使わずにコンテキスト間でIOを授受する方法として無理矢理考えてみたでゲソ。
 結局インデックスの意味がC言語側に漏れるので、
 StablePtrを直接C言語に渡すケースと比較して危険度はほとんど変わらない気もするでゲソ...
 
-### ラムダ式を使うために-std=gnu++11でコンパイル
+### (4) ラムダ式を使うために-std=gnu++11でコンパイル
 
 さすがにこれは筋が悪すぎるので、困った時の隠し玉に取っておかなイカ？
 
+## 結論: やはりnewStablePtrに直接IO ()を突っ込んだ際の挙動を観察するべき
+
+~~~
+ajhc: Grin.FromE.compile'.ce in function: theMain
+can't grok expression: <fromBang_ x128471745∷IO ()> x62470114
+~~~
+
+このメッセージはcompile'関数が以下の型を意図せず受け取ったことをしめしているでゲソ。
+
+~~~ {.haskell}
+(EAp (EPrim (PrimPrim "fromBang_") [x] e1) e2)
+~~~
+
+ということはこのEApという型はどこかで変換されるべきで、そのしくみから漏れてきたと考えられるじゃなイカ。
+しかし仮にイカのようなpatchをあてても...
+
+~~~ {.diff}
+--- a/lib/haskell-extras/Foreign/StablePtr.hs
++++ b/lib/haskell-extras/Foreign/StablePtr.hs
+@@ -5,7 +5,9 @@ module Foreign.StablePtr(
+     castPtrToStablePtr,
+     newStablePtr,
+     deRefStablePtr,
+-    freeStablePtr
++    freeStablePtr,
++    newStablePtrIO,
++    deRefStablePtrIO,
+     ) where
+ 
+ import Jhc.Prim.Rts
+@@ -37,6 +39,19 @@ deRefStablePtr x = do
+     fromUIO $ \w -> case c_derefStablePtr (toBang_ x) w of
+         (# w', s #) -> (# w', fromBang_ s #)
+ 
++newStablePtrIO :: IO a -> IO (StablePtr (IO a))
++newStablePtrIO x = do
++    fromUIO $ \w -> case c_newStablePtrIO x w of
++        (# w', s #) -> (# w', s #)
++
++deRefStablePtrIO :: StablePtr (IO a) -> IO (IO a)
++deRefStablePtrIO x = do
++    fromUIO $ \w -> case c_derefStablePtrIO x w of
++        (# w', s #) -> (# w', s #)
++
+ foreign import ccall unsafe "rts/stableptr.c c_freeStablePtr"  c_freeStablePtr   :: Bang_ (StablePtr a) -> IO ()
+ foreign import ccall unsafe "rts/stableptr.c c_newStablePtr"   c_newStablePtr    :: Bang_ a -> UIO (Bang_ (StablePtr a))
+ foreign import ccall unsafe "rts/stableptr.c c_derefStablePtr" c_derefStablePtr :: Bang_ (StablePtr a) -> UIO (Bang_ a)
++
++foreign import ccall unsafe "rts/stableptr.c c_newStablePtr"   c_newStablePtrIO   :: IO a -> UIO (StablePtr (IO a))
++foreign import ccall unsafe "rts/stableptr.c c_derefStablePtr" c_derefStablePtrIO :: StablePtr (IO a) -> UIO (IO a)
+~~~
+
+ajhcのコンパイルでイカのようにエラーになってしまうでゲソ。
+どうやらforeign importに渡せる型は限定されているようでゲソ。
+
+~~~
+Compiling...
+[1 of 4] Foreign.StablePtr
+lib/haskell-extras/Foreign/StablePtr.hs:56  - Error: Type 'Foreign.StablePtr.StablePtr (IO Foreign.StablePtr.37_a)' cannot be used in a foreign declaration
+lib/haskell-extras/Foreign/StablePtr.hs:57  - Error: Type 'IO Foreign.StablePtr.39_a' cannot be used in a foreign declaration
+make[2]: *** [haskell-extras-0.8.1.hl] エラー 1
+~~~
+
+じゃあUIOを経由してStablePtrを作るのはどーなんでゲソ？
+
+~~~ {.haskell}
+newStablePtrIO :: IO a -> IO (StablePtr (UIO a))
+newStablePtrIO x = newStablePtr (unIO x)
+
+deRefStablePtrIO :: StablePtr (UIO a) -> IO (IO a)
+deRefStablePtrIO x = do
+  u <- deRefStablePtr x
+  return $ fromUIO u
+~~~
+
+エラーは変化せず、そりゃそうカー。
+
+ちょっと立ち返って、StablePtrを経由したIO ()の授受というのは本来どのようなコードになるべきなんでゲソ？
+イカのようなコード、つまりIO ()をStablePtrとBang_で二重に包んだような型を作り、
+この型をpthread_create()で生成されるスレッドに渡して復元してほしいでゲソ。
+
+~~~ {.haskell}
+import Foreign.StablePtr
+import Jhc.Prim.Rts
+
+iToB :: IO () -> IO (Bang_ (StablePtr (IO ())))
+iToB io = do
+  s <- newStablePtr io
+  return $ toBang_ s
+
+runB :: Bang_ (StablePtr (IO ())) -> IO ()
+runB b = do
+  io <- deRefStablePtr $ fromBang_ b
+  io
+
+main :: IO ()
+main = do
+  l <- getLine
+  b <- iToB $ print l
+  runB b
+~~~
+
+ところが先のエラーがなぜ起きていたかというと予期しないEApがあったからじゃなイカ。
+この変なEApだけごまかせばなんとかなるんじゃなイカ？
+どうやらこのEApという型はfromAp関数でEVarを剥き出しにしてからパターンマッチされるようでゲソ。
+
+~~~ {.haskell}
+-- File: ajhc/src/E/Type.hs
+fromAp :: E -> (E,[E])
+fromAp e = f [] e where
+    f as (EAp e a) = f (a:as) e
+    f as e  =  (e,as)
+
+-- File: ajhc/src/Grin/FromE.hs
+    ce e | (EVar tvr,as) <- fromAp e = do
+        as <- return $ args as
+        lfunc <- asks lfuncMap
+        let fty = toTypes TyNode (getType e)
+        case mlookup (tvrIdent tvr) (ccafMap cenv) of
+            Just (Const c) -> app fty (Return [c]) as
+            Just x@Var {} -> app fty (gEval x) as
+            Nothing | Just (v,n,rt) <- mlookup (tvrIdent tvr) lfunc -> do
+                    let (x,y) = splitAt n as
+                    app fty (App v (keepIts x) rt) y
+            Nothing -> case mlookup (tvrIdent tvr) (scMap cenv) of
+                Just (v,as',es)
+                    | length as >= length as' -> do
+                        let (x,y) = splitAt (length as') as
+                        app fty (App v (keepIts x) es) y
+                    | otherwise -> do
+                        let pt = partialTag v (length as' - length as)
+                        return $ dstore (NodeC pt (keepIts as))
+                Nothing | not (isLifted $ EVar tvr) -> do
+                    mtick' "Grin.FromE.app-unlifted"
+                    app fty (Return [toVal tvr]) as
+                Nothing -> do
+                    case as of
+                        [] -> evalVar fty tvr
+                        _ -> do
+                            ee <- evalVar [TyNode] tvr
+                            app fty ee as
+            _ -> error "FromE.ce: bad."
+~~~
+
+そこでイカのようなfromBang_プリミティブを抹殺する関数を作ったでゲソ!
+
+~~~ {.haskell}
+    stripBang :: E -> E
+    stripBang e = f e where
+      f (EAp p a) = g p a
+      f e = e
+      g (EPrim (PrimPrim "fromBang_") [b] _) a = EAp b a
+      g e a = EAp e a
+~~~
+
+このstripBangを通してからfromApにeを食わせたところ無事エラーが出なくなったでゲソ。
+ちょっと危険な気もするが、大目に見てほしいでゲソ。
+
 ## 実装
+
+ここまで来ればforkOSを実装するのは簡単でゲソ。
+
+~~~ {.haskell}
+-- File: ajhc/lib/haskell-extras/Control/Concurrent.hs
+{-# LANGUAGE ForeignFunctionInterface #-}
+module Control.Concurrent (forkOS, ThreadId) where
+import Foreign.Ptr
+import Foreign.StablePtr
+import Foreign.Storable
+import Foreign.Marshal.Alloc
+import Control.Monad (when)
+import Jhc.Prim.Rts
+
+data {-# CTYPE "rts/conc.h jhc_threadid_t" #-} CthreadIdT
+data ThreadId = ThreadId CthreadIdT
+
+foreign import ccall "rts/conc.h forkOS_createThread" forkOScreateThread ::
+   FunPtr (Bang_ (StablePtr (IO ())) -> IO (Ptr ())) -> Bang_ a -> Ptr Int -> IO CthreadIdT
+
+forkOScreateThreadWrapper :: Bang_ (StablePtr (IO ())) -> IO (Ptr ())
+forkOScreateThreadWrapper b = do
+  let s = fromBang_ b
+  d <- deRefStablePtr s
+  d
+  freeStablePtr s
+  return nullPtr
+
+foreign export ccall "forkOScreateThreadWrapper" forkOScreateThreadWrapper ::
+  Bang_ (StablePtr (IO ())) -> IO (Ptr ())
+foreign import ccall "&forkOScreateThreadWrapper" p_forkOScreateThreadWrapper ::
+  FunPtr (Bang_ (StablePtr (IO ())) -> IO (Ptr ()))
+
+forkOS :: IO () -> IO ThreadId
+forkOS f = alloca $ \ip -> do
+  s <- newStablePtr f
+  pth <- forkOScreateThread p_forkOScreateThreadWrapper (toBang_ s) ip
+  i <- peek ip
+  when (i /= 0) $ fail "Cannot create OS thread."
+  return $ ThreadId pth
+~~~
+
+~~~ {.c}
+// File: ajhc/rts/rts/conc.c
+jhc_threadid_t
+forkOS_createThread(void *(*wrapper) (void *), void *entry, int *err)
+{
+        pthread_t tid;
+        *err = pthread_create(&tid, NULL, wrapper, entry);
+        if (*err) {
+                pthread_detach(tid);
+        }
+        return tid;
+}
+~~~
