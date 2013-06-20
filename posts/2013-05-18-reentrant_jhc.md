@@ -1,5 +1,5 @@
 ---
-title: (作成中) Shape reentrant on Ajhc.
+title: Shape reentrant on Ajhc.
 description: 再入可能を実現せよ。でゲソ!
 tags: jhc, ajhc, reentrant, interrupt, lock
 ---
