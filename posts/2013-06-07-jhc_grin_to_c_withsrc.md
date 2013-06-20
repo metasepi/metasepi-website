@@ -12,6 +12,10 @@ Grin=>Cの変換を理解した気になっていたでゲソ。
 
 ## Grin => C変換の最上位層
 
+ズバリ
+[compileGrin](http://hackage.haskell.org/packages/archive/ajhc/0.8.0.6/doc/html/C-FromGrin2.html#v:compileGrin)
+という関数が用意されているでゲソ。
+
 ~~~ {.haskell}
 -- File: ajhc/src/C/FromGrin2.hs
 compileGrin :: Grin -> (LBS.ByteString,Requires)
@@ -42,6 +46,15 @@ ansというのが出力するC言語コードの構造で、
 で調べた最小のHaskellコードをコンパイルした結果と見比べると何がどこに対応するのかすぐにわかるでゲソ。
 
 ## Grin型
+
+注目すべきはイカの型でゲソ。
+
+* [Grin型](http://hackage.haskell.org/packages/archive/ajhc/0.8.0.6/doc/html/Grin-Grin.html#t:Grin)
+* [FuncDef型](http://hackage.haskell.org/packages/archive/ajhc/0.8.0.6/doc/html/Grin-Grin.html#t:FuncDef)
+* [Lam型](http://hackage.haskell.org/packages/archive/ajhc/0.8.0.6/doc/html/Grin-Grin.html#t:Lam)
+* [Val型](http://hackage.haskell.org/packages/archive/ajhc/0.8.0.6/doc/html/Grin-Grin.html#t:Val)
+* [Exp型](http://hackage.haskell.org/packages/archive/ajhc/0.8.0.6/doc/html/Grin-Grin.html#t:Exp)
+* [Ty型](http://hackage.haskell.org/packages/archive/ajhc/0.8.0.6/doc/html/Grin-Grin.html#t:Ty)
 
 ~~~ {.haskell}
 -- File: ajhc/src/Grin/Grin.hs
@@ -184,9 +197,13 @@ newtype ExtType = ExtType PackedString
 
 xxx Op.Ty
 
-## Cモナド
+## Cモナド?
 
+ここでも注目すべきはイカの型でゲソ。
 
+* [Expression型](http://hackage.haskell.org/packages/archive/ajhc/0.8.0.6/doc/html/C-Generate.html#t:Expression)
+* [Statement型](http://hackage.haskell.org/packages/archive/ajhc/0.8.0.6/doc/html/C-Generate.html#t:Statement)
+* [functionCall関数](http://hackage.haskell.org/packages/archive/ajhc/0.8.0.6/doc/html/C-Generate.html#v:functionCall)
 
 ## ユーティリティ関数
 
