@@ -407,19 +407,19 @@ SelfTestがたまに失敗する原因はこいつなような気がしてきた
 * data ThreadId
 * forkOS :: IO () -> IO ThreadId
 
-xxx 今の型は forkOS :: FunPtr (Ptr () -> IO (Ptr ())) -> IO ThreadId
-xxx 限定的にでもwrapperを使えるようにすること
-
-### ランタイム側に公開するAPI
+### ランタイム側で準備するAPI
 
 * typedef pthread_t jhc_threadid_t
 * typedef pthread_mutex_t jhc_mutex_t
-* jhc_threadid_t forkOS_createThread(void *entry, int *err)
 * void jhc_mutex_init(jhc_mutex_t *mutex)
-* int jhc_mutex_lock(jhc_mutex_t *mutex)
-* int jhc_mutex_unlock(jhc_mutex_t *mutex)
+* void jhc_mutex_lock(jhc_mutex_t *mutex)
+* void jhc_mutex_unlock(jhc_mutex_t *mutex)
+* jhc_threadid_t forkOS_createThread(void *(*wrapper) (void *), void *entry, int *err);
+* void jhc_conc_init(void);
+* void jhc_rts_lock(void);
+* void jhc_rts_unlock(void);
 
-## pthreadを使ってTimingDelayをエミュレートしてみる
+## あとは実装するだけじゃなイカ!
 
 これまではgcが全ての関数の第一引数になっていたじゃなイカ。
 さらに
@@ -501,8 +501,6 @@ static struct s_cache *array_caches[GC_STATIC_ARRAY_NUM];
 static struct s_cache *array_caches_atomic[GC_STATIC_ARRAY_NUM];
 ~~~
 
+## 実験: pthreadを使ってTimingDelayをエミュレートしてみる
 
-
-## Cortex-M4実機での検証
-
-## Windows MinGWでの動作確認
+xxx
