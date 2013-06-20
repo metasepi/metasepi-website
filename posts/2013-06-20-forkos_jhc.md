@@ -1,5 +1,5 @@
 ---
-title: (作成中) Build forkOS API using pthread.
+title: Build forkOS API using pthread.
 description: pthreadでHaskellのforkOSを作ってみるでゲソ!
 tags: jhc, ajhc, thread, pthread
 ---
