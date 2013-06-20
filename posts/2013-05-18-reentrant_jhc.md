@@ -503,4 +503,93 @@ static struct s_cache *array_caches_atomic[GC_STATIC_ARRAY_NUM];
 
 ## 実験: pthreadを使ってTimingDelayをエミュレートしてみる
 
-xxx
+ハードウェア割り込みのエミュレートなので、forkOSは使わないでゲソがとにかくやってみるでゲソ。
+...んんーーー [完成でゲソー!](https://github.com/ajhc/ajhc-dumpyard/tree/master/emulateTimingDelay)
+
+このプログラムはTimingとDelayの2つのスレッドが動作して、
+Delayスレッドの待ち合わせをTimingスレッドが解除するでゲソ。
+実行してみると3秒毎に経過時間がコンソールに印字されるはずでゲソ。
+
+まずC言語側から説明するでゲソ。
+main関数はHaskellコードを実行する前にrun_timingDelayDecrement関数を新しいスレッドとして実行するでゲソ。
+run_timingDelayDecrement関数は100ミリ秒毎にHaskellのtimingDelayDecrement関数を呼び出すでゲソ。
+つまりこのスレッドはタイマー割り込みをエミュレーションしていることになるでゲソ。
+
+~~~ {.c}
+// main.c
+static uint32_t TimingDelay = 0;
+
+uint32_t *
+getTimingDelay()
+{
+        return &TimingDelay;
+}
+
+void *run_timingDelayDecrement(void *p)
+{
+	for (;;) {
+#define MILLI_SEC(N)  ((N) * 1000)
+		usleep(MILLI_SEC(100));
+		timingDelayDecrement();
+	}
+	/* NOTREACHED */
+	return NULL;
+}
+
+int
+main(int argc, char *argv[])
+{
+	int err;
+
+        hs_init(&argc,&argv);
+        if (jhc_setjmp(&jhc_uncaught)) {
+                jhc_error("Uncaught Exception");
+        } else {
+		forkOS_createThread(&run_timingDelayDecrement, NULL, &err);
+                _amain();
+	}
+        hs_exit();
+        return 0;
+}
+~~~
+
+今度はHaskell側でゲソ。
+先のrun_timingDelayDecrementスレッドから呼び出されるtimingDelayDecrement関数は単にポインタの先にある
+uint32_tの値を減算するだけでゲソ。
+一方、Haskellのmain関数はmyDelay関数を繰り返し呼び出していて、
+さっきのuint32_tに待ち合わせ時間を書き込んだ後、その値が0になるのをループで待ち合わせるでゲソ。
+
+~~~ {.haskell}
+{-# LANGUAGE ForeignFunctionInterface #-}
+import Data.Word
+import Control.Monad
+import Foreign.Ptr
+import Foreign.Storable
+
+-- Timing
+foreign import ccall "c_extern.h getTimingDelay" c_gettimingDelay :: IO (Ptr Word32)
+
+timingDelayDecrement :: IO ()
+timingDelayDecrement = do
+  p <- c_gettimingDelay
+  i <- peek p
+  when (i >= 0) $ poke p (i - 1)
+
+foreign export ccall "timingDelayDecrement" timingDelayDecrement :: IO ()
+
+-- Delay
+myDelay :: Word32 -> IO ()
+myDelay nTime = do
+  p <- c_gettimingDelay
+  poke p nTime
+  let while :: IO ()
+      while = do
+        p' <- c_gettimingDelay
+        i <- peek p'
+        if (i > 0) then while else return ()
+  while
+
+foreign import ccall "c_extern.h getTime" c_getTime :: IO Word64
+~~~
+
+これでスレッドの波をすいーいすいーじゃなイカー。
