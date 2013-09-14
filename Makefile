@@ -3,6 +3,8 @@ PNGS := $(patsubst %.odg,%.png,${ODGS})
 DOCS := $(wildcard doc/*.doc)
 PDFS := $(patsubst %.doc,%.pdf,${DOCS})
 
+POTGT := posts/2013-01-09-design_arafura.md
+
 all: ${PNGS} ${PDFS} build
 
 %.png: %.odg
@@ -20,10 +22,16 @@ all: ${PNGS} ${PDFS} build
           unoconv -f pdf -o $@.tmp $<
 	mv $@.tmp $@
 
+updatepo: ${POTGT}
+	po4a-updatepo -M utf8 -f text -m ${POTGT} -p po/ja.po
+
+en/${POTGT}: po/ja.po
+	po4a-translate -M utf8 -f text -m ${POTGT} -p po/ja.po -l en/${POTGT}
+
 hakyll: hakyll.hs
 	ghc --make -Wall -Werror hakyll.hs -o hakyll
 
-build: hakyll
+build: hakyll en/${POTGT}
 	./hakyll build
 
 server: all
@@ -49,4 +57,4 @@ clean:
 distclean: clean
 	rm -f draw/*.png draw/*.tmp doc/*.pdf doc/*.tmp
 
-.PHONY: lint clean
+.PHONY: lint clean updatepo
