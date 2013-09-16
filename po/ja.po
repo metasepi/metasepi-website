@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2013-09-14 14:57+0900\n"
-"PO-Revision-Date: 2013-09-14 15:08+0900\n"
+"PO-Revision-Date: 2013-09-16 11:19+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -41,7 +41,7 @@ msgstr ""
 msgid ""
 "調査を繰り返していても、設計は進まないでゲソ。 まずは第一歩、なにか作ってみればわかることもあるんじゃなイカ？ "
 "まずコードを書く前におおざっぱな設計を決めるでゲソ。 このエントリは何度も書き直すかもしれないでゲソ。"
-msgstr ""
+msgstr "Even repeating the research, design does not proceed. First or not there also be seen first step, as it were to make something? Let's decide a rough design before writing the code first. It may be rewritten many times this entry."
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:13
@@ -56,11 +56,13 @@ msgid ""
 "なkernelを得るには、関数型言語としてキレイな設計を考えている時間はないでゲソ。 "
 "むしろ純朴な実装で良いから、モノリシックkernelを関数型言語の設計に写像してしまった方が良いのではなイカ？"
 msgstr ""
+"Even repeating the research, design does not proceed. First of all I do not may be some things you'll notice first step, as it were making something?\n"
+"Tentacles in determining a rough design before writing the code first. It may be rewritten many times this entry."
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:22
 msgid "ここでは写像するモノリシックkernelとしてNetBSDを選定するでゲソ。 ソースコードが読みやすい、などの理由があるでゲソが、単にワシの趣味でゲソ。"
-msgstr ""
+msgstr "We selected the NetBSD as a monolithic kernel to map here. There is my hobby simply reasons, such as easy-to-read source code."
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:28
@@ -68,12 +70,12 @@ msgid ""
 "このC言語で書かれたNetBSD kernelをいきなり型付き言語でスクラッチから書き直すのもやはりシンドイでゲソ。 もう少し楽できなイカ？ "
 "そこでいきなり全部ではなく、コンパイル可能/実行可能な状態を保ちながら少しずつ型付き言語で同じ機能を再実装するでゲソ。 少しずつ型をつけていけば、 "
 "いつかは全てのコードが型付き言語で動くようになるんじゃなイカ？"
-msgstr ""
+msgstr "The rewrite from scratch in typed language suddenly the NetBSD kernel written in the C language also is still severe. I want a little more comfortable? So but not all suddenly, and re-implement the same functionality in the typed language a little bit at a time while keeping a compilable / executable state. If you go with the type little by little, all the code I might be to work with typed language one day?"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:30
 msgid "![](/draw/2012-12-27-arafura_design.png)"
-msgstr ""
+msgstr "![](/draw/2012-12-27-arafura_design.png)"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:42
@@ -88,12 +90,12 @@ msgid ""
 "が住んでいて、アラフラは「自由人」を意味するポルトガル語の古語に由来そうでゲソ。 "
 "でも\"珊瑚礁からなる浅瀬が多く、航行の障害となる箇所も多数ある\"そうでゲソ...] "
 "もしこの海で航海に失敗しても、今度は\"B\"で始まる海(デザイン)を選べばいいんでゲソ。 合言葉は\"ネバーギブアップ\"でゲッソ!!!"
-msgstr ""
+msgstr "I think it tries to call the Arafura this design of \"snatch little by little in the typed language NetBSD kernel\". That's good to sail the name of the sea starting from \"A\", the first! (Also, small squid to change the color is a type of cuttlefish, Metasepia pfefferi is lived, Arafura of the Portuguese, which means \"free man\" But. is the origin so the archaic word \"shallow consisting of a coral reef in many cases, where a failure of navigation also have a large number\" when you fail to sail in this sea if ...) Yes, the sea that begins with \"B\" this time it's okay if you choose (design). I'm \"Never give up\" the watchword!"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:44
 msgid "## やってみよう!"
-msgstr ""
+msgstr "## Just do it!"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:49
@@ -101,12 +103,12 @@ msgid ""
 "これまでの調査でjhcがMetasepiの設計に使えそうなことが判明したでゲソ。 NetBSD "
 "kernelは割り込みハンドラを作ったりしなければならないので、 もっと簡単なNetBSD "
 "bootloaderを手始めにjhcを使ってスナッチしてみるでゲソ。 何事もトレーニングでゲッソ。"
-msgstr ""
+msgstr "Jhc thing is I could use in the design of Metasepi in the investigation so far had been found. NetBSD kernel does not have to make or the interrupt handler, let's snatch with a jhc to starting with an easier NetBSD bootloader. Anything but training."
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:51
 msgid "![](/draw/2012-12-27-loader.png)"
-msgstr ""
+msgstr "![](/draw/2012-12-27-loader.png)"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:55
@@ -114,7 +116,7 @@ msgid ""
 "NetBSD bootloaderのモジュールの構造は上図のようになっているでゲソ。 "
 "とりあえずboot2.cの中にあるコマンドラインループをjhcを使って書いてみたでゲソ。 "
 "^[[元ソース](https://gitorious.org/metasepi/netbsd-arafura/blobs/52c9e9c31425bdf983d0850b4e503c899a511edc/metasepi-arafura/sys/arch/i386/stand/boot/Boot2Ara.hs)]"
-msgstr ""
+msgstr "Structure of the module of NetBSD bootloader is as shown in the figure above. Here's a look by using the command line jhc the loop is in the boot2.c for the time being. ^[[Source code](https://gitorious.org/metasepi/netbsd-arafura/blobs/52c9e9c31425bdf983d0850b4e503c899a511edc/metasepi-arafura/sys/arch/i386/stand/boot/Boot2Ara.hs)]"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:63
@@ -122,13 +124,20 @@ msgid ""
 "~~~ {.haskell} import Control.Monad import Data.Maybe import Data.Map (Map)  "
 "import qualified Data.Map as Map import Foreign.C.Types import Foreign.Ptr"
 msgstr ""
+"~~~ {.haskell}\n"
+"import Control.Monad\n"
+"import Data.Maybe\n"
+"import Data.Map (Map)\n"
+"import qualified Data.Map as Map\n"
+"import Foreign.C.Types\n"
+"import Foreign.Ptr"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:65
 msgid ""
 "foreign import ccall \"glue_netbsdstand.h command_boot\" c_command_boot :: "
 "Ptr a -> IO ()"
-msgstr ""
+msgstr "foreign import ccall \"glue_netbsdstand.h command_boot\" c_command_boot :: Ptr a -> IO ()"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:70
@@ -139,6 +148,10 @@ msgid ""
 "                         (\"?\", command_help),\n"
 "                         (\"boot\", c_command_boot nullPtr)]\n"
 msgstr ""
+"commands :: Map String (IO ())\n"
+"commands = Map.fromList [(\"help\", command_help),\n"
+"                         (\"?\", command_help),\n"
+"                         (\"boot\", c_command_boot nullPtr)]\n"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:79
@@ -153,6 +166,14 @@ msgid ""
 "\\help|?\\n\\\n"
 "\\quit\\n\"\n"
 msgstr ""
+"command_help :: IO ()\n"
+"command_help = putStr $ \"\\\n"
+"\\commands are:\\n\\\n"
+"\\boot [xdNx:][filename] [-12acdqsvxz]\\n\\\n"
+"\\     (ex. \\\"hd0a:netbsd.old -s\\\"\\n\\\n"
+"--snip--\n"
+"\\help|?\\n\\\n"
+"\\quit\\n\"\n"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:88
@@ -167,18 +188,26 @@ msgid ""
 "    fromMaybe (putStr s) $ Map.lookup s commands\n"
 "~~~\n"
 msgstr ""
+"main :: IO ()\n"
+"main = do\n"
+"  putStrLn \"Haskell bootmenu\"\n"
+"  forever $ do\n"
+"    putStr \"> \"\n"
+"    s <- getLine\n"
+"    fromMaybe (putStr s) $ Map.lookup s commands\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:92
 msgid ""
 "helpの表示はまぁいいとして、 kernelの読み込み+起動は既存コードにFFIで丸投げでゲソ。 "
 "このソースコードをイカのような方法でコンパイルしてみるでゲソ。"
-msgstr ""
+msgstr "Display of help is as good Well, I'm throwing circle at FFI to existing code reads + boot kernel. Let's compiled in such a way of utilizing these source code."
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:94
 msgid "![](/draw/2012-12-27-compile.png)"
-msgstr ""
+msgstr "![](/draw/2012-12-27-compile.png)"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:97
@@ -194,7 +223,7 @@ msgid ""
 "src=\"http://ext.nicovideo.jp/thumb_watch/sm19788831\"></script><noscript><a "
 "href=\"http://www.nicovideo.jp/watch/sm19788831\">【ニコニコ動画】Metasepi arafura "
 "first boot.</a></noscript>"
-msgstr ""
+msgstr "<iframe width=\"420\" height=\"315\" src=\"//www.youtube.com/embed/0DPA7GC0_-0\" frameborder=\"0\" allowfullscreen></iframe>"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:104
@@ -202,31 +231,31 @@ msgid ""
 "うん、helpの表示とkernelの起動はできているようでゲソ。まずは実験成功でゲソ! ところでくれぐれも勘違いしてほしくないのは、 "
 "今回作ったbootloaderの99%はまだC言語製だということでゲソ。 "
 "このbootloaderの動きをシーケンス図で描いてみるとイカのようになるでゲソ。"
-msgstr ""
+msgstr "Starting the kernel and display of help seems to be. First I do not want to misunderstand earnestly by the way!'s Successful experiment, 99% of the bootloader that I made this time but that it's still made ​​by C language. It is as shown in the figure below and try to draw a sequence diagram the movement of this bootloader."
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:106
 msgid "![](/draw/2013-01-09-sequence_diagram.png)"
-msgstr ""
+msgstr "![](/draw/2013-01-09-sequence_diagram.png)"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:110
 msgid ""
 "なんと残念!かんじんの部分は既存のC言語ソースコードのままでゲソ。 でもこれから少しずつスナッチを繰り返すことで、 "
 "上図のシーケンスの多くの部分をHaskellのような型付き言語で記述することも夢ではないんじゃなイカ？"
-msgstr ""
+msgstr "Part sorry! Bottom line remains the C language source code of existing what. But by repeating snatch little by little from now, be described in typed language like Haskell many parts of the sequence shown above and not something a dream?"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:112
 msgid "## 今見えている課題"
-msgstr ""
+msgstr "## Problem known"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:115
 msgid ""
 "まだbootloaderのスナッチははじまったばかりでゲソ。 "
 "kernelのことはまぁ置いといて、こんな小さなモジュールをスナッチしてみるだけでも色々な課題が見えてくるでゲソ。"
-msgstr ""
+msgstr "Snatch of bootloader has just begun. that kernel come see the challenges many things aside Well, just to try to snatch a such a small module."
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:120
@@ -236,8 +265,12 @@ msgid ""
 "GCの使うヒープをallocで確保するのをやめて固定値に^[最悪1MB以降のメモリをヒープのために使っても良いが、他への応用を考えるとコンベンショナルメモリだけで挑戦する価値はある] "
 "d. bootloaderのヒープをRTSのヒープと共用すると、RTSがヒープを圧迫する。分割管理すべき"
 msgstr ""
+"a. To be able to handle command-line arguments.\n"
+"b. Problems caused by custom RTS is frequent. Those who can debug custom RTS in user space is good.\n"
+"c. To a fixed value away from computers that is allocated in the heap alloc the use of GC. ^[It may be used for the heap memory of the worst 1MB or later, it is worth to challenge only conventional memory considering the application to another.]\n"
+"d. when they share a heap of RTS heap of bootloader, RTS is compressing the heap. Should be split management."
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:122
 msgid "今年いっぱいはjhc本体の調査と平行して、 このbootloaderのスナッチは継続してやってみると色々な問題を洗い出せて面白いかもしれないでゲソ。"
-msgstr ""
+msgstr "It may be interesting to Araidase the various problems through the end of this year in parallel with the study of jhc body, looking to continue doing snatch of this bootloader."

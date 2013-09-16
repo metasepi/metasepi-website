@@ -51,7 +51,7 @@ lint: hakyll.hs
 clean:
 	-./hakyll clean
 	rm -rf hakyll _site.tar.gz
-	rm -rf *.hi *.o
+	rm -rf *.hi *.o en
 	rm -rf `find . -name "*~"`
 
 distclean: clean

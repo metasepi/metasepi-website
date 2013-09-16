@@ -24,7 +24,7 @@ main = hakyll $ do
 
   tags <- buildTags "posts/*.md" (fromCapture "tags/*.html" . map toLower)
 
-  match "posts/*.md" $ do
+  match ("posts/*.md" .||. "en/posts/*.md") $ do
     route $ setExtension "html"
     compile $ pandocCompilerWith defaultHakyllReaderOptions pandocOptions
       >>= loadAndApplyTemplate "templates/post.html"    (postCtx tags)
@@ -36,7 +36,19 @@ main = hakyll $ do
         compile $ do
             let archiveCtx =
                   field "posts" (\_ -> postList tags "posts/*.md" recentFirst) `mappend`
-                  constField "title" "Posts"              `mappend`
+                  constField "title" "Posts (Japanese)"              `mappend`
+                  defaultContext
+            makeItem ""
+                >>= loadAndApplyTemplate "templates/posts.html" archiveCtx
+                >>= loadAndApplyTemplate "templates/default.html" archiveCtx
+                >>= relativizeUrls
+
+  create ["en/posts.html"] $ do
+        route idRoute
+        compile $ do
+            let archiveCtx =
+                  field "posts" (\_ -> postList tags "en/posts/*.md" recentFirst) `mappend`
+                  constField "title" "Posts (English)"              `mappend`
                   defaultContext
             makeItem ""
                 >>= loadAndApplyTemplate "templates/posts.html" archiveCtx
@@ -70,10 +82,10 @@ main = hakyll $ do
   match "index.html" $ do
     route idRoute
     compile $ do
-      let indexCtx = field "posts" $ \_ ->
-                          postList tags "posts/*.md" $ fmap (take 3) . recentFirst
+      let indexCtxJa = field "posts_ja" $ \_ -> postList tags "posts/*.md" $ fmap (take 3) . recentFirst
+          indexCtxEn = field "posts_en" $ \_ -> postList tags "en/posts/*.md" $ fmap (take 3) . recentFirst
       getResourceBody
-        >>= applyAsTemplate indexCtx
+        >>= applyAsTemplate (indexCtxJa `mappend` indexCtxEn)
         >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
         >>= relativizeUrls
 
