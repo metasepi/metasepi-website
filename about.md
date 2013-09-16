@@ -4,7 +4,7 @@
 
 Challenge to create a free software Unix-like operating system written with type system.
 
-![](img/metasepi_logo_beta2.jpg)
+![](img/metasepi_logo_beta3.png)
 
 Photo: [Copyright (C) 2007 Silke Baron All Rights Reserved](http://www.flickr.com/photos/silkebaron/931247866/).
 
