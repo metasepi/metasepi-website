@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2013-09-14 14:57+0900\n"
-"PO-Revision-Date: 2013-09-16 11:19+0900\n"
+"PO-Revision-Date: 2013-09-17 14:07+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -41,7 +41,7 @@ msgstr ""
 msgid ""
 "調査を繰り返していても、設計は進まないでゲソ。 まずは第一歩、なにか作ってみればわかることもあるんじゃなイカ？ "
 "まずコードを書く前におおざっぱな設計を決めるでゲソ。 このエントリは何度も書き直すかもしれないでゲソ。"
-msgstr "Even repeating the research, design does not proceed. First or not there also be seen first step, as it were to make something? Let's decide a rough design before writing the code first. It may be rewritten many times this entry."
+msgstr "Can't get design, even repeating the research. It might be a good idea to make something at first step? Let's decide a rough sketch before writing the code. This blog entry will be rewritten some times."
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:13
@@ -56,13 +56,16 @@ msgid ""
 "なkernelを得るには、関数型言語としてキレイな設計を考えている時間はないでゲソ。 "
 "むしろ純朴な実装で良いから、モノリシックkernelを関数型言語の設計に写像してしまった方が良いのではなイカ？"
 msgstr ""
-"Even repeating the research, design does not proceed. First of all I do not may be some things you'll notice first step, as it were making something?\n"
-"Tentacles in determining a rough design before writing the code first. It may be rewritten many times this entry."
+"We discuss \"[Are there OS designed with Haskell/OCaml?](2012-08-18-haskell-or-ocaml-os.html)\" already.\n"
+"The person living in real world has no time to get clean design of Functional OS,\n"
+"that be eaten as dog food.\n"
+"^[[Eating your own dog food - Wikipedia](http://en.wikipedia.org/wiki/Eating_your_own_dog_food)]\n"
+"It may be better than it to rewrite a just monolithic kernel with functional language."
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:22
 msgid "ここでは写像するモノリシックkernelとしてNetBSDを選定するでゲソ。 ソースコードが読みやすい、などの理由があるでゲソが、単にワシの趣味でゲソ。"
-msgstr "We selected the NetBSD as a monolithic kernel to map here. There is my hobby simply reasons, such as easy-to-read source code."
+msgstr "We selected the NetBSD as a monolithic kernel for rewriting. There is my hobby simply reasons, such as easy-to-read source code."
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:28
