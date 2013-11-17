@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2013-09-14 14:57+0900\n"
-"PO-Revision-Date: 2013-09-17 14:07+0900\n"
+"PO-Revision-Date: 2013-11-17 14:43+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -251,14 +251,16 @@ msgstr "Part sorry! Bottom line remains the C language source code of existing w
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:112
 msgid "## 今見えている課題"
-msgstr "## Problem known"
+msgstr "## Known problems"
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:115
 msgid ""
 "まだbootloaderのスナッチははじまったばかりでゲソ。 "
 "kernelのことはまぁ置いといて、こんな小さなモジュールをスナッチしてみるだけでも色々な課題が見えてくるでゲソ。"
-msgstr "Snatch of bootloader has just begun. that kernel come see the challenges many things aside Well, just to try to snatch a such a small module."
+msgstr ""
+"Snatch of bootloader has just begun.\n"
+"Not yet snatch kernel, we can find many problems with snatching the small module such as bootloader."
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:120
@@ -268,12 +270,14 @@ msgid ""
 "GCの使うヒープをallocで確保するのをやめて固定値に^[最悪1MB以降のメモリをヒープのために使っても良いが、他への応用を考えるとコンベンショナルメモリだけで挑戦する価値はある] "
 "d. bootloaderのヒープをRTSのヒープと共用すると、RTSがヒープを圧迫する。分割管理すべき"
 msgstr ""
-"a. To be able to handle command-line arguments.\n"
-"b. Problems caused by custom RTS is frequent. Those who can debug custom RTS in user space is good.\n"
-"c. To a fixed value away from computers that is allocated in the heap alloc the use of GC. ^[It may be used for the heap memory of the worst 1MB or later, it is worth to challenge only conventional memory considering the application to another.]\n"
-"d. when they share a heap of RTS heap of bootloader, RTS is compressing the heap. Should be split management."
+"a. Be able to handle command-line arguments.\n"
+"b. Should be able to debug custom RTS in user space. We have found problems at custom RTS side frequently.\n"
+"c. Use the fixed memory area for GC heap allocator. ^[We can use extended memory (more than 1 MB) on Intel arch. But it's useful running in conventional memory (less than 1 MB) for the other use case]\n"
+"d. Isolate malloc's heap and Haskell's heap. Haskell's heap press malloc's heap with the RTS implementation in this article."
 
 #. type: Plain text
 #: posts/2013-01-09-design_arafura.md:122
 msgid "今年いっぱいはjhc本体の調査と平行して、 このbootloaderのスナッチは継続してやってみると色々な問題を洗い出せて面白いかもしれないでゲソ。"
-msgstr "It may be interesting to Araidase the various problems through the end of this year in parallel with the study of jhc body, looking to continue doing snatch of this bootloader."
+msgstr ""
+"Next action item is surveying more detail of jhc internel.\n"
+"But, more snatching this bootloader may be also good idea to understand more problems."
