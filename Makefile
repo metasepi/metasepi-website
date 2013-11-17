@@ -23,10 +23,10 @@ all: ${PNGS} ${PDFS} build
 	mv $@.tmp $@
 
 updatepo: ${POTGT}
-	po4a-updatepo -M utf8 -f text -m ${POTGT} -p po/ja.po
+	po4a-updatepo -M utf8 -f text -m ${POTGT} -p po/en.po
 
-en/${POTGT}: po/ja.po
-	po4a-translate -M utf8 -f text -m ${POTGT} -p po/ja.po -l en/${POTGT}
+en/${POTGT}: po/en.po
+	po4a-translate -M utf8 -f text -m ${POTGT} -p po/en.po -l en/${POTGT}
 
 hakyll: hakyll.hs
 	ghc --make -Wall -Werror hakyll.hs -o hakyll
