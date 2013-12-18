@@ -35,7 +35,7 @@ build: hakyll en/${POTGT}
 	./hakyll build
 
 server: all
-	./hakyll preview
+	./hakyll preview -p 9001
 
 publish: all
 	ssh sakura.masterq.net rm -rf ~/vhosts/_site ~/vhosts/_site.tar.gz
