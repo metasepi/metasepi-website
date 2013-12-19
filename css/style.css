@@ -161,7 +161,8 @@ pre.sourceCode {
 }
 
 .topbar {
-    background-color: #333;
+    background: url("/img/navBar-gradient.png") repeat-x scroll 0% 0% rgb(54, 54, 54);
+    background-color: rgb(54, 54, 54);
     color: white;
     height: 40px;
     top: 0;
