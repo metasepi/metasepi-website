@@ -1,5 +1,5 @@
 ---
-title: "ML programmer's guide to ATS" 日本語訳
+title: (作成中) "ML programmer's guide to ATS" 日本語訳
 description: Haskell以外の言語処理系でスナッチ設計してみたいでゲソ!
 tags: ats, translation
 ---
