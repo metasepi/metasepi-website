@@ -11,7 +11,9 @@ tags: ats, translation
 [ML programmer's guide to ATS - liulk @ cs-people](http://cs.likai.org/ats/ml-programmers-guide-to-ats)
 を翻訳してATS言語の使い方をマスターするでゲソ!
 
-## MLプログラマ向けATS言語ガイド
+---------------------------------------
+
+# MLプログラマ向けATS言語ガイド
 
 このガイドではATS (Applied Type System) でのプログラミング作法を解説はしません。
 それでも、熟練のMLプログラマであればすぐにATSの用語を理解してATSのコードを読み始めることができると思います。
@@ -24,7 +26,7 @@ ATSでは、3つの世界でプログラミングをすることを覚えてお�
 * Proofs(証明): 動的な特性を静的な特性に結びつけます。Proofs(証明)はプログラムの動的な部分と考えることができます。しかし証明はコンパイル後では消滅してしまい、実行時には存在しません。コンパイラはあなたが書いた証明を検査し、動作可能なコードを生成する前に削除するのです。
 * Statics(静的な世界): 型検査時にコンパイラによって評価される部分です。静的な部分では静的な式の評価は常に終了しなければなりません。そのため型検査は決定可能です。
 
-ATSの前身であるDependent MLでは、静的な世界からは依存型を通してしか動的な世界を見るしかありませんでした。
+ATSの前身であるDependent MLでは、静的な世界からは依存型を通して動的な世界を見るしかありませんでした。
 動的なそれぞれの式は静的な式によって指定された型を持っています。
 静的な制約は静的な式の集合によって形成され、
 型検査はそれらの制約が充足可能であるかどうか調べます。
@@ -32,22 +34,22 @@ ATSの前身であるDependent MLでは、静的な世界からは依存型を�
 ATSは依存型に加えて証明を使うことができ、
 静的な世界をより強く動的な世界に関与させることができます。
 プログラマが動的な式と対応する証明の項を混じり合って書くことができるのです。
-証明はpropsと呼ばれるclassical propositions(古典論理)や、
-viewsと呼ばれるlinear propositions(linear logic)(線形論理)
+証明はpropと呼ばれるclassical propositions(古典論理)や、
+viewと呼ばれるlinear propositions(linear logic)(線形論理)
 のどちらかを取ります。
 
-Prologとその派生にとって、propsを定義するのはPrologの述語を定義することとよく似ています。
-しかし、型検査は自動的にその述語の検査をしてくれません。
+Prologに馴染んだ人にとっては、propを定義するのはPrologの述語を定義することとよく似ています。
+しかし、型検査は自動的にその述語の解決をしてくれません。
 プログラムを記述するのと同じように、証明も手動で書き下す必要があります。
-証明の記述によってATSを証明器として使うことができます。
+証明の記述をすることで、ATSを証明器として使うことができます。
 
 最後に、動的な世界と静的な世界の分離については
 「動的な項の種は静的な種によって特徴づけられる」
 と考えることもできます。
 
-* プログラムの項は型によって特徴づけられる
-* 線形論理による証明の項はviewsによて特徴づけられる
-* 古典論理による証明の項はpropsによって特徴づけられる
+* プログラムの項はtypeによって特徴づけられる
+* 線形論理による証明の項はviewによって特徴づけられる
+* 古典論理による証明の項はpropによって特徴づけられる
 
 ### ノート: 線形論理(Linear Logic)について
 
@@ -99,7 +101,7 @@ fun baz (x:int): int
 あなたは明示的に十分な型注釈を与える必要があります。
 そうすればATSは型の導出できるようになるでしょう。
 
-## 恍惚の静
+## めくるめく静
 
 ATSはMLに少し似ています。
 型とデータ型を定義することができます。
@@ -472,29 +474,32 @@ fun function_name
 
 ## タグ付きのアロー型
 
-The arrow type in ATS looks like "-<>", and the form -<tag1, ..., tagk> is an augmented arrow type with decoration.
- ATS currently recognizes the following tags for distinguishing various kind of functions:
+ATSにおけるアロー型は"-<>"のような見た目をしています。
+アロー型は -<tag1, ..., tagk> のような形では装飾されます。
+関数の様々な種を区別するために、現時点でATSは次のようなタグを解釈します。
 
-* prf: proof function (will be erased after type checking).
-* lin: a function that has to be called exactly once.
-* fun: an ordinary function (default kind).
-* cloptr: a closure that can be explicitly freed.
-* cloref: a closure that is garbage collected.
+* prf: 証明関数 (型検査が終わると削除れます)
+* lin: 確実に一度だけしか呼び出されない関数
+* fun: 通常の関数 (デフォルト)
+* cloptr: 明示的に解放されるべきクロージャ
+* cloref: GCされるクロージャ
 
-As well as the following tags to track side-effects:
+同様に次のタグは副作用の追跡に用いられます。
 
-* exn: raises exceptions.
-* ntm: possible non-termination.
-* ref: sharing global memory reference.
-* 0: no effects (pure).
-* 1: all effects, including everything we don't know about yet.
+* exn: 例外を起こす
+* ntm: 終了しない可能性がある
+* ref: グローバルメモリへの参照を共有している
+* 0: 副作用なし (純粋)
+* 1: 副作用あり (まだ判断できない場合も含まれる)
 
-In addition to the tags that distinguish function kinds, we can attach the 0 and 1 suffixes as a shorthand to indicate the presence or absence of effects.
- For example, cloref1 is a common tag for describing ML-style closure that is garbage collected and can have any side-effect (e.g. raises exceptions).
+副作用の有無を示すための表現である0や1の接尾辞を、関数の種を区別するタグに加えて付けることができます。
+例えば cloref1 は、MLのようにGC対象となるクロージャであり、
+副作用(例外発生など)を持っているというタグになります。
 
-## An example from stdio.h
+## stdio.h から例を
 
-What does a typical ATS function declaration look like? Here we show an example from the Standard C library that sports the following prototype.
+What does a typical ATS function declaration look like?
+Here we show an example from the Standard C library that sports the following prototype.
 
 ~~~ {.c}
 char *fgets(char *s, int size, FILE *stream);
@@ -559,3 +564,33 @@ fun fgets
     ) =
   "fgets"
 ~~~
+
+This example is based on
+[libc/SATS/stdio.sats](https://svn.code.sf.net/p/ats-lang/code/trunk/libc/SATS/stdio.sats),
+part of ATS/Anariats, with slight modification and heavily annotated with comments.
+It may not be immediately apparent to the first-time reader, but there are some subtle points:
+
+* We allow the actual buffer size (here denoted by the static variable sz) to be larger than what we tell fgets() to use (here denoted by the static variable count). This is the way fgets is formulated in libc/SATS/stdio.sats, but arguably it is not very common to tell fgets() not to use all of the buffer.
+* If fgets() returns non-null, it must return the same pointer as before, but that pointer now should be interpreted as a strbuf, a string buffer holding zero terminated string of some length. Otherwise, the same view, bytes(sz) @ l, is given back. The only way to tell which case is the result of fgets() is by checking the pointer against null using an if-expression. It's a type error if you forget to check. If error checking gets tedius, libc/SATS/stdio.sats also has a version that raises an exception instead, called fgets_exn().
+
+For your reference, this is what the above code looks like without comments.
+
+~~~ {.ocaml}
+dataview fgets_v (sz:int, addr, addr) =
+  | {n:nat | n < sz} {l:addr | l <> null}
+      fgets_v_succ(sz, l, l) of strbuf(sz, n) @ l
+  | {l:addr}
+      fgets_v_fail(sz, l, null) of bytes(sz) @ l
+
+fun fgets
+    {n, sz:int | 0 < n; n <= sz} {m:fm} {l:addr} (
+      pf_mod: file_mode_lte(m, r), pf_buf: bytes(sz) @ l
+    | s: ptr(l), size: int(n), stream: &FILE(m))
+  :<>
+    [l':addr] (fgets_v(sz, l, l') | ptr(l')) =
+  "fgets"
+~~~
+
+## この文書のTODO
+
+* fn (non-recursive) vs fun (recursive) and termination metrics.
