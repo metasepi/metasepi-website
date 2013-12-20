@@ -8,6 +8,8 @@ tags: ats, translation
 [Theorem Prover Advent Calendar 2013 - Qiita [キータ]](http://qiita.com/advent-calendar/2013/theorem_prover)
 の12/23(月曜)分じゃなイカ。
 
+xxx ATSの概説
+
 [ML programmer's guide to ATS - liulk @ cs-people](http://cs.likai.org/ats/ml-programmers-guide-to-ats)
 を翻訳してATS言語の使い方をマスターするでゲソ!
 
@@ -490,7 +492,7 @@ ATSにおけるアロー型は"-<>"のような見た目をしています。
 * ntm: 終了しない可能性がある
 * ref: グローバルメモリへの参照を共有している
 * 0: 副作用なし (純粋)
-* 1: 副作用あり (まだ判断できない場合も含まれる)
+* 1: 副作用あり (判断できない場合も含まれる)
 
 副作用の有無を示すための表現である0や1の接尾辞を、関数の種を区別するタグに加えて付けることができます。
 例えば cloref1 は、MLのようにGC対象となるクロージャであり、
@@ -498,44 +500,46 @@ ATSにおけるアロー型は"-<>"のような見た目をしています。
 
 ## stdio.h から例を
 
-What does a typical ATS function declaration look like?
-Here we show an example from the Standard C library that sports the following prototype.
+ATSにおける典型的な関数の宣言はどのような見た目になるのでしょうか？
+ここでは、次のプロトタイプ宣言を持つ標準Cライブラリを例に取りましょう。
 
 ~~~ {.c}
 char *fgets(char *s, int size, FILE *stream);
 ~~~
 
-From the man page, "fgets() reads in at most one less than size characters from stream and stores them into the buffer pointed to by s.
- A '\0' is stored after the last character in the buffer."
- And that "fgets() returns s on success, and NULL on error or when end of file occurs while no characters have been read."
+manページには
+「fgets()はstreamから最大で size - 1 個の文字を読み込み、sが指すバッファに格納する。
+'\0'が一つバッファの中の最後の文字の後に書き込まれる。」
+とあり、さらに
+「fgets()は、成功するとsを返し、エラーや1文字も読み込んでいないのにファイルの終わりになった場合に NULL を返す。」
+とあります。
 
-We now look at the ATS declaration, heavily commented and colored (orange is comment, cyan is keyword, and blue is static expression).
+ATSでの宣言を見てみましょう。コメントをたくさん入れてみました。
 
 ~~~ {.ocaml}
-(* fgets_v describes the result of fgets, which can indicate either a
- * success or failure.
+(* fgets_vはfgetsの結果である成功か失敗を表わします。
  *)
 dataview fgets_v (sz:int, addr, addr) =
-  | (* If success, location l is now a string buffer of size sz storing
-     * a string of length n.
+  | (* 成功した場合、lアドレスは長さnの文字列を格納している
+     * サイズszの文字列バッファでしょう。
      *)
     {n:nat | n < sz} {l:addr | l <> null}
       fgets_v_succ(sz, l, l) of strbuf(sz, n) @ l
 
-  | (* If failure, location l is still just sz number of bytes. *)
+  | (* 失敗した場合、lアドレスは単にサイズszの空箱のはずです *)
     {l:addr}
       fgets_v_fail(sz, l, null) of bytes(sz) @ l
 
 fun fgets
-    (* count is the number of bytes we want to read, and it has to fit
-     * within sz, the size of buffer.
+    (* countは読み込むバイト数です。
+     * それはバッファのサイズであるsz以内でなければなりません。
      *)
     {count, sz:int | 0 < count; count <= sz}
 
-    (* fm is the static sort for file mode. *)
+    (* fmはファイルモードのための静的な種です。 *)
     {m:fm}
 
-    (* l is for dependent type indexing for address of buffer. *)
+    (* lはバッファのアドレスを示す依存型です。 *)
     {l:addr}
 
     ( (* Proof that file mode implies read access. *)
