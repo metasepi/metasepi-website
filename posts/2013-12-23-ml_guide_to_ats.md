@@ -1,5 +1,5 @@
 ---
-title: (作成中) "ML programmer's guide to ATS" 日本語訳
+title: "ML programmer's guide to ATS" 日本語訳
 description: Haskell以外の言語処理系でスナッチ設計してみたいでゲソ!
 tags: ats, translation
 ---
@@ -8,8 +8,48 @@ tags: ats, translation
 [Theorem Prover Advent Calendar 2013 - Qiita [キータ]](http://qiita.com/advent-calendar/2013/theorem_prover)
 の12/23(月曜)分じゃなイカ。
 
-xxx ATSの概説
+ATS [http://www.ats-lang.org/](http://www.ats-lang.org/) という言語を知っているでゲソ？
+依存型と線形型が使えて、もちろん証明器にもなるでゲソ。
+以下のようなプログラミングパラダイムをサポートしているでゲソ。
 
+* 関数プログラミング
+* 命令プログラミング
+* 並列プログラミング
+* モジュールシステム
+
+ATSのHello Worldの実行バイナリのサイズも23kBと非常に小さいでゲソ。
+
+~~~
+$ cat hello.dats
+val _void_ = print ("Hello, world!\n")
+implement main () = ()
+$ atscc -o hello hello.dats
+$ ./hello
+Hello, world!
+$ size hello
+   text    data     bss     dec     hex filename
+  21895     908     200   23003    59db hello
+~~~
+
+Ajhcの場合は16kBで、より小さいでゲソがATSも優秀じゃなイカ。
+
+~~~
+$ cat Hello.hs
+main = putStrLn "Hello, world!"
+$ ajhc Hello.hs -o Hello
+$ ./Hello
+Hello, world!
+$ size Hello
+   text    data     bss     dec     hex filename
+  14056    1337     528   15921    3e31 Hello
+~~~
+
+しかも
+[Computer Language Benchmarks Gameでは最悪でもC言語の2倍程度の遅さ](http://benchmarksgame.alioth.debian.org/u64/benchmark.php?test=all&lang=ats&lang2=gcc&data=u64)
+じゃなイカ。つまり速いってことでゲソ!
+
+ところがこのATS言語、日本語の情報はほとんど見つからなかったでゲソ。。。
+まずは
 [ML programmer's guide to ATS - liulk @ cs-people](http://cs.likai.org/ats/ml-programmers-guide-to-ats)
 を翻訳してATS言語の使い方をマスターするでゲソ!
 
