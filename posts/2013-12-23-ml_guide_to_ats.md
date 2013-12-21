@@ -26,6 +26,10 @@ implement main () = ()
 $ atscc -o hello hello.dats
 $ ./hello
 Hello, world!
+$ ldd hello | wc -l
+3
+$ nm hello | grep -c " U "
+24
 $ size hello
    text    data     bss     dec     hex filename
   21895     908     200   23003    59db hello
@@ -39,6 +43,10 @@ main = putStrLn "Hello, world!"
 $ ajhc Hello.hs -o Hello
 $ ./Hello
 Hello, world!
+$ ldd Hello | wc -l
+3
+$ nm Hello | grep -c " U "
+19
 $ size Hello
    text    data     bss     dec     hex filename
   14056    1337     528   15921    3e31 Hello
