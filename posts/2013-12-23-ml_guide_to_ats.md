@@ -542,37 +542,38 @@ fun fgets
     (* lはバッファのアドレスを示す依存型です。 *)
     {l:addr}
 
-    ( (* Proof that file mode implies read access. *)
+    ( (* ファイルモードが読み出しアクセスを含んでいることの証明。 *)
       pf_mod: file_mode_lte(m, r),
-      (* Linear proof that sz number of bytes is at l. *)
+      (* szバイトの列がlに存在することに対する線形論理の証明。 *)
       pf_buf: bytes(sz) @ l
-    | (* Argument, pointer indexed by location l. *)
+    | (* lアドレスによって指示されるポインタを引数に取る。 *)
       s: ptr(l),
-      (* Argument, read at most count bytes. *)
+      (* 読み込む最大のバイト数を引数に取る。  *)
       size: int(count),
-      (* Argument, call by reference to FILE structure opened with
-       * mode m.
-       *)
+      (* モードmによってオープンされたFILE構造体への参照を引数に取る。 *)
       stream: &FILE(m)
     )
   :<>
-    (* l' is the index for the return pointer. *)
+    (* l'は返値のポインタを指示します。 *)
     [l':addr]
 
-    ( (* pf_buf is consumed, and this determines what it turns into
+    ( (* pf_bufは消費され、ここでl'に一致する変化を形成します。 *)
+      (* pf_buf is consumed, and this determines what it turns into
        * according to l'.
        *)
       fgets_v(sz, l, l')
-    | (* Return pointer indexed by l'. *)
+    | (* l'で示すポインタを返します。 *)
       ptr(l')
     ) =
   "fgets"
 ~~~
 
-This example is based on
-[libc/SATS/stdio.sats](https://svn.code.sf.net/p/ats-lang/code/trunk/libc/SATS/stdio.sats),
-part of ATS/Anariats, with slight modification and heavily annotated with comments.
-It may not be immediately apparent to the first-time reader, but there are some subtle points:
+この例はATS/Anariatsの
+[libc/SATS/stdio.sats](https://svn.code.sf.net/p/ats-lang/code/trunk/libc/SATS/stdio.sats)
+を元にしています。
+わずかな修正と多くのコメントによる注釈が加えてあります。
+はじめて見る人には明確には思えないかもしれません。
+いくつかの難解なポイントがあります。
 
 * We allow the actual buffer size (here denoted by the static variable sz) to be larger than what we tell fgets() to use (here denoted by the static variable count). This is the way fgets is formulated in libc/SATS/stdio.sats, but arguably it is not very common to tell fgets() not to use all of the buffer.
 * If fgets() returns non-null, it must return the same pointer as before, but that pointer now should be interpreted as a strbuf, a string buffer holding zero terminated string of some length. Otherwise, the same view, bytes(sz) @ l, is given back. The only way to tell which case is the result of fgets() is by checking the pointer against null using an if-expression. It's a type error if you forget to check. If error checking gets tedius, libc/SATS/stdio.sats also has a version that raises an exception instead, called fgets_exn().
