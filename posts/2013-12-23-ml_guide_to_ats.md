@@ -55,11 +55,13 @@ Prologに馴染んだ人にとっては、propを定義するのはPrologの述�
 
 ### ノート: 線形論理(Linear Logic)について
 
-xxx
+線形論理は、弱化規則と縮約規則という構造規則を許可しないという点で古典論理と異なります。
+弱化規則は事実(fact)を与えて未使用のままに放置させません。
+縮約規則は事実を複数回使用することを許しません。
+つまり、事実はきっちり一度だけしか使えないのです。
 
-Linear logic distincts itself from classical logic in the sense that weakening and contraction structural rules are disallowed. Weakening says you cannot be given a fact and leave it unused, and contraction says you cannot designate a fact for multiple uses. Therefore, a fact must be used exactly once.
-
-Views are linear in that sense, and view proofs are typically used to track resource ownership or to update states of a resource.
+viewはその意味では線形論理です。
+一般にviewの証明は、リソースの所有の追跡やリソースの状態の更新に使われます。
 
 ## 拡張子
 
@@ -387,14 +389,14 @@ list(t, n)<br />
 これは静的な式の型に対して下位種を作るのに役に立ちます。
 共変性は良く使われますが、反変性を使うことはまれです。
 
-### ノート: Int type is flat
+### ノート: intの型はフラット
 
-xxx
-
-It may come as a surprise to the reader, but int is a t@ype in ATS.
- Consider the C type int and long on a 64-bit machine: int is 32-bits, long is 64-bits, and pointers are 64-bits.
- Int does not have the same size as pointers.
- In the same way, long is also a t@ype in ATS because on a 16-bit machine, int is 16-bits, long is 32-bits, and pointers are 16-bits.
+読者をおどろかせるかもしれませんが、ATSにといてintはt@ypeです。
+64ビットマシンのC言語型であるintとlongを考えてみると、
+intは32ビット、longは64ビット、そしてポインタは64ビットです。
+intはポインタと同じサイズではありません。
+同様に、ATSではlongもまたt@ypeです。
+16ビットマシンの場合、intは16ビット、longは32ビット、ポインタは16ビットであるからです。
 
 ## 落ち着かない関数たち
 
