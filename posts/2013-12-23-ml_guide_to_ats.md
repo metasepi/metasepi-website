@@ -24,7 +24,7 @@ xxx ATSの概説
 
 ATSでは、3つの世界でプログラミングをすることを覚えておくと良いでしょう。
 
-* Dynamics(動的な世界): プログラムを実行した時に評価される部分です。これはプログラミング言語に馴染んだプログラマにとってもっとも親しみ深い部分でしょう。
+* Dynamics(動的な世界): プログラムを実行した時に評価される部分です。これは既存のプログラミング言語に馴染んだプログラマにとってもっとも親しみ深い部分でしょう。
 * Proofs(証明): 動的な特性を静的な特性に結びつけます。Proofs(証明)はプログラムの動的な部分と考えることができます。しかし証明はコンパイル後では消滅してしまい、実行時には存在しません。コンパイラはあなたが書いた証明を検査し、動作可能なコードを生成する前に削除するのです。
 * Statics(静的な世界): 型検査時にコンパイラによって評価される部分です。静的な部分では静的な式の評価は常に終了しなければなりません。そのため型検査は決定可能です。
 
@@ -509,7 +509,7 @@ char *fgets(char *s, int size, FILE *stream);
 
 manページには
 「fgets()はstreamから最大で size - 1 個の文字を読み込み、sが指すバッファに格納する。
-'\0'が一つバッファの中の最後の文字の後に書き込まれる。」
+'\\0'が一つバッファの中の最後の文字の後に書き込まれる。」
 とあり、さらに
 「fgets()は、成功するとsを返し、エラーや1文字も読み込んでいないのにファイルの終わりになった場合に NULL を返す。」
 とあります。
@@ -573,12 +573,12 @@ fun fgets
 を元にしています。
 わずかな修正と多くのコメントによる注釈が加えてあります。
 はじめて見る人には明確には思えないかもしれません。
-いくつかの難解なポイントがあります。
+いくつかポイントがあります。
 
-* We allow the actual buffer size (here denoted by the static variable sz) to be larger than what we tell fgets() to use (here denoted by the static variable count). This is the way fgets is formulated in libc/SATS/stdio.sats, but arguably it is not very common to tell fgets() not to use all of the buffer.
-* If fgets() returns non-null, it must return the same pointer as before, but that pointer now should be interpreted as a strbuf, a string buffer holding zero terminated string of some length. Otherwise, the same view, bytes(sz) @ l, is given back. The only way to tell which case is the result of fgets() is by checking the pointer against null using an if-expression. It's a type error if you forget to check. If error checking gets tedius, libc/SATS/stdio.sats also has a version that raises an exception instead, called fgets_exn().
+* 実際のバッファサイズ(静的な変数sz)がfgets()が使用するサイズ(静的な変数count)よりも大きいことを許可しています。これはlibc/SATS/stdio.satsにおけるfgetsで定式化されています。しかしfgets()にバッファを全て使わないようには強制しません。
+* fgets()がNULLではない値を返す場合、以前と同じポインタを返さなければなりません。しかもそのポインタはstrbufによって解釈を与えれていて、文字列バッファはゼロ終端されています。そうでない場合、同じく bytes(sz) @ l が返ります。fgets()の結果の種別を見分ける唯一の方法は、if式でそのポインタがNULLであるのかチェックすることです。もしあなたがチェックを見逃したら、型エラーになります。しかしエラーのチェックに飽き飽きすることもあるでしょう。そんな時はlibc/SATS/stdio.satsで定義されている例外を使うバージョンであるfgets_exn()を使うこともできます。
 
-For your reference, this is what the above code looks like without comments.
+参考のために、上記のコードからコメントを削除したものを載せておきます。
 
 ~~~ {.ocaml}
 dataview fgets_v (sz:int, addr, addr) =
@@ -598,4 +598,4 @@ fun fgets
 
 ## この文書のTODO
 
-* fn (non-recursive) vs fun (recursive) and termination metrics.
+* fn (再帰なし) と fun (再帰あり) の比較との終端の計測
