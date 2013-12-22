@@ -52,6 +52,19 @@ $ size Hello
   14056    1337     528   15921    3e31 Hello
 ~~~
 
+とか書いてたら作者の [Hongwei Xi](http://www.cs.bu.edu/~hwxi/)
+からツッコミが入ってATS2はもっと効率が良いそうでゲソ。
+
+~~~
+I tried ATS2 on that example and here is what I got:
+
+$ patscc -D_ATS_EXCEPTION_NONE -O2 -o hello hello.dats
+
+$ size hello
+   text    data     bss     dec     hex filename
+   1649     512      32    2193     891 hello
+~~~
+
 しかも
 [Computer Language Benchmarks Gameでは最悪でもC言語の2倍程度の遅さ](http://benchmarksgame.alioth.debian.org/u64/benchmark.php?test=all&lang=ats&lang2=gcc&data=u64)
 じゃなイカ。つまり速いってことでゲソ!
@@ -62,6 +75,12 @@ $ size Hello
 を翻訳してATS言語の使い方をマスターするでゲソ!
 
 ---------------------------------------
+
+今後はATS言語関連の翻訳をgithubリポジトリに集約します。
+そのため、このブログの翻訳は修正されません。
+最新の翻訳結果は
+[https://github.com/jats-ug/translate/blob/master/Web/cs.likai.org/ats/ml-programmers-guide-to-ats.md](https://github.com/jats-ug/translate/blob/master/Web/cs.likai.org/ats/ml-programmers-guide-to-ats.md)
+を参照してください。
 
 # MLプログラマ向けATS言語ガイド
 
@@ -527,7 +546,7 @@ fun function_name
 ## タグ付きのアロー型
 
 ATSにおけるアロー型は"-<>"のような見た目をしています。
-アロー型は -\<tag1, ..., tagk\> のような形では装飾されます。
+アロー型は -\<tag1, ..., tagk\> のような形で装飾されます。
 関数の様々な種を区別するために、現時点でATSは次のようなタグを解釈します。
 
 * prf: 証明関数 (型検査が終わると削除れます)
