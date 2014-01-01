@@ -56,13 +56,21 @@ $ size Hello
 からツッコミが入ってATS2はもっと効率が良いそうでゲソ。
 
 ~~~
-I tried ATS2 on that example and here is what I got:
-
-$ patscc -D_ATS_EXCEPTION_NONE -O2 -o hello hello.dats
-
+$ cat hello.dats
+implement
+main0 () = {
+  val () = println! ("Hello world!")
+}
+$ patscc -o hello hello.dats
+$ ./hello
+Hello world!
+$ ldd hello | wc -l
+3
+$ nm hello | grep -c " U "
+6
 $ size hello
    text    data     bss     dec     hex filename
-   1649     512      32    2193     891 hello
+   3473     724      32    4229    1085 hello
 ~~~
 
 しかも
