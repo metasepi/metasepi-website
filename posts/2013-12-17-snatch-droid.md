@@ -20,7 +20,7 @@ tags: haskell, book, android, ajhc
 * 第2章 僕のカノジョはスナッチャー # <= コレ書いた
 
 がもくじで、
-[@master_q](https://twitter.com/master_q)
+[\@master_q](https://twitter.com/master_q)
 は第2章を書いたらしいでゲソ。
 この記事では
 [Android NDK](http://developer.android.com/tools/sdk/ndk/index.html)

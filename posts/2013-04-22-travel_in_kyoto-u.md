@@ -22,7 +22,7 @@ Metasepiプロジェクトの良いアピールになったでゲソ!
 
 今回は名古屋と京都でAjhcの宣伝をしたでゲソが、他の場所にも是非営業にいってみたいゲソ。
 ワシから直にAjhcコンパイラのプレゼンを聴いてみたい方はお気軽に
-[@metasepi](https://twitter.com/metasepi)
+[\@metasepi](https://twitter.com/metasepi)
 まで連絡が欲しいでゲソ!
 
 ## 発表資料
