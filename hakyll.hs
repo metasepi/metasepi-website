@@ -11,7 +11,7 @@ main = hakyll $ do
     route   idRoute
     compile compressCssCompiler
 
-  match ("img/**" .||. "js/**" .||. "doc/**" .||. "draw/*.png" .||. "plan/*.html" .||.
+  match ("img/**" .||. "js/**" .||. "doc/**" .||. "draw/*.png" .||. "plan/**" .||.
          "favicon.ico" .||. "404.html" .||. "50x.html" .||. "googlef5fb4c1f27601161.html") $ do
     route idRoute
     compile copyFileCompiler

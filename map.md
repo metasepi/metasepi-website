@@ -6,7 +6,7 @@
 
 ## Gantt chart
 
-[Metasepi Arafura Plan](/plan/metasepi-arafura.html)
+* [Metasepi Arafura Plan](/plan/metasepi-arafura.html) ([Download planner file](/plan/metasepi-arafura.planner))
 
 ## Five-Year Plans
 
