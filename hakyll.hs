@@ -36,7 +36,7 @@ main = hakyll $ do
         compile $ do
             let archiveCtx =
                   field "posts" (\_ -> postList tags "posts/*.md" recentFirst) `mappend`
-                  constField "title" "Posts (Japanese)"              `mappend`
+                  constField "title" "Blog posts (Japanese)"              `mappend`
                   defaultContext
             makeItem ""
                 >>= loadAndApplyTemplate "templates/posts.html" archiveCtx
@@ -48,7 +48,7 @@ main = hakyll $ do
         compile $ do
             let archiveCtx =
                   field "posts" (\_ -> postList tags "en/posts/*.md" recentFirst) `mappend`
-                  constField "title" "Posts (English)"              `mappend`
+                  constField "title" "Blog posts (English)"              `mappend`
                   defaultContext
             makeItem ""
                 >>= loadAndApplyTemplate "templates/posts.html" archiveCtx
@@ -77,7 +77,16 @@ main = hakyll $ do
                       `mappend` defaultContext
                       `mappend` constField "description" "This is the post description"
       posts <- fmap (take 10) . recentFirst =<< loadAll "posts/*"
-      renderAtom feedConfiguration feedCtx posts
+      renderAtom (feedConfiguration {feedTitle = "Metasepi Blog (Japanese)"}) feedCtx posts
+
+  create ["rss_en.xml"] $ do
+    route idRoute
+    compile $ do
+      let feedCtx = dateField "date" "%B %e, %Y"
+                      `mappend` defaultContext
+                      `mappend` constField "description" "This is the post description"
+      posts <- fmap (take 10) . recentFirst =<< loadAll "en/posts/*"
+      renderAtom (feedConfiguration {feedTitle = "Metasepi Blog (English)"}) feedCtx posts
 
   match "index.html" $ do
     route idRoute
@@ -93,11 +102,11 @@ main = hakyll $ do
 
 feedConfiguration :: FeedConfiguration
 feedConfiguration = FeedConfiguration
-  { feedTitle       = "Metasepi Logbook"
+  { feedTitle       = "Metasepi Blog"
   , feedDescription = "A diary to develop Metasepi kernel."
   , feedAuthorName  = "Kiwamu Okabe"
   , feedAuthorEmail = "kiwamu@debian.or.jp"
-  , feedRoot        = "http://metasepi.masterq.net/"
+  , feedRoot        = "http://metasepi.org/"
   }
 
 pandocOptions :: WriterOptions
