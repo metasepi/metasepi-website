@@ -13,7 +13,7 @@ $ sudo apt-get install planner
 Open planner file.
 
 ```
-$ LC_ALL=C planner metasepi-arafura.planner
+$ ./planner.sh metasepi-arafura.planner
 ```
 
 Create HTML with menu "File -> Export -> HTML".
