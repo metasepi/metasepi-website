@@ -20,7 +20,7 @@
     </calendar>
   </calendars>
   <tasks>
-    <task id="1" name="Snatch: NetBSD AC'97" note="" work="3398400" start="20140101T000000Z" end="20140615T000000Z" work-start="20140101T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="1" name="Snatch: NetBSD AC'97" note="" work="2612700" start="20140101T000000Z" end="20140509T000000Z" work-start="20140101T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <task id="2" name="1st try" note="" work="1094400" start="20140101T000000Z" end="20140221T170000Z" work-start="20140101T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
       <task id="3" name="2014 Tokyo/Spring" note="" work="0" start="20140228T000000Z" end="20140228T000000Z" work-start="20140228T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
         <constraint type="must-start-on" time="20140228T000000Z"/>
@@ -28,97 +28,90 @@
           <predecessor id="1" predecessor-id="2" type="FS"/>
         </predecessors>
       </task>
-      <task id="4" name="Fix outline of paper" note="" work="981000" start="20140221T170000Z" end="20140411T083000Z" work-start="20140224T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="4" name="Fix outline of paper" note="" work="892800" start="20140221T170000Z" end="20140407T170000Z" work-start="20140224T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
           <predecessor id="1" predecessor-id="2" type="FS"/>
         </predecessors>
       </task>
-      <task id="5" name="Benchmark" note="" work="257400" start="20140411T083000Z" end="20140423T170000Z" work-start="20140411T083000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="5" name="Benchmark" note="" work="57600" start="20140407T170000Z" end="20140409T170000Z" work-start="20140408T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
           <predecessor id="1" predecessor-id="4" type="FS"/>
         </predecessors>
       </task>
-      <task id="6" name="Write paper" note="" work="345600" start="20140423T170000Z" end="20140509T170000Z" work-start="20140424T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="6" name="Write paper" note="" work="86400" start="20140409T170000Z" end="20140414T170000Z" work-start="20140410T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
           <predecessor id="1" predecessor-id="5" type="FS"/>
         </predecessors>
       </task>
-      <task id="7" name="Draft paper" note="" work="0" start="20140515T000000Z" end="20140515T000000Z" work-start="20140515T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
-        <constraint type="must-start-on" time="20140515T000000Z"/>
+      <task id="7" name="Cleanup code&amp;paper" note="" work="481500" start="20140414T170000Z" end="20140507T144500Z" work-start="20140415T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
           <predecessor id="1" predecessor-id="6" type="FS"/>
         </predecessors>
       </task>
-      <task id="8" name="Cleanup code&amp;paper" note="" work="720000" start="20140509T170000Z" end="20140613T170000Z" work-start="20140512T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="8" name="Paper deadline" note="" work="0" start="20140509T000000Z" end="20140509T000000Z" work-start="20140509T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+        <constraint type="must-start-on" time="20140509T000000Z"/>
         <predecessors>
-          <predecessor id="1" predecessor-id="6" type="FS"/>
-        </predecessors>
-      </task>
-      <task id="9" name="Paper deadline" note="" work="0" start="20140615T000000Z" end="20140615T000000Z" work-start="20140616T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
-        <constraint type="must-start-on" time="20140615T000000Z"/>
-        <predecessors>
-          <predecessor id="1" predecessor-id="8" type="FS"/>
+          <predecessor id="1" predecessor-id="7" type="FS"/>
         </predecessors>
       </task>
     </task>
-    <task id="10" name="Translate ATS doc" note="" work="1555200" start="20140509T170000Z" end="20140717T170000Z" work-start="20140512T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="9" name="Translate ATS doc" note="" work="1411200" start="20140414T170000Z" end="20140620T170000Z" work-start="20140415T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="6" type="FS"/>
       </predecessors>
-      <task id="11" name="INT2PROGINATS" note="" work="864000" start="20140509T170000Z" end="20140620T170000Z" work-start="20140512T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
-      <task id="12" name="Bluish Coder 2014-04-11" note="" work="144000" start="20140509T170000Z" end="20140516T170000Z" work-start="20140512T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
-      <task id="13" name="ATS2TUTORIAL" note="" work="547200" start="20140620T170000Z" end="20140717T170000Z" work-start="20140623T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="10" name="INT2PROGINATS" note="" work="864000" start="20140414T170000Z" end="20140526T170000Z" work-start="20140415T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="11" name="ATS2TUTORIAL" note="" work="547200" start="20140526T170000Z" end="20140620T170000Z" work-start="20140527T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
-          <predecessor id="1" predecessor-id="11" type="FS"/>
+          <predecessor id="1" predecessor-id="10" type="FS"/>
         </predecessors>
       </task>
     </task>
-    <task id="14" name="Add ARM support to ATS" note="" work="576000" start="20140620T170000Z" end="20140718T170000Z" work-start="20140623T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="12" name="Add ARM support to ATS" note="" work="576000" start="20140526T170000Z" end="20140623T170000Z" work-start="20140527T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
-        <predecessor id="1" predecessor-id="11" type="FS"/>
+        <predecessor id="1" predecessor-id="10" type="FS"/>
       </predecessors>
     </task>
-    <task id="15" name="Add AVR support to ATS" note="" work="576000" start="20140718T170000Z" end="20140815T170000Z" work-start="20140721T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="13" name="Add AVR support to ATS" note="" work="576000" start="20140623T170000Z" end="20140721T170000Z" work-start="20140624T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="12" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="14" name="ATS Windows installer" note="" work="576000" start="20140721T170000Z" end="20140818T170000Z" work-start="20140722T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="13" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="15" name="Ready up Functional IoT" note="" work="979200" start="20140818T170000Z" end="20141003T170000Z" work-start="20140819T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="14" type="FS"/>
       </predecessors>
-    </task>
-    <task id="16" name="ATS Windows installer" note="" work="576000" start="20140815T170000Z" end="20140912T170000Z" work-start="20140818T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <predecessors>
-        <predecessor id="1" predecessor-id="15" type="FS"/>
-      </predecessors>
-    </task>
-    <task id="17" name="Ready up Functional IoT" note="" work="979200" start="20140912T170000Z" end="20141030T170000Z" work-start="20140915T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <predecessors>
-        <predecessor id="1" predecessor-id="16" type="FS"/>
-      </predecessors>
-      <task id="18" name="Make up ethernet board" note="" work="201600" start="20140912T170000Z" end="20140923T170000Z" work-start="20140915T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="16" name="Make up ethernet board" note="" work="201600" start="20140818T170000Z" end="20140827T170000Z" work-start="20140819T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <constraint type="start-no-earlier-than" time="20140601T000000Z"/>
       </task>
-      <task id="19" name="STM32 Ethernet test" note="" work="201600" start="20140923T170000Z" end="20141002T170000Z" work-start="20140924T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="17" name="STM32 Ethernet test" note="" work="201600" start="20140827T170000Z" end="20140905T170000Z" work-start="20140828T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="16" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="18" name="gdbserver test" note="" work="201600" start="20140905T170000Z" end="20140916T170000Z" work-start="20140908T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="17" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="19" name="Write manual" note="" work="374400" start="20140916T170000Z" end="20141003T170000Z" work-start="20140917T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
           <predecessor id="1" predecessor-id="18" type="FS"/>
         </predecessors>
       </task>
-      <task id="20" name="gdbserver test" note="" work="201600" start="20141002T170000Z" end="20141013T170000Z" work-start="20141003T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="20" name="Meetup at Nagoya" note="" work="0" start="20141003T170000Z" end="20141003T170000Z" work-start="20141003T170000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
         <predecessors>
           <predecessor id="1" predecessor-id="19" type="FS"/>
         </predecessors>
       </task>
-      <task id="21" name="Write manual" note="" work="374400" start="20141013T170000Z" end="20141030T170000Z" work-start="20141014T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-        <predecessors>
-          <predecessor id="1" predecessor-id="20" type="FS"/>
-        </predecessors>
-      </task>
-      <task id="22" name="Meetup at Nagoya" note="" work="0" start="20141030T170000Z" end="20141030T170000Z" work-start="20141030T170000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
-        <predecessors>
-          <predecessor id="1" predecessor-id="21" type="FS"/>
-        </predecessors>
-      </task>
     </task>
-    <task id="23" name="Web framework for ATS" note="" work="1094400" start="20140717T170000Z" end="20140909T170000Z" work-start="20140718T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="21" name="Web framework for ATS" note="" work="1094400" start="20140620T170000Z" end="20140813T170000Z" work-start="20140623T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
-        <predecessor id="1" predecessor-id="13" type="FS"/>
+        <predecessor id="1" predecessor-id="11" type="FS"/>
       </predecessors>
     </task>
   </tasks>
