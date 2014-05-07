@@ -24,6 +24,7 @@
 
 ## Five-Year Plans
 
+* [20140508 Five-Year Plan for the Metasepi Union (pdf)](/doc/20140508_5year_plan.pdf)
 * [20130508 Five-Year Plan for the Metasepi Union (pdf)](/doc/20130508_5year_plan.pdf)
 
 ## Mind map
