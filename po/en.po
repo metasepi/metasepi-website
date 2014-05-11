@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2014-05-12 00:13+0900\n"
-"PO-Revision-Date: 2014-05-12 00:41+0900\n"
+"PO-Revision-Date: 2014-05-12 01:01+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -8964,14 +8964,14 @@ msgid ""
 "そういうわけで、これから型推論を備えた言語を使って実用的なkernelを書くプロ"
 "ジェクトをはじめるでゲソ。 このプロジェクトを\"Metasepi\"と呼ぶことにするで"
 "ゲッソ。 海っぽくて良い名前でゲソ。"
-msgstr ""
+msgstr "Then, give the name \\\"Metasepi\\\" a project creating practical real kernel using strong typed language. The good name sounds like sea."
 
 #. type: Plain text
 #: posts/2012-08-05-start-metasepi.md:32
 msgid ""
 "しばらくは与太話ばかり書いていると思うでゲソが、そのうち実際に手を動かしはじ"
 "めるつもりでゲソ。"
-msgstr ""
+msgstr "I'll write code soon, while the blog says absurd idea now."
 
 #. type: Plain text
 #: posts/2013-12-17-snatch-droid.md:5
