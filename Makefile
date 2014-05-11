@@ -3,7 +3,9 @@ PNGS := $(patsubst %.odg,%.png,${ODGS})
 DOCS := $(wildcard doc/*.doc)
 PDFS := $(patsubst %.doc,%.pdf,${DOCS})
 
-POTGT := posts/2013-01-09-design_arafura.md
+JPOSTS := $(wildcard posts/*.md)
+EPOSTS := $(patsubst %.md,en/%.md,${JPOSTS})
+OPT_UPDATEPO := $(patsubst %.md,-m %.md,${JPOSTS})
 
 all: ${PNGS} ${PDFS} build
 
@@ -22,16 +24,16 @@ all: ${PNGS} ${PDFS} build
           unoconv -f pdf -o $@.tmp $<
 	mv $@.tmp $@
 
-updatepo: ${POTGT}
-	po4a-updatepo -M utf8 -f text -m ${POTGT} -p po/en.po
+updatepo: ${JPOSTS}
+	po4a-updatepo -M utf8 -f text ${OPT_UPDATEPO} -p po/en.po
 
-en/${POTGT}: po/en.po
-	po4a-translate -M utf8 -f text -m ${POTGT} -p po/en.po -l en/${POTGT}
+en/posts/%.md: posts/%.md po/en.po
+	po4a-translate -M utf8 -f text -m $< -p po/en.po -l $@
 
 hakyll: hakyll.hs
 	ghc --make -Wall -Werror hakyll.hs -o hakyll
 
-build: hakyll en/${POTGT}
+build: hakyll ${EPOSTS}
 	./hakyll build
 
 server: all
