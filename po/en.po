@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2014-05-12 00:13+0900\n"
-"PO-Revision-Date: 2014-05-12 01:01+0900\n"
+"PO-Revision-Date: 2014-05-12 11:04+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -8947,7 +8947,7 @@ msgid ""
 "House、進化が止まっているどころか、Houseの進化版である [Light House](http://"
 "web.cecs.pdx.edu/~kennyg/house/)  にいたってはWebページが消えてしまっているで"
 "ゲソ。 これは……ただのしかばねのようでゲソ……"
-msgstr "If you read this article, I think you have read [Haskell Advent Calendar 2011:「簡約!? λカ娘(二期)」とHaskell製OSの紹介](http://d.masterq.net/?date=20111221#p01). I introduced Haskell OS named [House](http://programatica.cs.pdx.edu/House/). However the House stops growing and [Light House](http://web.cecs.pdx.edu/~kennyg/house/) website is down. I think they are dead..."
+msgstr "If you read this blog, I think you have read [Haskell Advent Calendar 2011:「簡約!? λカ娘(二期)」とHaskell製OSの紹介](http://d.masterq.net/?date=20111221#p01). I introduced Haskell OS named [House](http://programatica.cs.pdx.edu/House/) on the article. However the House stops growing and [Light House](http://web.cecs.pdx.edu/~kennyg/house/) website is down. I think they are dead..."
 
 #. type: Plain text
 #: posts/2012-08-05-start-metasepi.md:27
@@ -8956,7 +8956,7 @@ msgid ""
 "型推論を備えた言語を使って実用的なkernelを書くことは不可能」 ということを意味"
 "しているのカ？ 否! 根性の問題でゲソ。 ドッグフード可能になるまでプロジェクト"
 "を保守する根性が不足しているせいに違いないんでゲソ。"
-msgstr ""
+msgstr "While set reading House source code aside for another day, the fact means \"Strong typed language such like Haskell or OCaml can't design practical real kernel?\" No! I believe it's caused by less guts. Nobody have guts to keep developing the projects to start [dogfooding](http://en.wikipedia.org/wiki/Eating_your_own_dog_food)."
 
 #. type: Plain text
 #: posts/2012-08-05-start-metasepi.md:31
@@ -8971,7 +8971,7 @@ msgstr "Then, give the name \\\"Metasepi\\\" a project creating practical real k
 msgid ""
 "しばらくは与太話ばかり書いていると思うでゲソが、そのうち実際に手を動かしはじ"
 "めるつもりでゲソ。"
-msgstr "I'll write code soon, while the blog says absurd idea now."
+msgstr "I'll write code soon, while the blog says absurd idea today."
 
 #. type: Plain text
 #: posts/2013-12-17-snatch-droid.md:5
