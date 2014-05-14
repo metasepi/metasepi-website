@@ -4,7 +4,7 @@
 
 Challenge to create a free software Unix-like operating system designed with strong type.
 
-![](img/metasepi_logo_beta3.png)
+![](img/metasepi_logo_v1_200x200.png)
 
 Photo: [Copyright (C) 2007 Silke Baron All Rights Reserved](http://www.flickr.com/photos/silkebaron/931247866/).
 
