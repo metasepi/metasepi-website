@@ -1,10 +1,10 @@
 ---
-title: 秘密結社Metasepi作戦会議 第8回 議事録
+title: Metasepi作戦会議 第8回 議事録
 description: 九州をAjhcで侵略でゲソ!
 tags: meeting, ajhc, android
 ---
 
-秘密結社Metasepi作戦会議 第8回を
+Metasepi作戦会議 第8回を
 [オープンソースカンファレンス2013 Fukuoka](https://www.ospn.jp/osc2013-fukuoka/)
 と
 [オープンソースカンファレンス2013 Oita](https://www.ospn.jp/osc2013-oita/)

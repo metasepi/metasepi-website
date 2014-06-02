@@ -1,10 +1,10 @@
 ---
-title: 秘密結社Metasepi作戦会議 第14回 議事録
+title: Metasepi作戦会議 第14回 議事録
 description: マイコンATSプログラミングのお披露目でゲッソ
 tags: meeting, ats, arduino
 ---
 
-秘密結社Metasepi作戦会議 第14回を
+Metasepi作戦会議 第14回を
 [関数型LT大会](http://connpass.com/event/5795/)
 で開催したでゲソ。
 今回はATSプログラミングの練習として、8ビットのハーバード・アーキテクチャである

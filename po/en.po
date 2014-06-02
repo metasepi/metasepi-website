@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-05-14 17:22+0900\n"
+"POT-Creation-Date: 2014-06-02 21:41+0900\n"
 "PO-Revision-Date: 2014-05-12 11:04+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1487,7 +1487,7 @@ msgstr ""
 #: posts/2014-05-11-functional_lt.md:5
 #, no-wrap
 msgid ""
-"title: 秘密結社Metasepi作戦会議 第14回 議事録\n"
+"title: Metasepi作戦会議 第14回 議事録\n"
 "description: マイコンATSプログラミングのお披露目でゲッソ\n"
 "tags: meeting, ats, arduino\n"
 "---\n"
@@ -1496,10 +1496,10 @@ msgstr ""
 #. type: Plain text
 #: posts/2014-05-11-functional_lt.md:13
 msgid ""
-"秘密結社Metasepi作戦会議 第14回を [関数型LT大会](http://connpass.com/"
-"event/5795/)  で開催したでゲソ。 今回はATSプログラミングの練習として、8ビット"
-"のハーバード・アーキテクチャである [Arduino Mega 2560](http://arduino.cc/en/"
-"Main/ArduinoBoardMega2560)  上で動くLチカデモをATS言語で書いてみたでゲソ。"
+"Metasepi作戦会議 第14回を [関数型LT大会](http://connpass.com/event/5795/)  で"
+"開催したでゲソ。 今回はATSプログラミングの練習として、8ビットのハーバード・"
+"アーキテクチャである [Arduino Mega 2560](http://arduino.cc/en/Main/"
+"ArduinoBoardMega2560)  上で動くLチカデモをATS言語で書いてみたでゲソ。"
 msgstr ""
 
 #. type: Plain text
@@ -1761,7 +1761,7 @@ msgstr ""
 #. type: Bullet: '* '
 #: posts/2013-12-21-yuku-kuru.md:108
 msgid ""
-"[秘密結社Metasepi作戦会議 第1回](http://metasepi.org/posts/2013-02-03-"
+"[Metasepi作戦会議 第1回](http://metasepi.org/posts/2013-02-03-"
 "kickoff_meeting.html)開催"
 msgstr ""
 
@@ -1886,7 +1886,7 @@ msgstr ""
 #. type: Bullet: '* '
 #: posts/2013-12-21-yuku-kuru.md:169
 msgid ""
-"[秘密結社Metasepi作戦会議 第2回](http://metasepi.org/posts/2013-04-22-"
+"[Metasepi作戦会議 第2回](http://metasepi.org/posts/2013-04-22-"
 "travel_in_kyoto-u.html)開催"
 msgstr ""
 
@@ -2033,8 +2033,8 @@ msgstr ""
 #. type: Bullet: '* '
 #: posts/2013-12-21-yuku-kuru.md:231
 msgid ""
-"[秘密結社Metasepi作戦会議 第3回](http://metasepi.org/posts/2013-08-04-"
-"osckansai2013.html)開催"
+"[Metasepi作戦会議 第3回](http://metasepi.org/posts/2013-08-04-osckansai2013."
+"html)開催"
 msgstr ""
 
 #. type: Bullet: '* '
@@ -2088,8 +2088,8 @@ msgstr ""
 #. type: Bullet: '* '
 #: posts/2013-12-21-yuku-kuru.md:257
 msgid ""
-"[秘密結社Metasepi作戦会議 第4回](http://metasepi.org/posts/2013-09-16-"
-"osc2013-do.html)開催"
+"[Metasepi作戦会議 第4回](http://metasepi.org/posts/2013-09-16-osc2013-do."
+"html)開催"
 msgstr ""
 
 #. type: Bullet: '* '
@@ -2141,15 +2141,15 @@ msgstr ""
 #. type: Bullet: '* '
 #: posts/2013-12-21-yuku-kuru.md:276
 msgid ""
-"[秘密結社Metasepi作戦会議 第5回](http://metasepi.org/posts/2013-10-06-"
-"osc2013-hi.html)開催"
+"[Metasepi作戦会議 第5回](http://metasepi.org/posts/2013-10-06-osc2013-hi."
+"html)開催"
 msgstr ""
 
 #. type: Bullet: '* '
 #: posts/2013-12-21-yuku-kuru.md:276
 msgid ""
-"[秘密結社Metasepi作戦会議 第6回](http://metasepi.org/posts/2013-10-20-"
-"osc2013-tokyo.html)開催"
+"[Metasepi作戦会議 第6回](http://metasepi.org/posts/2013-10-20-osc2013-tokyo."
+"html)開催"
 msgstr ""
 
 #. type: Bullet: '* '
@@ -2195,15 +2195,14 @@ msgstr ""
 #. type: Bullet: '* '
 #: posts/2013-12-21-yuku-kuru.md:292
 msgid ""
-"[秘密結社Metasepi作戦会議 第7回](http://metasepi.org/posts/2013-11-10-"
-"kof2013.html)"
+"[Metasepi作戦会議 第7回](http://metasepi.org/posts/2013-11-10-kof2013.html)"
 msgstr ""
 
 #. type: Bullet: '* '
 #: posts/2013-12-21-yuku-kuru.md:292
 msgid ""
-"[秘密結社Metasepi作戦会議 第8回](http://metasepi.org/posts/2013-11-24-osc-"
-"fukuoka-oita.html)"
+"[Metasepi作戦会議 第8回](http://metasepi.org/posts/2013-11-24-osc-fukuoka-"
+"oita.html)"
 msgstr ""
 
 #. type: Bullet: '* '
@@ -2408,7 +2407,7 @@ msgstr ""
 #: posts/2014-03-01-osc-tokyo.md:5
 #, no-wrap
 msgid ""
-"title: 秘密結社Metasepi作戦会議 第13回 議事録\n"
+"title: Metasepi作戦会議 第13回 議事録\n"
 "description: Arafuraイテレーションの結果報告会でゲソー\n"
 "tags: meeting, ajhc, ats, haskell, netbsd\n"
 "---\n"
@@ -2417,12 +2416,12 @@ msgstr ""
 #. type: Plain text
 #: posts/2014-03-01-osc-tokyo.md:14
 msgid ""
-"秘密結社Metasepi作戦会議 第13回を [オープンソースカンファレンス2014 Tokyo/"
-"Spring](http://www.ospn.jp/osc2014-spring/)  で開催したでゲソ。 今回はNetBSD"
-"のサウンドドライバをAjhcコンパイラとHaskell言語で設計置換する話をしてみたでゲ"
-"ソ。 また、Metasepiプロジェクトの最初のイテレーションである [Arafura]"
-"(2013-01-09-design_arafura.html)  が終わったので、イテレーションの振り返りと"
-"次のイテレーションへの展望をざっくざっくとまとめたでゲッソ。"
+"Metasepi作戦会議 第13回を [オープンソースカンファレンス2014 Tokyo/Spring]"
+"(http://www.ospn.jp/osc2014-spring/)  で開催したでゲソ。 今回はNetBSDのサウン"
+"ドドライバをAjhcコンパイラとHaskell言語で設計置換する話をしてみたでゲソ。 ま"
+"た、Metasepiプロジェクトの最初のイテレーションである [Arafura](2013-01-09-"
+"design_arafura.html)  が終わったので、イテレーションの振り返りと次のイテレー"
+"ションへの展望をざっくざっくとまとめたでゲッソ。"
 msgstr ""
 
 #. type: Plain text
@@ -2857,7 +2856,7 @@ msgstr ""
 #: posts/2014-01-17-11th_wocs2.md:5
 #, no-wrap
 msgid ""
-"title: 秘密結社Metasepi作戦会議 第11回 議事録\n"
+"title: Metasepi作戦会議 第11回 議事録\n"
 "description: 企業の研究者は何を考えているのか、視察に行くでゲソー\n"
 "tags: meeting, ajhc, mbed, haskell\n"
 "---\n"
@@ -2866,9 +2865,8 @@ msgstr ""
 #. type: Plain text
 #: posts/2014-01-17-11th_wocs2.md:10
 msgid ""
-"秘密結社Metasepi作戦会議 第11回を [「第11回クリティカルソフトウェアワーク"
-"ショップ」](http://stage.tksc.jaxa.jp/jedi/event/20140115.html)  にて開催した"
-"でゲソ。"
+"Metasepi作戦会議 第11回を [「第11回クリティカルソフトウェアワークショップ」]"
+"(http://stage.tksc.jaxa.jp/jedi/event/20140115.html)  にて開催したでゲソ。"
 msgstr ""
 
 #. type: Plain text
@@ -3665,7 +3663,7 @@ msgstr ""
 #: posts/2014-01-18-mbed_fest.md:5
 #, no-wrap
 msgid ""
-"title: 秘密結社Metasepi作戦会議 第12回 議事録\n"
+"title: Metasepi作戦会議 第12回 議事録\n"
 "description: mbed祭で関数型マイコンプログラミングの布教でゲッソ!\n"
 "tags: meeting, ajhc, mbed, haskell\n"
 "---\n"
@@ -3674,7 +3672,7 @@ msgstr ""
 #. type: Plain text
 #: posts/2014-01-18-mbed_fest.md:12
 msgid ""
-"秘密結社Metasepi作戦会議 第12回を [mbed祭り 2014@冬の横浜](http://atnd.org/"
+"Metasepi作戦会議 第12回を [mbed祭り 2014@冬の横浜](http://atnd.org/"
 "events/46135#comments)  にて開催したでゲソ。 [こないだ名古屋で開催した関数型"
 "マイコンプログラミング講習会](2014-01-05-mbed_fp_0.html)  の紹介とCMSIS-DAP対"
 "応gdbserverの現状について発表してきたでゲソ。"
@@ -4116,7 +4114,7 @@ msgstr ""
 #: posts/2014-01-05-mbed_fp_0.md:5
 #, no-wrap
 msgid ""
-"title: 秘密結社Metasepi作戦会議 第9回 議事録\n"
+"title: Metasepi作戦会議 第9回 議事録\n"
 "description: 「モノのインターネット」(IoT：Internet of Things)を関数型言語で先取りでゲソ!\n"
 "tags: meeting, ajhc, ats, rust, mbed\n"
 "---\n"
@@ -4125,9 +4123,9 @@ msgstr ""
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:10
 msgid ""
-"秘密結社Metasepi作戦会議 第9回を [mbedではじめる関数型マイコンプログラミング"
-"講習会β](http://partake.in/events/ab56454b-c305-4f3b-b8ce-872871ab7da9)  とい"
-"うのをやってみたでゲソ。"
+"Metasepi作戦会議 第9回を [mbedではじめる関数型マイコンプログラミング講習会β]"
+"(http://partake.in/events/ab56454b-c305-4f3b-b8ce-872871ab7da9)  というのを"
+"やってみたでゲソ。"
 msgstr ""
 
 #. type: Plain text
@@ -4738,7 +4736,7 @@ msgstr ""
 #: posts/2013-10-20-osc2013-tokyo.md:5
 #, no-wrap
 msgid ""
-"title: 秘密結社Metasepi作戦会議 第6回 議事録\n"
+"title: Metasepi作戦会議 第6回 議事録\n"
 "description: OSC2013-TokyoをAjhcで侵略でゲソ!\n"
 "tags: meeting, ajhc, android\n"
 "---\n"
@@ -4747,10 +4745,10 @@ msgstr ""
 #. type: Plain text
 #: posts/2013-10-20-osc2013-tokyo.md:12
 msgid ""
-"秘密結社Metasepi作戦会議 第6回を [オープンソースカンファレンス2013 Tokyo/"
-"Fall](http://www.ospn.jp/osc2013-fall/)  で開催したでゲソ。 そろそろ発表ネタ"
-"がつきてきたのでゲソが、丁度Haskellを使ってAndroid NDKアプリが書けたので、 そ"
-"の設計ノウハウを解説したでゲソ。"
+"Metasepi作戦会議 第6回を [オープンソースカンファレンス2013 Tokyo/Fall]"
+"(http://www.ospn.jp/osc2013-fall/)  で開催したでゲソ。 そろそろ発表ネタがつき"
+"てきたのでゲソが、丁度Haskellを使ってAndroid NDKアプリが書けたので、 その設計"
+"ノウハウを解説したでゲソ。"
 msgstr ""
 
 #. type: Plain text
@@ -5614,7 +5612,7 @@ msgstr ""
 #: posts/2013-10-06-osc2013-hi.md:5
 #, no-wrap
 msgid ""
-"title: 秘密結社Metasepi作戦会議 第5回 議事録\n"
+"title: Metasepi作戦会議 第5回 議事録\n"
 "description: OSC2013-HiroshimaをAjhcで侵略でゲソ!\n"
 "tags: meeting, ajhc\n"
 "---\n"
@@ -5623,8 +5621,8 @@ msgstr ""
 #. type: Plain text
 #: posts/2013-10-06-osc2013-hi.md:10
 msgid ""
-"秘密結社Metasepi作戦会議 第5回を [オープンソースカンファレンス2013 Hiroshima]"
-"(http://www.ospn.jp/osc2013-hiroshima/)  で開催したでゲソ。"
+"Metasepi作戦会議 第5回を [オープンソースカンファレンス2013 Hiroshima](http://"
+"www.ospn.jp/osc2013-hiroshima/)  で開催したでゲソ。"
 msgstr ""
 
 #. type: Plain text
@@ -10793,7 +10791,7 @@ msgstr ""
 #: posts/2013-08-04-osckansai2013.md:5
 #, no-wrap
 msgid ""
-"title: 秘密結社Metasepi作戦会議 第3回 議事録\n"
+"title: Metasepi作戦会議 第3回 議事録\n"
 "description: オープンソースカンファレンス2013 Kansai@KyotoをAjhcで侵略でゲソ!\n"
 "tags: meeting, ajhc\n"
 "---\n"
@@ -10802,8 +10800,8 @@ msgstr ""
 #. type: Plain text
 #: posts/2013-08-04-osckansai2013.md:10
 msgid ""
-"秘密結社Metasepi作戦会議 第3回を [オープンソースカンファレンス2013 "
-"Kansai@Kyoto](https://www.ospn.jp/osc2013-kyoto/)  で開催したでゲソ。"
+"Metasepi作戦会議 第3回を [オープンソースカンファレンス2013 Kansai@Kyoto]"
+"(https://www.ospn.jp/osc2013-kyoto/)  で開催したでゲソ。"
 msgstr ""
 
 #. type: Plain text
@@ -10868,7 +10866,7 @@ msgstr ""
 #: posts/2013-11-24-osc-fukuoka-oita.md:5
 #, no-wrap
 msgid ""
-"title: 秘密結社Metasepi作戦会議 第8回 議事録\n"
+"title: Metasepi作戦会議 第8回 議事録\n"
 "description: 九州をAjhcで侵略でゲソ!\n"
 "tags: meeting, ajhc, android\n"
 "---\n"
@@ -10877,11 +10875,11 @@ msgstr ""
 #. type: Plain text
 #: posts/2013-11-24-osc-fukuoka-oita.md:14
 msgid ""
-"秘密結社Metasepi作戦会議 第8回を [オープンソースカンファレンス2013 Fukuoka]"
-"(https://www.ospn.jp/osc2013-fukuoka/)  と [オープンソースカンファレンス2013 "
-"Oita](https://www.ospn.jp/osc2013-oita/)  で開催したでゲソ。 今回はOS向けの"
-"Ajhcコンパイラという路線から少し脱線して、 Haskellで書かれたAndroid NDKアプリ"
-"について取り上げてみたでゲソ。"
+"Metasepi作戦会議 第8回を [オープンソースカンファレンス2013 Fukuoka](https://"
+"www.ospn.jp/osc2013-fukuoka/)  と [オープンソースカンファレンス2013 Oita]"
+"(https://www.ospn.jp/osc2013-oita/)  で開催したでゲソ。 今回はOS向けのAjhcコ"
+"ンパイラという路線から少し脱線して、 Haskellで書かれたAndroid NDKアプリについ"
+"て取り上げてみたでゲソ。"
 msgstr ""
 
 #. type: Plain text
@@ -10954,7 +10952,7 @@ msgstr ""
 #: posts/2013-09-16-osc2013-do.md:5
 #, no-wrap
 msgid ""
-"title: 秘密結社Metasepi作戦会議 第4回 議事録\n"
+"title: Metasepi作戦会議 第4回 議事録\n"
 "description: OSC2013-Hokkaidoとmbed祭をAjhcで侵略でゲソ!\n"
 "tags: meeting, ajhc\n"
 "---\n"
@@ -10963,8 +10961,8 @@ msgstr ""
 #. type: Plain text
 #: posts/2013-09-16-osc2013-do.md:10
 msgid ""
-"秘密結社Metasepi作戦会議 第4回を [オープンソースカンファレンス2013 Hokkaido]"
-"(http://www.ospn.jp/osc2013-do/) と [mbed祭り in Sapporo](http://atnd.org/"
+"Metasepi作戦会議 第4回を [オープンソースカンファレンス2013 Hokkaido](http://"
+"www.ospn.jp/osc2013-do/) と [mbed祭り in Sapporo](http://atnd.org/"
 "events/41585) で開催したでゲソ。"
 msgstr ""
 
@@ -11613,7 +11611,7 @@ msgstr ""
 #: posts/2014-01-10-prosym55.md:5
 #, no-wrap
 msgid ""
-"title: 秘密結社Metasepi作戦会議 第10回 議事録\n"
+"title: Metasepi作戦会議 第10回 議事録\n"
 "description: プロシンで宣伝しまくるでゲソー\n"
 "tags: meeting, ajhc, mbed, android\n"
 "---\n"
@@ -11622,8 +11620,8 @@ msgstr ""
 #. type: Plain text
 #: posts/2014-01-10-prosym55.md:10
 msgid ""
-"秘密結社Metasepi作戦会議 第10回を [「第55回プログラミング・シンポジウム」]"
-"(http://www.ipsj.or.jp/prosym/55/55CFA.html)  にて開催したでゲソ。"
+"Metasepi作戦会議 第10回を [「第55回プログラミング・シンポジウム」](http://"
+"www.ipsj.or.jp/prosym/55/55CFA.html)  にて開催したでゲソ。"
 msgstr ""
 
 #. type: Plain text
@@ -13516,7 +13514,7 @@ msgstr ""
 #: posts/2013-04-22-travel_in_kyoto-u.md:5
 #, no-wrap
 msgid ""
-"title: 秘密結社Metasepi作戦会議 第2回 議事録\n"
+"title: Metasepi作戦会議 第2回 議事録\n"
 "description: Ajhcコンパイラのセールスウーマンに変身でゲッソ!\n"
 "tags: meeting\n"
 "---\n"
@@ -13525,7 +13523,7 @@ msgstr ""
 #. type: Plain text
 #: posts/2013-04-22-travel_in_kyoto-u.md:10
 msgid ""
-"秘密結社Metasepi作戦会議 第2回を [名古屋にある大学](http://partake.in/"
+"Metasepi作戦会議 第2回を [名古屋にある大学](http://partake.in/"
 "events/1f049014-8e93-4da3-a97d-23eb7243d6a1)  と京都にある大学で開催したでゲ"
 "ソ。"
 msgstr ""
@@ -13600,7 +13598,7 @@ msgstr ""
 #: posts/2013-11-10-kof2013.md:5
 #, no-wrap
 msgid ""
-"title: 秘密結社Metasepi作戦会議 第7回 議事録\n"
+"title: Metasepi作戦会議 第7回 議事録\n"
 "description: KOF2013をAjhcで侵略でゲソ!\n"
 "tags: meeting, ajhc\n"
 "---\n"
@@ -13609,10 +13607,10 @@ msgstr ""
 #. type: Plain text
 #: posts/2013-11-10-kof2013.md:12
 msgid ""
-"秘密結社Metasepi作戦会議 第7回を [KOF2013：関西オープンフォーラム2013]"
-"(https://k-of.jp/2013/)  で開催したでゲソ。 今回はマイコンをAjhcコンパイラで"
-"開発するまとめとして [ChibiOS/RT](http://www.chibios.org/) のスレッドを"
-"Haskellで置き換える話をトピックとして取り上げてみたでゲソ。"
+"Metasepi作戦会議 第7回を [KOF2013：関西オープンフォーラム2013](https://k-of."
+"jp/2013/)  で開催したでゲソ。 今回はマイコンをAjhcコンパイラで開発するまとめ"
+"として [ChibiOS/RT](http://www.chibios.org/) のスレッドをHaskellで置き換える"
+"話をトピックとして取り上げてみたでゲソ。"
 msgstr ""
 
 #. type: Plain text
@@ -13681,7 +13679,7 @@ msgstr ""
 #: posts/2013-02-03-kickoff_meeting.md:5
 #, no-wrap
 msgid ""
-"title: 秘密結社Metasepi作戦会議 第1回 議事録\n"
+"title: Metasepi作戦会議 第1回 議事録\n"
 "description: 10人集まってkernelを侵略開始でゲッソ!\n"
 "tags: meeting\n"
 "---\n"
@@ -13690,13 +13688,13 @@ msgstr ""
 #. type: Plain text
 #: posts/2013-02-03-kickoff_meeting.md:13
 msgid ""
-"[秘密結社Metasepi作戦会議 第1回](http://partake.in/"
-"events/7a65b671-1b43-473e-9639-b9a01ec127de)  を開催したでゲソ。 今回ははじめ"
-"てのオフラインミーティングなので、プロジェクトの方向性の共有と各人のやりたい"
-"ことの宣言に重点をしぼったでゲソ。 ワシとしてはこのプロジェクトでは作業分担や"
-"納期のようなものはもうけず、各々やりたいことを自由にやってほしいと思っている"
-"でゲソ。 ワシは他のメンバーが手をつけてない領域を重点的に見れば、自然と作業分"
-"担ができるはずじゃなイカ。 Easy come. Easy go. 気楽にいこうでゲッソ!"
+"[Metasepi作戦会議 第1回](http://partake.in/events/7a65b671-1b43-473e-9639-"
+"b9a01ec127de)  を開催したでゲソ。 今回ははじめてのオフラインミーティングなの"
+"で、プロジェクトの方向性の共有と各人のやりたいことの宣言に重点をしぼったでゲ"
+"ソ。 ワシとしてはこのプロジェクトでは作業分担や納期のようなものはもうけず、"
+"各々やりたいことを自由にやってほしいと思っているでゲソ。 ワシは他のメンバーが"
+"手をつけてない領域を重点的に見れば、自然と作業分担ができるはずじゃなイカ。 "
+"Easy come. Easy go. 気楽にいこうでゲッソ!"
 msgstr ""
 
 #. type: Plain text

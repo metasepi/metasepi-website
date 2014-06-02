@@ -1,10 +1,10 @@
 ---
-title: 秘密結社Metasepi作戦会議 第2回 議事録
+title: Metasepi作戦会議 第2回 議事録
 description: Ajhcコンパイラのセールスウーマンに変身でゲッソ!
 tags: meeting
 ---
 
-秘密結社Metasepi作戦会議 第2回を
+Metasepi作戦会議 第2回を
 [名古屋にある大学](http://partake.in/events/1f049014-8e93-4da3-a97d-23eb7243d6a1)
 と京都にある大学で開催したでゲソ。
 

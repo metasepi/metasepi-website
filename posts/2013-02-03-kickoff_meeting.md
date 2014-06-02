@@ -1,10 +1,10 @@
 ---
-title: 秘密結社Metasepi作戦会議 第1回 議事録
+title: Metasepi作戦会議 第1回 議事録
 description: 10人集まってkernelを侵略開始でゲッソ!
 tags: meeting
 ---
 
-[秘密結社Metasepi作戦会議 第1回](http://partake.in/events/7a65b671-1b43-473e-9639-b9a01ec127de)
+[Metasepi作戦会議 第1回](http://partake.in/events/7a65b671-1b43-473e-9639-b9a01ec127de)
 を開催したでゲソ。
 今回ははじめてのオフラインミーティングなので、プロジェクトの方向性の共有と各人のやりたいことの宣言に重点をしぼったでゲソ。
 ワシとしてはこのプロジェクトでは作業分担や納期のようなものはもうけず、各々やりたいことを自由にやってほしいと思っているでゲソ。
