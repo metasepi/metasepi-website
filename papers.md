@@ -1,6 +1,6 @@
 # Papers
 ## In English
-### Experience Report: Writing NetBSD Sound Drivers in Haskell - A Reentrant Haskell Compiler for Operating Systems Programming
+### *** REJECTED *** Experience Report: Writing NetBSD Sound Drivers in Haskell - A Reentrant Haskell Compiler for Operating Systems Programming
 
 * Author: Kiwamu Okabe, Takayuki Muranushi
 * Abstract: Most strongly typed, functional programming languages are not equipped with a reentrant garbage collector.  This is the reason why such languages are not used for operating systems programming, where the virtues of types are most desired.  We propose use of Context-Local Heaps (CLHs) to achieve reentrancy, also increasing the speed of garbage collection.  We have implemented CLHs in Ajhc, a Haskell compiler derived from jhc, rewrote some NetBSD sound drivers using Ajhc, and benchmarked them.  The reentrant, faster garbage collection that CLHs provide opens the path to type-assisted operating systems programming.
