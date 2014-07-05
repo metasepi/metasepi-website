@@ -10,7 +10,7 @@ Photo: [Copyright (C) 2007 Silke Baron All Rights Reserved](http://www.flickr.co
 
 ## How do you get it?
 
-Use [iterbative development](http://en.wikipedia.org/wiki/Iterative_and_incremental_development).
+Use [iterative development](http://en.wikipedia.org/wiki/Iterative_and_incremental_development).
 First, we choose language and development method as design, then develop OS for testing with the design.
 Finally, study the actual results before closing the iteration.
 
