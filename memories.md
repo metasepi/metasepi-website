@@ -7,6 +7,13 @@
 
 ## Contributors
 
+### [\@nushio](https://twitter.com/nushio)
+
+[![](/img/icon_nushio.png)](https://twitter.com/nushio)
+
+* Provide an idea to make [struct2hs](https://github.com/ajhc/struct2hs)
+* Write paper for Haskell Symposium 2014
+
 ### [\@mzp](https://twitter.com/mzp)
 
 [![](/img/icon_mzp.png)](https://twitter.com/mzp)
