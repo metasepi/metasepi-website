@@ -37,3 +37,9 @@ De-gesso.
 We havd the functional IoT meetup at
 [coworking space - basecamp NAGOYA](http://basecamp-nagoya.jp/).
 In the place, Free Wi-Fi hotspot and power source are available.
+
+## Scene Photographs
+
+![](/img/2014-07-04-osc-nagoya-ats1.jpg)
+![](/img/2014-07-04-osc-nagoya-ats2.jpg)
+![](/img/2014-07-04-osc-nagoya-ats3.jpg)
