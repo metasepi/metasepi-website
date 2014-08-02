@@ -1,12 +1,12 @@
 ---
-title: Metasepi作戦会議 第14回 議事録
+title: スタート! ATSプログラミング
 description: マイコンATSプログラミングのお披露目でゲッソ
 tags: meeting, ats, arduino
 ---
 
-Metasepi作戦会議 第14回を
+マイコンATSプログラミングのデモを
 [関数型LT大会](http://connpass.com/event/5795/)
-で開催したでゲソ。
+で披露したでゲソ。
 今回はATSプログラミングの練習として、8ビットのハーバード・アーキテクチャである
 [Arduino Mega 2560](http://arduino.cc/en/Main/ArduinoBoardMega2560)
 上で動くLチカデモをATS言語で書いてみたでゲソ。
