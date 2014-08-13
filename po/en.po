@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2014-08-13 20:27+0900\n"
-"PO-Revision-Date: 2014-08-13 21:21+0900\n"
+"PO-Revision-Date: 2014-08-13 23:08+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -1428,18 +1428,22 @@ msgid ""
 "tags: ats, translation, haskell, ajhc, jhc, netbsd\n"
 "---\n"
 msgstr ""
+"title: Kickoff Japan ATS User Group (JATS-UG) and Ajhc's future plan\n"
+"description: Build a portal site to pool infomation about ATS lanugage in Japanese\n"
+"tags: ats, translation, haskell, ajhc, jhc, netbsd\n"
+"---\n"
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:10
 msgid ""
 "この記事は [Theorem Prover Advent Calendar 2013 - Qiita [キータ]](http://"
 "qiita.com/advent-calendar/2013/theorem_prover)  の12/24(火曜)分じゃなイカ。"
-msgstr ""
+msgstr "This article is a part of [Theorem Prover Advent Calendar 2013 - Qiita [キータ]](http://qiita.com/advent-calendar/2013/theorem_prover)."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:12
 msgid "## Japan ATS User Group (JATS-UG) について"
-msgstr ""
+msgstr "## What is Japan ATS User Group (JATS-UG)?"
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:18
@@ -1449,12 +1453,12 @@ msgid ""
 "– AWS User Group – Japan](http://jaws-ug.jp/) のモロパクりですね。。。] を発"
 "足することをここに宣言するでゲソ! このユーザグループのホームページは [http://"
 "jats-ug.metasepi.org/](http://jats-ug.metasepi.org/) でゲソ。"
-msgstr ""
+msgstr "We declare to build \"Japan ATS User Group (JATS-UG)\", to pool and discuss ATS infomation in Japanese! The web site is found at [http://jats-ug.metasepi.org/](http://jats-ug.metasepi.org/)."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:20
 msgid "[![](/img/20131224_jats-ug_website.png)](http://jats-ug.metasepi.org/)"
-msgstr ""
+msgstr "[![](/img/20131224_jats-ug_website.png)](http://jats-ug.metasepi.org/)"
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:25
@@ -1462,12 +1466,12 @@ msgid ""
 "現在このページではATS言語の概要説明と [翻訳ドキュメント置き場](https://"
 "github.com/jats-ug/translate/blob/master/index.md)  へのリンクぐらいしかない"
 "でゲソ。 とりあえず年内はドキュメント翻訳に力を入れたいと思っているでゲソ。"
-msgstr ""
+msgstr "Today, the web page only has the summary of ATS language and the link to [translated documents](https://github.com/jats-ug/translate/blob/master/index.md). We will focus translating ATS documents into Japanese, through the end of this year."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:27
 msgid "## なんでいきなりユーザーグループ？"
-msgstr ""
+msgstr "## Why need the user group?"
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:33
@@ -1476,11 +1480,14 @@ msgid ""
 "ションは [Arafura](2013-01-09-design_arafura.html)  でゲソ。 このArafuraイテ"
 "レーションで採用しているデザインは"
 msgstr ""
+"I have a motive to research around ATS language recently.\n"
+"We are in [Arafura](2013-01-09-design_arafura.html) as the first iteration.\n"
+"The Arafura design is:"
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:35
 msgid "「NetBSD kernelをAjhc Haskellコンパイラを用いてスナッチ設計する」"
-msgstr ""
+msgstr "\"Rewrite NetBSD kernel using Ajhc Haskell compiler, with Snatch-driven development stype.\""
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:42
@@ -1490,7 +1497,7 @@ msgid ""
 "術探索は賭け事と似ていて分散投資した方が成功率が上がるため、 イテレーションは"
 "短かくまわした方が効果的じゃなイカ？ 本当はまっとうなKPTなどをした方がいいで"
 "ゲソが、現状の問題点は明らかでゲソ。"
-msgstr ""
+msgstr "The next iteration should be planned in parallel, because we have the method to rewrite NetBSD kernel device drivers using Ajhc now. Research is similar to betting that has good result using diversified investment. Arafura iteration's problem is clear without any KPT (keep, problem, try) framework."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:49
