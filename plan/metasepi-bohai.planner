@@ -28,29 +28,29 @@
         </predecessors>
       </task>
     </task>
-    <task id="4" name="Translate ATS doc" note="" work="4608000" start="20140512T000000Z" end="20141219T170000Z" work-start="20140512T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="4" name="Translate ATS doc" note="" work="4651200" start="20140512T000000Z" end="20141223T120000Z" work-start="20140512T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <task id="5" name="ATS2TUTORIAL" note="" work="316800" start="20140512T000000Z" end="20140526T170000Z" work-start="20140512T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
       <task id="6" name="INT2PROGINATS" note="" work="547200" start="20140526T170000Z" end="20140620T170000Z" work-start="20140527T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
           <predecessor id="1" predecessor-id="5" type="FS"/>
         </predecessors>
       </task>
-      <task id="7" name="BLUISH CODER" note="" work="3168000" start="20140620T170000Z" end="20141121T170000Z" work-start="20140623T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="7" name="Paper" note="" work="1049400" start="20140620T170000Z" end="20140812T113000Z" work-start="20140623T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
           <predecessor id="1" predecessor-id="6" type="FS"/>
         </predecessors>
       </task>
-      <task id="8" name="Paper" note="" work="576000" start="20141121T170000Z" end="20141219T170000Z" work-start="20141124T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="8" name="BLUISH CODER" note="" work="2737800" start="20140812T113000Z" end="20141223T120000Z" work-start="20140812T113000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
           <predecessor id="1" predecessor-id="7" type="FS"/>
         </predecessors>
       </task>
     </task>
-    <task id="9" name="Translate Metasepi blog" note="" work="1987200" start="20140526T170000Z" end="20140829T170000Z" work-start="20140527T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="9" name="Translate Metasepi blog" note="" work="2047500" start="20140526T170000Z" end="20140903T084500Z" work-start="20140527T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="5" type="FS"/>
       </predecessors>
-      <task id="10" name="Translate past entries" note="" work="1987200" start="20140526T170000Z" end="20140829T170000Z" work-start="20140527T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="10" name="Translate past entries" note="" work="2047500" start="20140526T170000Z" end="20140903T084500Z" work-start="20140527T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
     </task>
     <task id="11" name="ATS Ethernet driver" note="" work="1843200" start="20140526T170000Z" end="20140822T170000Z" work-start="20140527T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
