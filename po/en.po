@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2014-08-13 20:27+0900\n"
-"PO-Revision-Date: 2014-05-12 11:04+0900\n"
+"PO-Revision-Date: 2014-08-13 21:21+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -49,13 +49,17 @@ msgid ""
 "tags: ats, translation\n"
 "---\n"
 msgstr ""
+"title: \"ML programmer's guide to ATS\" translated into Japanese\n"
+"description: Let's use the other language of Haskell for Snatch-deriven development!\n"
+"tags: ats, translation\n"
+"---\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:10
 msgid ""
 "この記事は [Theorem Prover Advent Calendar 2013 - Qiita [キータ]](http://"
 "qiita.com/advent-calendar/2013/theorem_prover)  の12/23(月曜)分じゃなイカ。"
-msgstr ""
+msgstr "This article is a part of [Theorem Prover Advent Calendar 2013 - Qiita [キータ]](http://qiita.com/advent-calendar/2013/theorem_prover)."
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:14
@@ -63,32 +67,32 @@ msgid ""
 "ATS [http://www.ats-lang.org/](http://www.ats-lang.org/) という言語を知ってい"
 "るでゲソ？ 依存型と線形型が使えて、もちろん証明器にもなるでゲソ。 以下のよう"
 "なプログラミングパラダイムをサポートしているでゲソ。"
-msgstr ""
+msgstr "Do you know about ATS language [http://www.ats-lang.org/](http://www.ats-lang.org/)? It has both dependent type and linear type, and to be theorem prover also theorem prover. It supports a variety of programming paradigms that include:"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:19
 msgid "関数プログラミング"
-msgstr ""
+msgstr "Functional programming"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:19
 msgid "命令プログラミング"
-msgstr ""
+msgstr "Imperative programming"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:19
 msgid "並列プログラミング"
-msgstr ""
+msgstr "Concurrent programming"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:19
 msgid "モジュールシステム"
-msgstr ""
+msgstr "Modular programming"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:21
 msgid "ATSのHello Worldの実行バイナリのサイズも23kBと非常に小さいでゲソ。"
-msgstr ""
+msgstr "Additionally, Hello World program binary compiled by ATS is very small as 23kB."
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:37
@@ -110,11 +114,26 @@ msgid ""
 "  21895     908     200   23003    59db hello\n"
 "~~~\n"
 msgstr ""
+"~~~\n"
+"$ cat hello.dats\n"
+"val _void_ = print (\"Hello, world!\\n\")\n"
+"implement main () = ()\n"
+"$ atscc -o hello hello.dats\n"
+"$ ./hello\n"
+"Hello, world!\n"
+"$ ldd hello | wc -l\n"
+"3\n"
+"$ nm hello | grep -c \" U \"\n"
+"24\n"
+"$ size hello\n"
+"   text    data     bss     dec     hex filename\n"
+"  21895     908     200   23003    59db hello\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:39
 msgid "Ajhcの場合は16kBで、より小さいでゲソがATSも優秀じゃなイカ。"
-msgstr ""
+msgstr "One compiled by Ajhc is 16kB, that is smaller than ATS's. However, ATS also has good feature for embedded system."
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:54
@@ -135,13 +154,27 @@ msgid ""
 "  14056    1337     528   15921    3e31 Hello\n"
 "~~~\n"
 msgstr ""
+"~~~\n"
+"$ cat Hello.hs\n"
+"main = putStrLn \"Hello, world!\"\n"
+"$ ajhc Hello.hs -o Hello\n"
+"$ ./Hello\n"
+"Hello, world!\n"
+"$ ldd Hello | wc -l\n"
+"3\n"
+"$ nm Hello | grep -c \" U \"\n"
+"19\n"
+"$ size Hello\n"
+"   text    data     bss     dec     hex filename\n"
+"  14056    1337     528   15921    3e31 Hello\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:57
 msgid ""
 "とか書いてたら作者の [Hongwei Xi](http://www.cs.bu.edu/~hwxi/)  からツッコミ"
 "が入ってATS2はもっと効率が良いそうでゲソ。"
-msgstr ""
+msgstr "...While writing this article, [Hongwei Xi](http://www.cs.bu.edu/~hwxi/) said that ATS2 has move effective feature."
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:75
@@ -165,6 +198,23 @@ msgid ""
 "   3473     724      32    4229    1085 hello\n"
 "~~~\n"
 msgstr ""
+"~~~\n"
+"$ cat hello.dats\n"
+"implement\n"
+"main0 () = {\n"
+"  val () = println! (\"Hello world!\")\n"
+"}\n"
+"$ patscc -o hello hello.dats\n"
+"$ ./hello\n"
+"Hello world!\n"
+"$ ldd hello | wc -l\n"
+"3\n"
+"$ nm hello | grep -c \" U \"\n"
+"6\n"
+"$ size hello\n"
+"   text    data     bss     dec     hex filename\n"
+"   3473     724      32    4229    1085 hello\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:79
@@ -172,7 +222,7 @@ msgid ""
 "しかも [Computer Language Benchmarks Gameでは最悪でもC言語の2倍程度の遅さ]"
 "(http://benchmarksgame.alioth.debian.org/u64/benchmark.php?"
 "test=all&lang=ats&lang2=gcc&data=u64)  じゃなイカ。つまり速いってことでゲソ!"
-msgstr ""
+msgstr "Furthermore, [ATS is two times slower than C langugage at worst (on Computer Language Benchmarks Game)](http://benchmarksgame.alioth.debian.org/u64/benchmark.php?test=all&lang=ats&lang2=gcc&data=u64). That is to say ATS is fast!"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:84
@@ -181,13 +231,13 @@ msgid ""
 "は [ML programmer's guide to ATS - liulk @ cs-people](http://cs.likai.org/"
 "ats/ml-programmers-guide-to-ats)  を翻訳してATS言語の使い方をマスターするでゲ"
 "ソ!"
-msgstr ""
+msgstr "However, any infomation about the ATS lanugage aren't found in Japan... At beginning, let's try to translate [ML programmer's guide to ATS - liulk @ cs-people](http://cs.likai.org/ats/ml-programmers-guide-to-ats) into Japanese, to become ATS kung-fu. De-gesso!"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:85 posts/2013-01-12-jhc_manual_ja.md:34
 #, no-wrap
 msgid "---------------------------------------\n"
-msgstr ""
+msgstr "---------------------------------------\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:92
@@ -197,12 +247,12 @@ msgid ""
 "translate/blob/master/Web/cs.likai.org/ats/ml-programmers-guide-to-ats.md]"
 "(https://github.com/jats-ug/translate/blob/master/Web/cs.likai.org/ats/ml-"
 "programmers-guide-to-ats.md)  を参照してください。"
-msgstr ""
+msgstr "This blog post will not be refreshed, because I decided to put any translation about ATS into github repository. Please see [https://github.com/jats-ug/translate/blob/master/Web/cs.likai.org/ats/ml-programmers-guide-to-ats.md](https://github.com/jats-ug/translate/blob/master/Web/cs.likai.org/ats/ml-programmers-guide-to-ats.md)."
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:94
 msgid "# MLプログラマ向けATS言語ガイド"
-msgstr ""
+msgstr "# MLプログラマ向けATS言語ガイド"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:97
@@ -210,18 +260,18 @@ msgid ""
 "このガイドではATS (Applied Type System) でのプログラミング作法を解説はしませ"
 "ん。 それでも、熟練のMLプログラマであればすぐにATSの用語を理解してATSのコード"
 "を読み始めることができると思います。"
-msgstr ""
+msgstr "このガイドではATS (Applied Type System) でのプログラミング作法を解説はしません。 それでも、熟練のMLプログラマであればすぐにATSの用語を理解してATSのコードを読み始めることができると思います。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:99
 msgid "## ATSのすばらしき世界"
-msgstr ""
+msgstr "## ATSのすばらしき世界"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:101
 msgid ""
 "ATSでは、3つの世界でプログラミングをすることを覚えておくと良いでしょう。"
-msgstr ""
+msgstr "ATSでは、3つの世界でプログラミングをすることを覚えておくと良いでしょう。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:105
@@ -229,7 +279,7 @@ msgid ""
 "Dynamics(動的な世界): プログラムを実行した時に評価される部分です。これは既存"
 "のプログラミング言語に馴染んだプログラマにとってもっとも親しみ深い部分でしょ"
 "う。"
-msgstr ""
+msgstr "Dynamics(動的な世界): プログラムを実行した時に評価される部分です。これは既存のプログラミング言語に馴染んだプログラマにとってもっとも親しみ深い部分でしょう。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:105
@@ -238,7 +288,7 @@ msgid ""
 "の動的な部分と考えることができます。しかし証明はコンパイル後では消滅してしま"
 "い、実行時には存在しません。コンパイラはあなたが書いた証明を検査し、動作可能"
 "なコードを生成する前に削除するのです。"
-msgstr ""
+msgstr "Proofs(証明): 動的な特性を静的な特性に結びつけます。Proofs(証明)はプログラムの動的な部分と考えることができます。しかし証明はコンパイル後では消滅してしまい、実行時には存在しません。コンパイラはあなたが書いた証明を検査し、動作可能なコードを生成する前に削除するのです。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:105
@@ -246,7 +296,7 @@ msgid ""
 "Statics(静的な世界): 型検査時にコンパイラによって評価される部分です。静的な部"
 "分では静的な式の評価は常に終了しなければなりません。そのため型検査は決定可能"
 "です。"
-msgstr ""
+msgstr "Statics(静的な世界): 型検査時にコンパイラによって評価される部分です。静的な部分では静的な式の評価は常に終了しなければなりません。そのため型検査は決定可能です。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:110
@@ -255,7 +305,7 @@ msgid ""
 "るしかありませんでした。 動的なそれぞれの式は静的な式によって指定された型を"
 "持っています。 静的な制約は静的な式の集合によって形成され、 型検査はそれらの"
 "制約が充足可能であるかどうか調べます。"
-msgstr ""
+msgstr "ATSの前身であるDependent MLでは、静的な世界からは依存型を通して動的な世界を見るしかありませんでした。 動的なそれぞれの式は静的な式によって指定された型を持っています。 静的な制約は静的な式の集合によって形成され、 型検査はそれらの制約が充足可能であるかどうか調べます。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:117
@@ -265,7 +315,7 @@ msgid ""
 "書くことができるのです。 証明はpropと呼ばれるclassical propositions(古典論理)"
 "や、 viewと呼ばれるlinear propositions(linear logic)(線形論理)  のどちらかを"
 "取ります。"
-msgstr ""
+msgstr "ATSは依存型に加えて証明を使うことができ、 静的な世界をより強く動的な世界に関与させることができます。 プログラマが動的な式と対応する証明の項を混じり合って書くことができるのです。 証明はpropと呼ばれるclassical propositions(古典論理)や、 viewと呼ばれるlinear propositions(linear logic)(線形論理)  のどちらかを取ります。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:122
@@ -274,34 +324,34 @@ msgid ""
 "よく似ています。 しかし、型検査は自動的にその述語の解決をしてくれません。 プ"
 "ログラムを記述するのと同じように、証明も手動で書き下す必要があります。 証明の"
 "記述をすることで、ATSを証明器として使うことができます。"
-msgstr ""
+msgstr "Prologに馴染んだ人にとっては、propを定義するのはPrologの述語を定義することとよく似ています。 しかし、型検査は自動的にその述語の解決をしてくれません。 プログラムを記述するのと同じように、証明も手動で書き下す必要があります。 証明の記述をすることで、ATSを証明器として使うことができます。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:126
 msgid ""
 "最後に、動的な世界と静的な世界の分離については 「動的な項の種は静的な種によっ"
 "て特徴づけられる」 と考えることもできます。"
-msgstr ""
+msgstr "最後に、動的な世界と静的な世界の分離については 「動的な項の種は静的な種によって特徴づけられる」 と考えることもできます。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:130
 msgid "プログラムの項はtypeによって特徴づけられる"
-msgstr ""
+msgstr "プログラムの項はtypeによって特徴づけられる"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:130
 msgid "線形論理による証明の項はviewによって特徴づけられる"
-msgstr ""
+msgstr "線形論理による証明の項はviewによって特徴づけられる"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:130
 msgid "古典論理による証明の項はpropによって特徴づけられる"
-msgstr ""
+msgstr "古典論理による証明の項はpropによって特徴づけられる"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:132
 msgid "### ノート: 線形論理(Linear Logic)について"
-msgstr ""
+msgstr "### ノート: 線形論理(Linear Logic)について"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:137
@@ -310,88 +360,88 @@ msgid ""
 "異なります。 弱化規則は事実(fact)を与えて未使用のままに放置させません。 縮約"
 "規則は事実を複数回使用することを許しません。 つまり、事実はきっちり一度だけし"
 "か使えないのです。"
-msgstr ""
+msgstr "線形論理は、弱化規則と縮約規則という構造規則を許可しないという点で古典論理と異なります。 弱化規則は事実(fact)を与えて未使用のままに放置させません。 縮約規則は事実を複数回使用することを許しません。 つまり、事実はきっちり一度だけしか使えないのです。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:140
 msgid ""
 "viewはその意味では線形論理です。 一般にviewの証明は、リソースの所有の追跡やリ"
 "ソースの状態の更新に使われます。"
-msgstr ""
+msgstr "viewはその意味では線形論理です。 一般にviewの証明は、リソースの所有の追跡やリソースの状態の更新に使われます。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:142
 msgid "## 拡張子"
-msgstr ""
+msgstr "## 拡張子"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:144
 msgid "ATSで用いられるファイルはいくつかの拡張子を持っています。"
-msgstr ""
+msgstr "ATSで用いられるファイルはいくつかの拡張子を持っています。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:149
 msgid ""
 ".datsファイルは動的と静的な宣言を格納します。これはSMLにおけるモジュールシス"
 "テムのstructureやOCamlの.mlファイルに似ています。"
-msgstr ""
+msgstr ".datsファイルは動的と静的な宣言を格納します。これはSMLにおけるモジュールシステムのstructureやOCamlの.mlファイルに似ています。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:149
 msgid ""
 ".satsファイルは静的な宣言を格納します。これはSMLにおけるモジュールシステムの"
 "signatureやOCamlの.mliファイルに似ています。"
-msgstr ""
+msgstr ".satsファイルは静的な宣言を格納します。これはSMLにおけるモジュールシステムのsignatureやOCamlの.mliファイルに似ています。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:149
 msgid ".catsファイルは.satsファイルから使われるC言語コードを格納します。"
-msgstr ""
+msgstr ".catsファイルは.satsファイルから使われるC言語コードを格納します。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:149
 msgid ""
 ".hatsファイルは動的もしくは静的なATSコードを格納します。これらは.satsもしく"
 "は.datsファイルからインクルードすることができます。"
-msgstr ""
+msgstr ".hatsファイルは動的もしくは静的なATSコードを格納します。これらは.satsもしくは.datsファイルからインクルードすることができます。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:151
 msgid ""
 ".datsファイルと.satsファイルの特筆すべき違いは、関数と値のシグニチャ宣言で"
 "す。"
-msgstr ""
+msgstr ".datsファイルと.satsファイルの特筆すべき違いは、関数と値のシグニチャ宣言です。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:158
 msgid ""
 "~~~ {.ocaml} (* .datsファイル *)  extern val c: int extern fun foo (x:int): "
 "int fun bar (x: int): int = ...  ~~~"
-msgstr ""
+msgstr "~~~ {.ocaml} (* .datsファイル *)  extern val c: int extern fun foo (x:int): int fun bar (x: int): int = ...  ~~~"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:165
 msgid ""
 "~~~ {.ocaml} (* .satsファイル *)  val c: int fun foo (x:int): int (* foo関数"
 "の実体を宣言できません *)  ~~~"
-msgstr ""
+msgstr "~~~ {.ocaml} (* .satsファイル *)  val c: int fun foo (x:int): int (* foo関数の実体を宣言できません *)  ~~~"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:168
 msgid ""
 "けれども典型的には.satsファイルでは関数の型を定義して、.datsファイルに実装を"
 "書きます。 そのような場合、.datsファイルの実装には型注釈は不要です。"
-msgstr ""
+msgstr "けれども典型的には.satsファイルでは関数の型を定義して、.datsファイルに実装を書きます。 そのような場合、.datsファイルの実装には型注釈は不要です。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:173
 msgid "~~~ {.ocaml} (* .datsファイル *)  implement baz (x) = ...  ~~~"
-msgstr ""
+msgstr "~~~ {.ocaml} (* .datsファイル *)  implement baz (x) = ...  ~~~"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:178
 msgid "~~~ {.ocaml} (* .satsファイル *)  fun baz (x:int): int ~~~"
-msgstr ""
+msgstr "~~~ {.ocaml} (* .satsファイル *)  fun baz (x:int): int ~~~"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:182
@@ -399,17 +449,17 @@ msgid ""
 "重要なことですが、MLと異なり、ATSの型検査器はとても限定された型推論しか行ない"
 "ません。 あなたは明示的に十分な型注釈を与える必要があります。 そうすればATSは"
 "型の導出できるようになるでしょう。"
-msgstr ""
+msgstr "重要なことですが、MLと異なり、ATSの型検査器はとても限定された型推論しか行ないません。 あなたは明示的に十分な型注釈を与える必要があります。 そうすればATSは型の導出できるようになるでしょう。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:184
 msgid "## めくるめく静"
-msgstr ""
+msgstr "## めくるめく静"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:187
 msgid "ATSはMLに少し似ています。 型とデータ型を定義することができます。"
-msgstr ""
+msgstr "ATSはMLに少し似ています。 型とデータ型を定義することができます。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:196
@@ -424,6 +474,14 @@ msgid ""
 "  | None(a)\n"
 "~~~\n"
 msgstr ""
+"~~~ {.ocaml}\n"
+"(* ATS *)\n"
+"typedef t = int\n"
+"typedef pair (a:type, b:type) = '(a, b)\n"
+"datatype option (a:type) =\n"
+"  | Some(a) of a\n"
+"  | None(a)\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:205
@@ -438,6 +496,14 @@ msgid ""
 "  | None\n"
 "~~~\n"
 msgstr ""
+"~~~ {.ocaml}\n"
+"(* SML *)\n"
+"type t = int\n"
+"type ('a, 'b) pair = 'a * 'b\n"
+"datatype 'a option =\n"
+"    Some of 'a\n"
+"  | None\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:212
@@ -447,7 +513,7 @@ msgid ""
 "うな型を別名として定義できます。 さらに型変数aをパラメータとして取るoptionと"
 "いうデータ型も定義しています。 これらの識別子はすべて静的な識別子です。 対し"
 "て、動的な識別子というのは実行時の値になります。"
-msgstr ""
+msgstr "上記のSMLコードでは、定義済みのint型があったとき、 新しいtという名前の型をint型の別名として定義しています。 また、いくつかの型変数をパラメータとして取るような型を別名として定義できます。 さらに型変数aをパラメータとして取るoptionというデータ型も定義しています。 これらの識別子はすべて静的な識別子です。 対して、動的な識別子というのは実行時の値になります。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:218
@@ -457,14 +523,14 @@ msgid ""
 "tutorial](http://www.ats-lang.org/htdocs-old/TUTORIAL/contents/datatypes."
 "html)  を参照してくだっさい。 しかし、まずはこの章の残りを読んでからでも良い"
 "でしょう。"
-msgstr ""
+msgstr "一方ATSでは、データ型のコンストラクタに型変数を明示的に適用してやる必要があることに注意してください。 データ型に関する詳細な情報は [Datatypes in the ATS tutorial](http://www.ats-lang.org/htdocs-old/TUTORIAL/contents/datatypes.html)  を参照してくだっさい。 しかし、まずはこの章の残りを読んでからでも良いでしょう。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:222
 msgid ""
 "型宣言は静的な識別子を\"type\"という種の静的な式に割り付けます。 つまり"
 "typedefはstadefの特殊形です。 次に示す2つの静的な宣言はほぼ同じです。"
-msgstr ""
+msgstr "型宣言は静的な識別子を\"type\"という種の静的な式に割り付けます。 つまりtypedefはstadefの特殊形です。 次に示す2つの静的な宣言はほぼ同じです。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:230
@@ -478,6 +544,13 @@ msgid ""
 "  '(a, b)\n"
 "~~~\n"
 msgstr ""
+"~~~ {.ocaml}\n"
+"(* ATS (1) *)\n"
+"(* sta t:type *)\n"
+"typedef t = int\n"
+"typedef pair (a:type, b:type) =\n"
+"  '(a, b)\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:238
@@ -491,42 +564,49 @@ msgid ""
 "  '(a, b)\n"
 "~~~\n"
 msgstr ""
+"~~~ {.ocaml}\n"
+"(* ATS (2) *)\n"
+"(* sta t:_ *)\n"
+"stadef t = int\n"
+"stadef pair (a:type, b:type) =\n"
+"  '(a, b)\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:241
 msgid ""
 "この2つが違うのはtypedefがtが種\"type\"であることを保証するのに対して、 "
 "stadefは何も保証しないという点です。"
-msgstr ""
+msgstr "この2つが違うのはtypedefがtが種\"type\"であることを保証するのに対して、 stadefは何も保証しないという点です。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:244
 msgid ""
 "型は、静的な式や静的な識別子が取り得る数多くの種の内の一つです。 他の種として"
 "は以下が挙げられます。"
-msgstr ""
+msgstr "型は、静的な式や静的な識別子が取り得る数多くの種の内の一つです。 他の種としては以下が挙げられます。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:249
 msgid "Ground種: int, bool, char, addrです。これらは依存型の土台になります。"
-msgstr ""
+msgstr "Ground種: int, bool, char, addrです。これらは依存型の土台になります。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:249
 msgid "View種: 線形論理の命題です。"
-msgstr ""
+msgstr "View種: 線形論理の命題です。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:249
 msgid "Prop種: 古典論理の命題です。"
-msgstr ""
+msgstr "Prop種: 古典論理の命題です。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:249
 msgid ""
 "Viewtype種: 線形型です。これはType種とView種が結合したものに見えるかもしれま"
 "せん。"
-msgstr ""
+msgstr "Viewtype種: 線形型です。これはType種とView種が結合したものに見えるかもしれません。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:258
@@ -538,14 +618,14 @@ msgid ""
 "ます。 [prelude/sortdef.sats](https://ats-lang.svn.sourceforge.net/svnroot/"
 "ats-lang/trunk/prelude/sortdef.sats)  はその例です。 制約はシンプルなboolean"
 "種の式です。"
-msgstr ""
+msgstr "datasortを使うことで新しい種を定義できます。 [sllist.dats](http://www.cs.bu.edu/~hwxi/academic/courses/CS520/Fall08/assignments/05/sllst_dats.html)  の最初の数行はリストに似た種を定義する方法を示しています。 またsortdefを使えば種の別名を定義できます。 これはサブセット種と呼ばれる種にpiggy-backな制約をつけます。 [prelude/sortdef.sats](https://ats-lang.svn.sourceforge.net/svnroot/ats-lang/trunk/prelude/sortdef.sats)  はその例です。 制約はシンプルなboolean種の式です。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:260
 msgid ""
 "type, view, propの種について、別名定義、abstract quantityの宣言、代数的データ"
 "のコンストラクタの宣言をすることができます。"
-msgstr ""
+msgstr "type, view, propの種について、別名定義、abstract quantityの宣言、代数的データのコンストラクタの宣言をすることができます。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:297
@@ -566,7 +646,7 @@ msgid ""
 "contents/dataprops.html\">dataprop</a></td> <td style=\"width:60px\"><a href="
 "\"http://www.ats-lang.org/htdocs-old/TUTORIAL/contents/dataviewtypes.html"
 "\">dataviewtype</a></td> </tr> </tbody> </table>"
-msgstr ""
+msgstr "<table border=\"1\" bordercolor=\"#888888\" cellspacing=\"0\" style=\"border-color:rgb(136,136,136);border-width:1px;border-collapse:collapse\"> <tbody> <tr> <td style=\"width:60px\"> </td> <td style=\"width:60px\">Static</td> <td style=\"width:60px\">Type</td> <td style=\"width:60px\">View</td> <td style=\"width:60px\">Prop</td> <td style=\"width:60px\">Viewtype</td> </tr> <tr> <td>別名定義</td> <td>stadef</td> <td style=\"width:60px\">typedef</td> <td>viewdef</td> <td>propdef</td> <td>viewtypedef</td> </tr> <tr> <td>Abstract</td> <td>sta</td> <td>abstype</td> <td>absview</td> <td>absprop</td> <td>absviewtype</td> </tr> <tr> <td style=\"width:60px\">代数的</td> <td style=\"width:60px\">(N/A)</td> <td style=\"width:60px\">datatype</td> <td style=\"width:60px\"><a href=\"http://www.ats-lang.org/htdocs-old/TUTORIAL/contents/dataviews.html\">dataview</a></td> <td style=\"width:60px\"><a href=\"http://www.ats-lang.org/htdocs-old/TUTORIAL/contents/dataprops.html\">dataprop</a></td> <td style=\"width:60px\"><a href=\"http://www.ats-lang.org/htdocs-old/TUTORIAL/contents/dataviewtypes.html\">dataviewtype</a></td> </tr> </tbody> </table>"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:304
@@ -578,50 +658,50 @@ msgid ""
 "dataviewtypeの間は交換することができません。 これらは新しい何かに対する代数的"
 "なコンストラクタを定義します。 (例: datatypeは新しい型のコンストラクタです。"
 "dataviewは新しいviewのコンストラクタです。などなど)"
-msgstr ""
+msgstr "type, view, prop, viewtypeはstatics(静的)の特殊形です。 つまり、typedef, viewdef, propdef, viewtypedefの代わりに単にstadefを使うことができます。 同様にabstractの宣言においてもabstype, absview, absprop, absviewtypeの代わりにstaを使うことができます。 けれどもdatasort, datatype, dataview, dataprop, dataviewtypeの間は交換することができません。 これらは新しい何かに対する代数的なコンストラクタを定義します。 (例: datatypeは新しい型のコンストラクタです。dataviewは新しいviewのコンストラクタです。などなど)"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:307
 msgid ""
 "view, prop, viewtypeについて、ここでは取り上げません。 ここでは型とシンプルな"
 "静的な式について注目しましょう。"
-msgstr ""
+msgstr "view, prop, viewtypeについて、ここでは取り上げません。 ここでは型とシンプルな静的な式について注目しましょう。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:310
 msgid ""
 "静的な式は種によって検査される第一級の言語です。 いくつかの例を見てみましょ"
 "う。"
-msgstr ""
+msgstr "静的な式は種によって検査される第一級の言語です。 いくつかの例を見てみましょう。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:316
 msgid "静的な式として書かれた数値は、種\"int\"の静的な数値になります"
-msgstr ""
+msgstr "静的な式として書かれた数値は、種\"int\"の静的な数値になります"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:316
 msgid ""
 "ビルトインされた数値比較の述語があります。<, <=, >, >=, ==, <>は静的なシグニ"
 "チャ\"(int, int) -> bool\"を持っています"
-msgstr ""
+msgstr "ビルトインされた数値比較の述語があります。<, <=, >, >=, ==, <>は静的なシグニチャ\"(int, int) -> bool\"を持っています"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:316
 msgid ""
 "ビルトインされた論理積と論理和である&&, ||は静的なシグニチャ\"(bool, bool) -"
 "> bool\"を持っています"
-msgstr ""
+msgstr "ビルトインされた論理積と論理和である&&, ||は静的なシグニチャ\"(bool, bool) -> bool\"を持っています"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:316
 msgid "0 <= 4 && 4 < 10 は種\"bool\"の静的な式です"
-msgstr ""
+msgstr "0 <= 4 && 4 < 10 は種\"bool\"の静的な式です"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:316
 msgid "一般的に、静的なnat_lt関数は次のように定義できます"
-msgstr ""
+msgstr "一般的に、静的なnat_lt関数は次のように定義できます"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:322
@@ -633,13 +713,18 @@ msgid ""
 "  0 <= i && i < limit\n"
 "~~~\n"
 msgstr ""
+"~~~ {.ocaml}\n"
+"(* ATS *)\n"
+"stadef nat_lt (i: int, limit: int) =\n"
+"  0 <= i && i < limit\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:325
 msgid ""
 "静的な関数であるnat_ltは、種boolが要求されればいつでも使うことができます。 例"
 "えば、実行時に数値の引数の範囲に制約をつけたい場合を考えましょう。"
-msgstr ""
+msgstr "静的な関数であるnat_ltは、種boolが要求されればいつでも使うことができます。 例えば、実行時に数値の引数の範囲に制約をつけたい場合を考えましょう。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:329
@@ -647,19 +732,19 @@ msgid ""
 "ビルトインの静的な識別子intはオーバーロードされています。 種\"type\"と種"
 "\"int -> type\"の2つの定義を持っています。二次的なintは依存型の数値で静的な式"
 "によって指示されています。"
-msgstr ""
+msgstr "ビルトインの静的な識別子intはオーバーロードされています。 種\"type\"と種\"int -> type\"の2つの定義を持っています。二次的なintは依存型の数値で静的な式によって指示されています。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:329
 msgid "int(3) は種\"type\"の静的な式です"
-msgstr ""
+msgstr "int(3) は種\"type\"の静的な式です"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:329
 msgid ""
 "ガードを使った存在記号を用いて、数値型を指定した範囲に制限することができま"
 "す。"
-msgstr ""
+msgstr "ガードを使った存在記号を用いて、数値型を指定した範囲に制限することができます。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:335
@@ -671,6 +756,11 @@ msgid ""
 "  [i: int | nat_lt (i, n)] int(i)\n"
 "~~~\n"
 msgstr ""
+"~~~ {.ocaml}\n"
+"(* ATS *)\n"
+"typedef NatLt (n: int) =\n"
+"  [i: int | nat_lt (i, n)] int(i)\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:340
@@ -679,18 +769,18 @@ msgid ""
 "ば、NatLtは 0 から n - 1 までの範囲を持つ数値型のサブセットとしての型を返しま"
 "す。 NatLtの実装はこう読めるでしょう。 「種intであり、nat_lt(i, n)が真で、"
 "int(i)型として生産されるのようなiが存在する。」"
-msgstr ""
+msgstr "これで静的な関数 NatLt: int -> type を定義できました。 静的な数値nを与えれば、NatLtは 0 から n - 1 までの範囲を持つ数値型のサブセットとしての型を返します。 NatLtの実装はこう読めるでしょう。 「種intであり、nat_lt(i, n)が真で、int(i)型として生産されるのようなiが存在する。」"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:342
 msgid "NatLt(n)型を使った関数は以下のようになるでしょう。"
-msgstr ""
+msgstr "NatLt(n)型を使った関数は以下のようになるでしょう。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:347
 msgid ""
 "~~~ {.ocaml} (* ATS *)  fun digit_of_num (i: NatLt(10)): char = ...  ~~~"
-msgstr ""
+msgstr "~~~ {.ocaml} (* ATS *)  fun digit_of_num (i: NatLt(10)): char = ...  ~~~"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:355
@@ -701,12 +791,12 @@ msgid ""
 "バーロードできることに注意してください。 中置の二項演算子の結合性は [prelude/"
 "fixity.sats](https://ats-lang.svn.sourceforge.net/svnroot/ats-lang/trunk/"
 "prelude/fixity.ats)  で定義されています。"
-msgstr ""
+msgstr "ATS/Anariatsの中にビルトインされた多くの静的な演算子のシグニチャは [prelude/basics_sta.sats](https://svn.code.sf.net/p/ats-lang/code/trunk/prelude/basics_sta.sats)  で見ることができます。 stadefを使ってそのような演算子をオーバーロードできることに注意してください。 中置の二項演算子の結合性は [prelude/fixity.sats](https://ats-lang.svn.sourceforge.net/svnroot/ats-lang/trunk/prelude/fixity.ats)  で定義されています。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:357
 msgid "## 異型(Atypical)の複合型"
-msgstr ""
+msgstr "## 異型(Atypical)の複合型"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:365
@@ -716,7 +806,7 @@ msgid ""
 "という点でMLの値と似ています。 それはボックス化もしくはアンボックス化されてい"
 "ます。 typeのボックス化された値はGCによって管理されたヒープの中に配置されま"
 "す。 ボックス化された値のいくつかの例を見てみましょう。"
-msgstr ""
+msgstr "最初の区別は、 固定サイズの型はシンプルにtypeで表わされ、 任意サイズの型はt@ypeで表わされるということです。 typeの値はポインタワードと同じサイズを持つという点でMLの値と似ています。 それはボックス化もしくはアンボックス化されています。 typeのボックス化された値はGCによって管理されたヒープの中に配置されます。 ボックス化された値のいくつかの例を見てみましょう。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:394
@@ -731,7 +821,7 @@ msgid ""
 "t<sub>n</sub>}</td> </tr> <tr> <td>List</td> <td>'[e<sub>1</sub>, e<sub>2</"
 "sub>, ... e<sub>n</sub>]</td> <td>[n:int | n &gt;= 0] list(t, n)<br /> <br /"
 "> (* もしくは以下に相当 *)<br /> List t<br /> </td> </tr> </tbody> </table>"
-msgstr ""
+msgstr "<table border=\"1\"> <tbody> <tr> <td><font face=\"courier new,monospace\"><b>type</b></font></td> <td>Expression</td> <td>Type </td> </tr> <tr> <td>Tuple</td> <td>'(e<sub>1</sub>, e<sub>2</sub>, ... e<sub>n</sub>)</td> <td>'(t<sub>1</sub>, t<sub>2</sub>, ... t<sub>n</sub>)</td> </tr> <tr> <td>Record</td> <td>'{lab<sub>1</sub> = e<sub>1</sub>, lab<sub>2</sub> = e<sub>2</sub>, ... lab<sub>n</sub>= e<sub>n</sub>}</td> <td>'{lab<sub>1</sub> = t<sub>1</sub>, lab<sub>2</sub>= t<sub>2</sub>, ... lab<sub>n</sub>= t<sub>n</sub>}</td> </tr> <tr> <td>List</td> <td>'[e<sub>1</sub>, e<sub>2</sub>, ... e<sub>n</sub>]</td> <td>[n:int | n &gt;= 0] list(t, n)<br /> <br /> (* もしくは以下に相当 *)<br /> List t<br /> </td> </tr> </tbody> </table>"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:405
@@ -744,22 +834,22 @@ msgid ""
 "るところを単にt@ypeと書いても問題ありません。 それどころか、C言語と同じ意味を"
 "持つ静的な関数である sizeof(t) が存在し、 それは以下に示す静的なシグニチャを"
 "持っています。"
-msgstr ""
+msgstr "けれどもMLの型はシステムプログラミングにとってあまりにも非力です。 メモリレイアウトをフラットな構造でしか表現できないのですから。 ここでt@ypeの値が役に立ちます。 しばしば このようなメモリレイアウトはview(線形論理のリソース)とt@ypeを持つことがあります。 つまるところ、これがviewt@ypeと呼ばれます。 t@ypeはviewt@ypeの下位種であることに注意してください。 そのためviewt@ypeと書かれているところを単にt@ypeと書いても問題ありません。 それどころか、C言語と同じ意味を持つ静的な関数である sizeof(t) が存在し、 それは以下に示す静的なシグニチャを持っています。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:410
 msgid "~~~ {.ocaml} (* ATS *)  sta sizeof: viewt@ype -> int ~~~"
-msgstr ""
+msgstr "~~~ {.ocaml} (* ATS *)  sta sizeof: viewt@ype -> int ~~~"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:412
 msgid "そしてこのsizeof静的関数はt@ypeにもviewt@ypeにも使えるのです。"
-msgstr ""
+msgstr "そしてこのsizeof静的関数はt@ypeにもviewt@ypeにも使えるのです。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:414
 msgid "ボックス化タプル, レコード, リストはフラットなtypeとよく似ています。"
-msgstr ""
+msgstr "ボックス化タプル, レコード, リストはフラットなtypeとよく似ています。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:446
@@ -775,7 +865,7 @@ msgid ""
 "tr> <tr> <td>Sequence<br /> (List/Array)<br /> </td> <td>(* list *)<br /> "
 "list(t, n)<br /> </td> <td>(* array *)<br /> @[t][n]<br /> </td> </tr> </"
 "tbody> </table>"
-msgstr ""
+msgstr "<table border=\"1\"> <tbody> <tr> <td>種<br /> </td> <td><font face=\"courier new,monospace\"><b>type</b></font></td> <td><font face=\"courier new,monospace\"><b>t@ype</b></font></td> </tr> <tr> <td>Tuple</td> <td>'(t<sub>1</sub>, t<sub>2</sub>, ... t<sub>n</sub>)</td> <td>@(t<sub>1</sub>, t<sub>2</sub>, ... t<sub>n</sub>)</td> </tr> <tr> <td>Record</td> <td>'{lab<sub>1</sub> = t<sub>1</sub>, lab<sub>2</sub> = t<sub>2</sub>, ... lab<sub>n</sub>= t<sub>n</sub>}</td> <td>@{lab<sub>1</sub> = t<sub>1</sub>, lab<sub>2</sub>= t<sub>2</sub>, ... lab<sub>n</sub>= t<sub>n</sub>}</td> </tr> <tr> <td>Sequence<br /> (List/Array)<br /> </td> <td>(* list *)<br /> list(t, n)<br /> </td> <td>(* array *)<br /> @[t][n]<br /> </td> </tr> </tbody> </table>"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:452
@@ -784,7 +874,7 @@ msgid ""
 "クス化値と同じ)もしくはスタック(MLはスタックにデータ構造を確保しませんが)のど"
 "ちらかに確保されます。 これについては別の記事 [Manipulating flat memory]"
 "(http://cs.likai.org/ats/manipulating-flat-memory)  でお話しします。"
-msgstr ""
+msgstr "しかしフラットな値を構築することは少し異なります。 フラットな値はヒープ(ボックス化値と同じ)もしくはスタック(MLはスタックにデータ構造を確保しませんが)のどちらかに確保されます。 これについては別の記事 [Manipulating flat memory](http://cs.likai.org/ats/manipulating-flat-memory)  でお話しします。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:459
@@ -794,7 +884,7 @@ msgid ""
 "のintは\"int?\"と書きます。(章末のノートを見てください)  しかし、型t1とt2につ"
 "いて sizeof(t1) == sizeof(t2) であったとしても、 コンパイラはt1?とt2?を異なる"
 "型として扱います。"
-msgstr ""
+msgstr "フラットなメモリを初期化しないこともできます。 \"t?\"という注釈は未初期化のメモリの型を表わしています。 そしてそのサイズはt型と同じです。 例えば、未初期化のintは\"int?\"と書きます。(章末のノートを見てください)  しかし、型t1とt2について sizeof(t1) == sizeof(t2) であったとしても、 コンパイラはt1?とt2?を異なる型として扱います。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:466
@@ -805,12 +895,12 @@ msgid ""
 "注釈がない場合には、パラメータは不変性です。 これは静的な式の型に対して下位種"
 "を作るのに役に立ちます。 共変性は良く使われますが、反変性を使うことはまれで"
 "す。"
-msgstr ""
+msgstr "最後に、ときどきtype(およびviewtype)やt@ype(およびviewt@ype)の後ろに '+'と'-'という注釈を目にすることがあるでしょう。 '+'はそのパラメータが共変性であることを意味し、'-'はそのパラメータが反変性であることを意味しています。 注釈がない場合には、パラメータは不変性です。 これは静的な式の型に対して下位種を作るのに役に立ちます。 共変性は良く使われますが、反変性を使うことはまれです。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:468
 msgid "### ノート: intの型はフラット"
-msgstr ""
+msgstr "### ノート: intの型はフラット"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:475
@@ -820,19 +910,19 @@ msgid ""
 "してポインタは64ビットです。 intはポインタと同じサイズではありません。 同様"
 "に、ATSではlongもまたt@ypeです。 16ビットマシンの場合、intは16ビット、longは"
 "32ビット、ポインタは16ビットであるからです。"
-msgstr ""
+msgstr "読者をおどろかせるかもしれませんが、ATSにといてintはt@ypeです。 64ビットマシンのC言語型であるintとlongを考えてみると、 intは32ビット、longは64ビット、そしてポインタは64ビットです。 intはポインタと同じサイズではありません。 同様に、ATSではlongもまたt@ypeです。 16ビットマシンの場合、intは16ビット、longは32ビット、ポインタは16ビットであるからです。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:477
 msgid "## 落ち着かない関数たち"
-msgstr ""
+msgstr "## 落ち着かない関数たち"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:480
 msgid ""
 "ATSでの関数の型の詳細は注意深く調査するべきでしょう。 その簡単な構成はMLと似"
 "ていて、シンプルなものです。"
-msgstr ""
+msgstr "ATSでの関数の型の詳細は注意深く調査するべきでしょう。 その簡単な構成はMLと似ていて、シンプルなものです。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:486
@@ -844,57 +934,62 @@ msgid ""
 "  \"c_name\"\n"
 "~~~\n"
 msgstr ""
+"~~~ {.ocaml}\n"
+"(* ATS (.sats) *)\n"
+"fun function_name (x1: t1, ..., xn: tn): t' =\n"
+"  \"c_name\"\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:491
 msgid ""
 "~~~ {.ocaml} (* SML (signature) *)  val function_name: (t1 * ... * tn) -> t' "
 "~~~"
-msgstr ""
+msgstr "~~~ {.ocaml} (* SML (signature) *)  val function_name: (t1 * ... * tn) -> t' ~~~"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:495
 msgid ""
 "C言語に変換すると、function_nameはc_nameという名前になることに注意してくださ"
 "い。 もっともこれは任意ですが。 これは以下のように使われます。"
-msgstr ""
+msgstr "C言語に変換すると、function_nameはc_nameという名前になることに注意してください。 もっともこれは任意ですが。 これは以下のように使われます。"
 
 #. type: Bullet: '1. '
 #: posts/2013-12-23-ml_guide_to_ats.md:498
 msgid "既存のC言語関数をATSにインポートして、ATSの型をつける"
-msgstr ""
+msgstr "既存のC言語関数をATSにインポートして、ATSの型をつける"
 
 #. type: Bullet: '2. '
 #: posts/2013-12-23-ml_guide_to_ats.md:498
 msgid "ATSで実装された関数をC言語側へエクスポートする"
-msgstr ""
+msgstr "ATSで実装された関数をC言語側へエクスポートする"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:500
 msgid "これはいくつかの重要な帰結を持ちます。"
-msgstr ""
+msgstr "これはいくつかの重要な帰結を持ちます。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:504
 msgid "ATSにおける関数の型はC言語の関数に直接写像されうる"
-msgstr ""
+msgstr "ATSにおける関数の型はC言語の関数に直接写像されうる"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:504
 msgid "ATSにおける関数は常にアンカリー化されている"
-msgstr ""
+msgstr "ATSにおける関数は常にアンカリー化されている"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:504
 msgid ""
 "タグを指定しないかぎり、デフォルトでは関数はクロージャとして使えず、部分適用"
 "も使えない (タグについては後に説明します)"
-msgstr ""
+msgstr "タグを指定しないかぎり、デフォルトでは関数はクロージャとして使えず、部分適用も使えない (タグについては後に説明します)"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:506
 msgid "依存型にガードとアサートを追加すれば、以下のようになります。"
-msgstr ""
+msgstr "依存型にガードとアサートを追加すれば、以下のようになります。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:514
@@ -908,6 +1003,13 @@ msgid ""
 "  \"c_name\"\n"
 "~~~\n"
 msgstr ""
+"~~~ {.ocaml}\n"
+"(* ATS (.sats) *)\n"
+"fun function_name\n"
+"    {forall quantifiers | guards} (x1: t1, ..., xn: tn):\n"
+"    [exists quantifiers | asserts] t' =\n"
+"  \"c_name\"\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:519
@@ -916,12 +1018,12 @@ msgid ""
 "forallとexists量化子の項で書くことができる種boolの静的な式です。 なおかつ、"
 "t1 ... tn はforall量化子の項で書くことができる種typeの静的な式です。 そして"
 "t'はforallとexists量化子の項で書くことができる種typeの静的な式です。"
-msgstr ""
+msgstr "ガードはforall量化子の項で書くことができる種boolの静的な式です。 アサートはforallとexists量化子の項で書くことができる種boolの静的な式です。 なおかつ、t1 ... tn はforall量化子の項で書くことができる種typeの静的な式です。 そしてt'はforallとexists量化子の項で書くことができる種typeの静的な式です。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:521
 msgid "証明の項をさらに追加してみましょう。"
-msgstr ""
+msgstr "証明の項をさらに追加してみましょう。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:529
@@ -935,6 +1037,13 @@ msgid ""
 "  \"c_name\"\n"
 "~~~\n"
 msgstr ""
+"~~~ {.ocaml}\n"
+"(* ATS (.sats) *)\n"
+"fun function_name\n"
+"    {forall quantifiers | guards} (pf1: prop1, ..., pfp: propp | x1: t1, ..., xn: tn):\n"
+"    [exists quantifiers | asserts] (prop'1, ..., prop'q | t') =\n"
+"  \"c_name\"\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:533
@@ -942,13 +1051,13 @@ msgid ""
 "アンカリー化された引数は、証明の変数とプログラムの変数の2つの部分に分断された"
 "ことに注意してください。 証明の変数はコンパイルが完了すると削除されます。 プ"
 "ログラムの変数はコンパイルされてもそのまま残ります。"
-msgstr ""
+msgstr "アンカリー化された引数は、証明の変数とプログラムの変数の2つの部分に分断されたことに注意してください。 証明の変数はコンパイルが完了すると削除されます。 プログラムの変数はコンパイルされてもそのまま残ります。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:535
 msgid ""
 "最後になりますが、ATSはタグとして副作用を追跡するためにアロー型を使います。"
-msgstr ""
+msgstr "最後になりますが、ATSはタグとして副作用を追跡するためにアロー型を使います。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:544
@@ -963,25 +1072,33 @@ msgid ""
 "  \"c_name\"\n"
 "~~~\n"
 msgstr ""
+"~~~ {.ocaml}\n"
+"(* ATS (.sats) *)\n"
+"fun function_name\n"
+"    {forall quantifiers | guards} (pf1: prop1, ..., pfp: propp | x1: t1, ..., xn: tn)\n"
+"  :<tag1, ..., tagk>\n"
+"    [exists quantifiers | asserts] (prop'1, ..., prop'q | t') =\n"
+"  \"c_name\"\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:548
 msgid ""
 "もし関数の型を静的な式として書きたければ、 (これまで見てきた関数のシグニチャ"
 "に反していますが)  型の表現は以下のようになるでしょう。"
-msgstr ""
+msgstr "もし関数の型を静的な式として書きたければ、 (これまで見てきた関数のシグニチャに反していますが)  型の表現は以下のようになるでしょう。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:553
 msgid ""
 "~~~ {.ocaml} (* ATS (static expression) *)  {forall...} (prop1, ..., propp | "
 "t1, ..., tn) -<tag1, ..., tagk> [exists...] (prop'1, ..., prop'q | t')  ~~~"
-msgstr ""
+msgstr "~~~ {.ocaml} (* ATS (static expression) *)  {forall...} (prop1, ..., propp | t1, ..., tn) -<tag1, ..., tagk> [exists...] (prop'1, ..., prop'q | t')  ~~~"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:555
 msgid "## タグ付きのアロー型"
-msgstr ""
+msgstr "## タグ付きのアロー型"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:559
@@ -989,62 +1106,62 @@ msgid ""
 "ATSにおけるアロー型は\"-<>\"のような見た目をしています。 アロー型は -"
 "\\<tag1, ..., tagk\\> のような形で装飾されます。 関数の様々な種を区別するため"
 "に、現時点でATSは次のようなタグを解釈します。"
-msgstr ""
+msgstr "ATSにおけるアロー型は\"-<>\"のような見た目をしています。 アロー型は -\\<tag1, ..., tagk\\> のような形で装飾されます。 関数の様々な種を区別するために、現時点でATSは次のようなタグを解釈します。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:565
 msgid "prf: 証明関数 (型検査が終わると削除れます)"
-msgstr ""
+msgstr "prf: 証明関数 (型検査が終わると削除れます)"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:565
 msgid "lin: 確実に一度だけしか呼び出されない関数"
-msgstr ""
+msgstr "lin: 確実に一度だけしか呼び出されない関数"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:565
 msgid "fun: 通常の関数 (デフォルト)"
-msgstr ""
+msgstr "fun: 通常の関数 (デフォルト)"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:565
 msgid "cloptr: 明示的に解放されるべきクロージャ"
-msgstr ""
+msgstr "cloptr: 明示的に解放されるべきクロージャ"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:565
 msgid "cloref: GCされるクロージャ"
-msgstr ""
+msgstr "cloref: GCされるクロージャ"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:567
 msgid "同様に次のタグは副作用の追跡に用いられます。"
-msgstr ""
+msgstr "同様に次のタグは副作用の追跡に用いられます。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:573
 msgid "exn: 例外を起こす"
-msgstr ""
+msgstr "exn: 例外を起こす"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:573
 msgid "ntm: 終了しない可能性がある"
-msgstr ""
+msgstr "ntm: 終了しない可能性がある"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:573
 msgid "ref: グローバルメモリへの参照を共有している"
-msgstr ""
+msgstr "ref: グローバルメモリへの参照を共有している"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:573
 msgid "0: 副作用なし (純粋)"
-msgstr ""
+msgstr "0: 副作用なし (純粋)"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:573
 msgid "1: 副作用あり (判断できない場合も含まれる)"
-msgstr ""
+msgstr "1: 副作用あり (判断できない場合も含まれる)"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:577
@@ -1052,24 +1169,24 @@ msgid ""
 "副作用の有無を示すための表現である0や1の接尾辞を、関数の種を区別するタグに加"
 "えて付けることができます。 例えば cloref1 は、MLのようにGC対象となるクロー"
 "ジャであり、 副作用(例外発生など)を持っているというタグになります。"
-msgstr ""
+msgstr "副作用の有無を示すための表現である0や1の接尾辞を、関数の種を区別するタグに加えて付けることができます。 例えば cloref1 は、MLのようにGC対象となるクロージャであり、 副作用(例外発生など)を持っているというタグになります。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:579
 msgid "## stdio.h から例を"
-msgstr ""
+msgstr "## stdio.h から例を"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:582
 msgid ""
 "ATSにおける典型的な関数の宣言はどのような見た目になるのでしょうか？ ここで"
 "は、次のプロトタイプ宣言を持つ標準Cライブラリを例に取りましょう。"
-msgstr ""
+msgstr "ATSにおける典型的な関数の宣言はどのような見た目になるのでしょうか？ ここでは、次のプロトタイプ宣言を持つ標準Cライブラリを例に取りましょう。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:586
 msgid "~~~ {.c} char *fgets(char *s, int size, FILE *stream); ~~~"
-msgstr ""
+msgstr "~~~ {.c} char *fgets(char *s, int size, FILE *stream); ~~~"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:593
@@ -1078,12 +1195,12 @@ msgid ""
 "すバッファに格納する。 '\\\\0'が一つバッファの中の最後の文字の後に書き込まれ"
 "る。」 とあり、さらに 「fgets()は、成功するとsを返し、エラーや1文字も読み込ん"
 "でいないのにファイルの終わりになった場合に NULL を返す。」 とあります。"
-msgstr ""
+msgstr "manページには 「fgets()はstreamから最大で size - 1 個の文字を読み込み、sが指すバッファに格納する。 '\\\\0'が一つバッファの中の最後の文字の後に書き込まれる。」 とあり、さらに 「fgets()は、成功するとsを返し、エラーや1文字も読み込んでいないのにファイルの終わりになった場合に NULL を返す。」 とあります。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:595
 msgid "ATSでの宣言を見てみましょう。コメントをたくさん入れてみました。"
-msgstr ""
+msgstr "ATSでの宣言を見てみましょう。コメントをたくさん入れてみました。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:605
@@ -1099,6 +1216,15 @@ msgid ""
 "    {n:nat | n < sz} {l:addr | l <> null}\n"
 "      fgets_v_succ(sz, l, l) of strbuf(sz, n) @ l\n"
 msgstr ""
+"~~~ {.ocaml}\n"
+"(* fgets_vはfgetsの結果である成功か失敗を表わします。\n"
+" *)\n"
+"dataview fgets_v (sz:int, addr, addr) =\n"
+"  | (* 成功した場合、lアドレスは長さnの文字列を格納している\n"
+"     * サイズszの文字列バッファでしょう。\n"
+"     *)\n"
+"    {n:nat | n < sz} {l:addr | l <> null}\n"
+"      fgets_v_succ(sz, l, l) of strbuf(sz, n) @ l\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:609
@@ -1108,6 +1234,9 @@ msgid ""
 "    {l:addr}\n"
 "      fgets_v_fail(sz, l, null) of bytes(sz) @ l\n"
 msgstr ""
+"  | (* 失敗した場合、lアドレスは単にサイズszの空箱のはずです *)\n"
+"    {l:addr}\n"
+"      fgets_v_fail(sz, l, null) of bytes(sz) @ l\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:615
@@ -1119,6 +1248,11 @@ msgid ""
 "     *)\n"
 "    {count, sz:int | 0 < count; count <= sz}\n"
 msgstr ""
+"fun fgets\n"
+"    (* countは読み込むバイト数です。\n"
+"     * それはバッファのサイズであるsz以内でなければなりません。\n"
+"     *)\n"
+"    {count, sz:int | 0 < count; count <= sz}\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:618
@@ -1127,6 +1261,8 @@ msgid ""
 "    (* fmはファイルモードのための静的な種です。 *)\n"
 "    {m:fm}\n"
 msgstr ""
+"    (* fmはファイルモードのための静的な種です。 *)\n"
+"    {m:fm}\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:621
@@ -1135,6 +1271,8 @@ msgid ""
 "    (* lはバッファのアドレスを示す依存型です。 *)\n"
 "    {l:addr}\n"
 msgstr ""
+"    (* lはバッファのアドレスを示す依存型です。 *)\n"
+"    {l:addr}\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:636
@@ -1155,6 +1293,20 @@ msgid ""
 "    (* l'は返値のポインタを指示します。 *)\n"
 "    [l':addr]\n"
 msgstr ""
+"    ( (* ファイルモードが読み出しアクセスを含んでいることの証明。 *)\n"
+"      pf_mod: file_mode_lte(m, r),\n"
+"      (* szバイトの列がlに存在することに対する線形論理の証明。 *)\n"
+"      pf_buf: bytes(sz) @ l\n"
+"    | (* lアドレスによって指示されるポインタを引数に取る。 *)\n"
+"      s: ptr(l),\n"
+"      (* 読み込む最大のバイト数を引数に取る。  *)\n"
+"      size: int(count),\n"
+"      (* モードmによってオープンされたFILE構造体への参照を引数に取る。 *)\n"
+"      stream: &FILE(m)\n"
+"    )\n"
+"  :<>\n"
+"    (* l'は返値のポインタを指示します。 *)\n"
+"    [l':addr]\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:647
@@ -1171,6 +1323,16 @@ msgid ""
 "  \"fgets\"\n"
 "~~~\n"
 msgstr ""
+"    ( (* pf_bufは消費され、ここでl'に一致する変化を形成します。 *)\n"
+"      (* pf_buf is consumed, and this determines what it turns into\n"
+"       * according to l'.\n"
+"       *)\n"
+"      fgets_v(sz, l, l')\n"
+"    | (* l'で示すポインタを返します。 *)\n"
+"      ptr(l')\n"
+"    ) =\n"
+"  \"fgets\"\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:654
@@ -1179,7 +1341,7 @@ msgid ""
 "lang/code/trunk/libc/SATS/stdio.sats)  を元にしています。 わずかな修正と多く"
 "のコメントによる注釈が加えてあります。 はじめて見る人には明確には思えないかも"
 "しれません。 いくつかポイントがあります。"
-msgstr ""
+msgstr "この例はATS/Anariatsの [libc/SATS/stdio.sats](https://svn.code.sf.net/p/ats-lang/code/trunk/libc/SATS/stdio.sats)  を元にしています。 わずかな修正と多くのコメントによる注釈が加えてあります。 はじめて見る人には明確には思えないかもしれません。 いくつかポイントがあります。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:657
@@ -1187,7 +1349,7 @@ msgid ""
 "実際のバッファサイズ(静的な変数sz)がfgets()が使用するサイズ(静的な変数count)"
 "よりも大きいことを許可しています。これはlibc/SATS/stdio.satsにおけるfgetsで定"
 "式化されています。しかしfgets()にバッファを全て使わないようには強制しません。"
-msgstr ""
+msgstr "実際のバッファサイズ(静的な変数sz)がfgets()が使用するサイズ(静的な変数count)よりも大きいことを許可しています。これはlibc/SATS/stdio.satsにおけるfgetsで定式化されています。しかしfgets()にバッファを全て使わないようには強制しません。"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:657
@@ -1200,12 +1362,12 @@ msgid ""
 "エラーのチェックに飽き飽きすることもあるでしょう。そんな時はlibc/SATS/stdio."
 "satsで定義されている例外を使うバージョンであるfgets_exn()を使うこともできま"
 "す。"
-msgstr ""
+msgstr "fgets()がNULLではない値を返す場合、以前と同じポインタを返さなければなりません。しかもそのポインタはstrbufによって解釈を与えれていて、文字列バッファはゼロ終端されています。そうでない場合、同じく bytes(sz) @ l が返ります。fgets()の結果の種別を見分ける唯一の方法は、if式でそのポインタがNULLであるのかチェックすることです。もしあなたがチェックを見逃したら、型エラーになります。しかしエラーのチェックに飽き飽きすることもあるでしょう。そんな時はlibc/SATS/stdio.satsで定義されている例外を使うバージョンであるfgets_exn()を使うこともできます。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:659
 msgid "参考のために、上記のコードからコメントを削除したものを載せておきます。"
-msgstr ""
+msgstr "参考のために、上記のコードからコメントを削除したものを載せておきます。"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:666
@@ -1218,6 +1380,12 @@ msgid ""
 "  | {l:addr}\n"
 "      fgets_v_fail(sz, l, null) of bytes(sz) @ l\n"
 msgstr ""
+"~~~ {.ocaml}\n"
+"dataview fgets_v (sz:int, addr, addr) =\n"
+"  | {n:nat | n < sz} {l:addr | l <> null}\n"
+"      fgets_v_succ(sz, l, l) of strbuf(sz, n) @ l\n"
+"  | {l:addr}\n"
+"      fgets_v_fail(sz, l, null) of bytes(sz) @ l\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:675
@@ -1232,16 +1400,24 @@ msgid ""
 "  \"fgets\"\n"
 "~~~\n"
 msgstr ""
+"fun fgets\n"
+"    {n, sz:int | 0 < n; n <= sz} {m:fm} {l:addr} (\n"
+"      pf_mod: file_mode_lte(m, r), pf_buf: bytes(sz) @ l\n"
+"    | s: ptr(l), size: int(n), stream: &FILE(m))\n"
+"  :<>\n"
+"    [l':addr] (fgets_v(sz, l, l') | ptr(l')) =\n"
+"  \"fgets\"\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-12-23-ml_guide_to_ats.md:677
 msgid "## この文書のTODO"
-msgstr ""
+msgstr "## この文書のTODO"
 
 #. type: Bullet: '* '
 #: posts/2013-12-23-ml_guide_to_ats.md:678
 msgid "fn (再帰なし) と fun (再帰あり) の比較との終端の計測"
-msgstr ""
+msgstr "fn (再帰なし) と fun (再帰あり) の比較との終端の計測"
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:5
