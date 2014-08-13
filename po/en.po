@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2014-06-02 21:41+0900\n"
+"POT-Creation-Date: 2014-08-13 20:27+0900\n"
 "PO-Revision-Date: 2014-05-12 11:04+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1487,7 +1487,7 @@ msgstr ""
 #: posts/2014-05-11-functional_lt.md:5
 #, no-wrap
 msgid ""
-"title: Metasepi作戦会議 第14回 議事録\n"
+"title: スタート! ATSプログラミング\n"
 "description: マイコンATSプログラミングのお披露目でゲッソ\n"
 "tags: meeting, ats, arduino\n"
 "---\n"
@@ -1496,10 +1496,10 @@ msgstr ""
 #. type: Plain text
 #: posts/2014-05-11-functional_lt.md:13
 msgid ""
-"Metasepi作戦会議 第14回を [関数型LT大会](http://connpass.com/event/5795/)  で"
-"開催したでゲソ。 今回はATSプログラミングの練習として、8ビットのハーバード・"
-"アーキテクチャである [Arduino Mega 2560](http://arduino.cc/en/Main/"
-"ArduinoBoardMega2560)  上で動くLチカデモをATS言語で書いてみたでゲソ。"
+"マイコンATSプログラミングのデモを [関数型LT大会](http://connpass.com/"
+"event/5795/)  で披露したでゲソ。 今回はATSプログラミングの練習として、8ビット"
+"のハーバード・アーキテクチャである [Arduino Mega 2560](http://arduino.cc/en/"
+"Main/ArduinoBoardMega2560)  上で動くLチカデモをATS言語で書いてみたでゲソ。"
 msgstr ""
 
 #. type: Plain text
