@@ -91,10 +91,9 @@ main = hakyll $ do
   match "index.html" $ do
     route idRoute
     compile $ do
-      let indexCtxJa = field "posts_ja" $ \_ -> postList tags "posts/*.md" $ fmap (take 3) . recentFirst
-          indexCtxEn = field "posts_en" $ \_ -> postList tags "en/posts/*.md" $ fmap (take 3) . recentFirst
+      let indexCtxEn = field "posts_en" $ \_ -> postList tags "en/posts/*.md" $ fmap (take 5) . recentFirst
       getResourceBody
-        >>= applyAsTemplate (indexCtxJa `mappend` indexCtxEn)
+        >>= applyAsTemplate indexCtxEn
         >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
         >>= relativizeUrls
 
