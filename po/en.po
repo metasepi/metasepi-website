@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2014-08-13 20:27+0900\n"
-"PO-Revision-Date: 2014-08-17 15:25+0900\n"
+"PO-Revision-Date: 2014-08-17 17:56+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -1466,7 +1466,7 @@ msgid ""
 "現在このページではATS言語の概要説明と [翻訳ドキュメント置き場](https://"
 "github.com/jats-ug/translate/blob/master/index.md)  へのリンクぐらいしかない"
 "でゲソ。 とりあえず年内はドキュメント翻訳に力を入れたいと思っているでゲソ。"
-msgstr "Today, the web page only has the summary of ATS language and the link to [translated documents](https://github.com/jats-ug/translate/blob/master/index.md). We will focus translating ATS documents into Japanese, through the end of this year."
+msgstr "Today, the web page only has the summary of ATS language and the link to [translated documents](https://github.com/jats-ug/translate/blob/master/README.md). We will focus translating ATS documents into Japanese, through the end of this year."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:27
@@ -1553,7 +1553,7 @@ msgstr ""
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:68
 msgid "## 一通のメール"
-msgstr "An E-mail"
+msgstr "## An E-mail"
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:71
@@ -1564,7 +1564,9 @@ msgstr "While thinking such things, I got an E-mail from ATS language author."
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:74
 msgid "~~~ Date: Mon Dec 23 11:40 JST 2013"
-msgstr "~~~ Date: Mon Dec 23 11:40 JST 2013"
+msgstr ""
+"~~~\n"
+"Date: Mon Dec 23 11:40 JST 2013"
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:76
@@ -1646,7 +1648,9 @@ msgstr "Cheers,"
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:121
 msgid "--Hongwei ~~~"
-msgstr "--Hongwei ~~~"
+msgstr ""
+"--Hongwei\n"
+"~~~"
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:124
@@ -1654,6 +1658,8 @@ msgid ""
 "なんかワシが言いたいことを全部先取りされてしまったでゲソ。 これも中国四千年の"
 "重みという奴かもしれないじゃなイカ。"
 msgstr ""
+"Umm... What I want to say is preoccupied by him.\n"
+"This may be caused by weight of long china history."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:141
@@ -1674,6 +1680,21 @@ msgid ""
 "がJohnの心をささえることができるのか。 それがHaskellの組み込み応用という分野"
 "に高くそびえたつ冷たい壁なんじゃなイカ？"
 msgstr ""
+"Jhc Haskell compiler also has a good future.\n"
+"ATS's type is safe, but not rich such like Haskell's.\n"
+"Haskell has type class.\n"
+"I think that ATS can't write code that has higher order representation such like Haskell.\n"
+"That is to say, ATS may not be good to write application that use the representation.\n"
+"Haskell's issue is that the representation strongly depends on GHC language implementation.\n"
+"There is no future on GHC growing to be good for system programming.\n"
+"On the other hand, how about jhc?\n"
+"No, it's good for system programming, but can't use most of the representation.\n"
+"So, jhc is currently Haskell implementation that imposes writing a code such like ATS's on programmer.\n"
+"If the issue is relieved, we can dramatically expand Haskell language's application range.\n"
+"Problem is who can pay huge man-hours to be needed for research/design/develop/debug them.\n"
+"While even genius such as John gets tired, who can try to solve the challenging problem?\n"
+"In another way, who can support John's mind?\n"
+"That is, the [high-solid wall](http://www.haaretz.com/life/arts-leisure/always-on-the-side-of-the-egg-1.270371) on Haskell for embedded."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:145
@@ -1683,6 +1704,10 @@ msgid ""
 "信じて](http://www.utamap.com/showkasi.php?surl=B11852)。 メリークリスマス! "
 "でゲソ。"
 msgstr ""
+"However, this should be a positive step.\n"
+"[While seeing the sunset](https://www.youtube.com/watch?v=ZTe_jhynoCE),\n"
+"[I belive having new sunlight tomorrow.](http://lyrics.wikia.com/%E6%9D%B1%E4%BA%AC%E4%BA%8B%E5%A4%89_%28Tokyo_Jihen%29:%E8%90%BD%E6%97%A5)\n"
+"And, Merry Christmas! De-gesso."
 
 #. type: Plain text
 #: posts/2014-05-11-functional_lt.md:5
