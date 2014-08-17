@@ -23,12 +23,20 @@ main = hakyll $ do
       >>= relativizeUrls
 
   tags <- buildTags "posts/*.md" (fromCapture "tags/*.html" . map toLower)
+  tagsEn <- buildTags "en/posts/*.md" (fromCapture "en/tags/*.html" . map toLower)
 
-  match ("posts/*.md" .||. "en/posts/*.md") $ do
+  match ("posts/*.md") $ do
     route $ setExtension "html"
     compile $ pandocCompilerWith defaultHakyllReaderOptions pandocOptions
       >>= loadAndApplyTemplate "templates/post.html"    (postCtx tags)
       >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
+      >>= relativizeUrls
+
+  match ("en/posts/*.md") $ do
+    route $ setExtension "html"
+    compile $ pandocCompilerWith defaultHakyllReaderOptions pandocOptions
+      >>= loadAndApplyTemplate "templates/post.html"    (postCtx tagsEn)
+      >>= loadAndApplyTemplate "templates/default.html" (postCtx tagsEn)
       >>= relativizeUrls
 
   create ["posts.html"] $ do
@@ -47,7 +55,7 @@ main = hakyll $ do
         route idRoute
         compile $ do
             let archiveCtx =
-                  field "posts" (\_ -> postList tags "en/posts/*.md" recentFirst) `mappend`
+                  field "posts" (\_ -> postList tagsEn "en/posts/*.md" recentFirst) `mappend`
                   constField "title" "Blog posts (English)"              `mappend`
                   defaultContext
             makeItem ""
@@ -62,6 +70,20 @@ main = hakyll $ do
     route idRoute
     compile $ do
       list <- postList tags pattern recentFirst
+      makeItem ""
+        >>= loadAndApplyTemplate "templates/posts.html"
+                (constField "title" title `mappend`
+                    constField "posts" list `mappend`
+                    defaultContext)
+        >>= loadAndApplyTemplate "templates/default.html" defaultContext
+        >>= relativizeUrls
+
+  tagsRules tagsEn $ \tag pattern -> do
+    let title = "Posts tagged " ++ tag
+    -- Copied from posts, need to refactor
+    route idRoute
+    compile $ do
+      list <- postList tagsEn pattern recentFirst
       makeItem ""
         >>= loadAndApplyTemplate "templates/posts.html"
                 (constField "title" title `mappend`
@@ -91,10 +113,10 @@ main = hakyll $ do
   match "index.html" $ do
     route idRoute
     compile $ do
-      let indexCtxEn = field "posts_en" $ \_ -> postList tags "en/posts/*.md" $ fmap (take 5) . recentFirst
+      let indexCtxEn = field "posts_en" $ \_ -> postList tagsEn "en/posts/*.md" $ fmap (take 5) . recentFirst
       getResourceBody
         >>= applyAsTemplate indexCtxEn
-        >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
+        >>= loadAndApplyTemplate "templates/default.html" (postCtx tagsEn)
         >>= relativizeUrls
 
   match "templates/*" $ compile templateCompiler
