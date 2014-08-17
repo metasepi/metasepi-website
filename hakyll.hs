@@ -44,7 +44,7 @@ main = hakyll $ do
         compile $ do
             let archiveCtx =
                   field "posts" (\_ -> postList tags "posts/*.md" recentFirst) `mappend`
-                  constField "title" "Blog posts (Japanese)"              `mappend`
+                  constField "title" "Blog posts (Old & Japanese)"              `mappend`
                   defaultContext
             makeItem ""
                 >>= loadAndApplyTemplate "templates/posts.html" archiveCtx
@@ -56,7 +56,7 @@ main = hakyll $ do
         compile $ do
             let archiveCtx =
                   field "posts" (\_ -> postList tagsEn "en/posts/*.md" recentFirst) `mappend`
-                  constField "title" "Blog posts (English)"              `mappend`
+                  constField "title" "Blog posts"              `mappend`
                   defaultContext
             makeItem ""
                 >>= loadAndApplyTemplate "templates/posts.html" archiveCtx
@@ -99,7 +99,7 @@ main = hakyll $ do
                       `mappend` defaultContext
                       `mappend` constField "description" "This is the post description"
       posts <- fmap (take 10) . recentFirst =<< loadAll "posts/*"
-      renderAtom (feedConfiguration {feedTitle = "Metasepi Blog (Japanese)"}) feedCtx posts
+      renderAtom (feedConfiguration {feedTitle = "Metasepi Blog (Old & Japanese)"}) feedCtx posts
 
   create ["rss_en.xml"] $ do
     route idRoute
@@ -108,7 +108,7 @@ main = hakyll $ do
                       `mappend` defaultContext
                       `mappend` constField "description" "This is the post description"
       posts <- fmap (take 10) . recentFirst =<< loadAll "en/posts/*"
-      renderAtom (feedConfiguration {feedTitle = "Metasepi Blog (English)"}) feedCtx posts
+      renderAtom (feedConfiguration {feedTitle = "Metasepi Blog"}) feedCtx posts
 
   match "index.html" $ do
     route idRoute
