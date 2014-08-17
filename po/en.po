@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2014-08-13 20:27+0900\n"
-"PO-Revision-Date: 2014-08-17 17:56+0900\n"
+"PO-Revision-Date: 2014-08-17 19:21+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -1718,6 +1718,10 @@ msgid ""
 "tags: meeting, ats, arduino\n"
 "---\n"
 msgstr ""
+"title: Start! ATS programming\n"
+"description: First try to run ATS code on tiny MCU\n"
+"tags: meeting, ats, arduino\n"
+"---\n"
 
 #. type: Plain text
 #: posts/2014-05-11-functional_lt.md:13
@@ -1727,6 +1731,10 @@ msgid ""
 "のハーバード・アーキテクチャである [Arduino Mega 2560](http://arduino.cc/en/"
 "Main/ArduinoBoardMega2560)  上で動くLチカデモをATS言語で書いてみたでゲソ。"
 msgstr ""
+"I demonstrated ATS code running on tiny MCU at [Functional lightning talk](http://connpass.com/event/5795/).\n"
+"The demo blinks LED as my first ATS training, and runs on\n"
+"[Arduino Mega 2560](http://arduino.cc/en/Main/ArduinoBoardMega2560)\n"
+"that is 8-bit Harvard architecture."
 
 #. type: Plain text
 #: posts/2014-05-11-functional_lt.md:19
@@ -1736,6 +1744,10 @@ msgid ""
 "ろ!」という意見もあるかもしれないじゃなイカ。 改善案があったらその理由と一緒"
 "に [ワシまで連絡](https://twitter.com/masterq_mogumog)  してほしいでゲソー。"
 msgstr ""
+"[7th page of the slide](http://www.slideshare.net/master_q/20140511-start-ats/7)\n"
+"explains where ATS language is positioned in functional languages.\n"
+"I think someone has the other opinion.\n"
+"If you have better idea, please [teach me](https://twitter.com/masterq_mogumog). De-gesso."
 
 #. type: Plain text
 #: posts/2014-05-11-functional_lt.md:21 posts/2014-03-01-osc-tokyo.md:42
@@ -1745,7 +1757,7 @@ msgstr ""
 #: posts/2013-11-24-osc-fukuoka-oita.md:22 posts/2013-09-16-osc2013-do.md:29
 #: posts/2013-04-22-travel_in_kyoto-u.md:29 posts/2013-11-10-kof2013.md:19
 msgid "## 発表資料"
-msgstr ""
+msgstr "## Slide"
 
 #. type: Plain text
 #: posts/2014-05-11-functional_lt.md:23
@@ -1759,23 +1771,23 @@ msgid ""
 "\" target=\"_blank\">Start! ATS programming</a> </strong> from <strong><a "
 "href=\"http://www.slideshare.net/master_q\" target=\"_blank\">Kiwamu Okabe</"
 "a></strong> </div>"
-msgstr ""
+msgstr "<iframe src=\"http://www.slideshare.net/slideshow/embed_code/34529495\" width=\"427\" height=\"356\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" style=\"border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;\" allowfullscreen> </iframe> <div style=\"margin-bottom:5px\"> <strong> <a href=\"https://www.slideshare.net/master_q/20140511-start-ats\" title=\"Start! ATS programming\" target=\"_blank\">Start! ATS programming</a> </strong> from <strong><a href=\"http://www.slideshare.net/master_q\" target=\"_blank\">Kiwamu Okabe</a></strong> </div>"
 
 #. type: Plain text
 #: posts/2014-05-11-functional_lt.md:25 posts/2014-03-01-osc-tokyo.md:56
 msgid "## デモソースコード"
-msgstr ""
+msgstr "## Demo source code"
 
 #. type: Bullet: '* '
 #: posts/2014-05-11-functional_lt.md:27
 msgid ""
 "[ATS programing on Arduino](https://github.com/fpiot/arduino-mega2560-ats)"
-msgstr ""
+msgstr "[ATS programing on Arduino](https://github.com/fpiot/arduino-mega2560-ats)"
 
 #. type: Bullet: '* '
 #: posts/2014-05-11-functional_lt.md:27
 msgid "[ATS programing on ChibiOS/RT](https://github.com/fpiot/chibios-ats)"
-msgstr ""
+msgstr "[ATS programing on ChibiOS/RT](https://github.com/fpiot/chibios-ats)"
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:5
