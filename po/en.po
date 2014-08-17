@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2014-08-13 20:27+0900\n"
-"PO-Revision-Date: 2014-08-13 23:08+0900\n"
+"PO-Revision-Date: 2014-08-17 15:25+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -1508,6 +1508,12 @@ msgid ""
 "るJohnはほとんど工数を払えていないでゲソ。 さらにAjhcには組み込み応用するため"
 "の技術的課題が山積しているじゃなイカ。 つまりProblemでゲソ。"
 msgstr ""
+"It's caused by much time to develop Ajhc.\n"
+"Haskell for embedded is a big challenge in itself.\n"
+"We need the challenge's success to attain the starting post to write kernel.\n"
+"Furthermore, John as upstream author of jhc doesn't develop jhc actively.\n"
+"There is many technical puzzles on ATS domain.\n"
+"It's the \"Problem\"."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:56
@@ -1519,6 +1525,12 @@ msgid ""
 "kernelを使っても似たようなもんだと思うでゲソ。 つまり、この2つは明らかにKeep"
 "じゃなイカ？"
 msgstr ""
+"On the other hand, Snatch-driven development method is relatively doing good.\n"
+"Result fully-applying the method to NetBSD kernel will not be obtained in the first iteration.\n"
+"However, We have found no underlying faults.\n"
+"And we can't perfectly decide that using NetBSD kernel as base platform is good.\n"
+"We think it causes same result while the other monolithic kernel is used.\n"
+"That is to say that these are clearly \"Keep\"."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:66
@@ -1531,32 +1543,38 @@ msgid ""
 "でに各種文書を翻訳して日本にATSコミュニティを築こうと思うのでゲソ。 これが次"
 "のイテレーションを開始するために必要な最初のTryでゲソ。"
 msgstr ""
+"What is \"Try\"?\n"
+"I wrote [the article](2013-12-23-ml_guide_to_ats.html), about ATS language has good behavior for embedded such like jhc.\n"
+"However, there are no Japanese infomation about ATS, and no communities about ATS in Japan...\n"
+"Things can't remain as they are.\n"
+"Then, I would like to construct an ATS community in Japan, while I learn ATS language.\n"
+"It's first \"Try\" to start our next iteration."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:68
 msgid "## 一通のメール"
-msgstr ""
+msgstr "An E-mail"
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:71
 msgid ""
 "そこーしているとATSの作者からメールが届いたじゃなイカ。 なになに？でゲソ。"
-msgstr ""
+msgstr "While thinking such things, I got an E-mail from ATS language author."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:74
 msgid "~~~ Date: Mon Dec 23 11:40 JST 2013"
-msgstr ""
+msgstr "~~~ Date: Mon Dec 23 11:40 JST 2013"
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:76
 msgid "Hi Metasepi-chan,"
-msgstr ""
+msgstr "Hi Metasepi-chan,"
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:78
 msgid "I spent quite some time today browsing metasepi.org."
-msgstr ""
+msgstr "I spent quite some time today browsing metasepi.org."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:85
@@ -1567,7 +1585,7 @@ msgid ""
 "ATS2. By the way, I had planned to use the very same approach which you call "
 "\"Snatch\". I had also considered Minix but I chose NetBSD because it was a "
 "real OS."
-msgstr ""
+msgstr "I am really interested in your Metasepi project, partly because I myself wanted to implement NetBSD in ATS about 5 years ago. Unfortunately, I never had time to get the project started as I needed to spend so much time on ATS2. By the way, I had planned to use the very same approach which you call \"Snatch\". I had also considered Minix but I chose NetBSD because it was a real OS."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:91
@@ -1577,7 +1595,7 @@ msgid ""
 "other hand, you also need to add features to Ajhc constantly to address all "
 "kinds of issues that keep popping up, which undoubtedly makes it very "
 "difficult for you to focus."
-msgstr ""
+msgstr "I think I know first-handedly the dilemma you are currently in.  On one hand, you want to be able to fully focus on writing the kernel.  On the other hand, you also need to add features to Ajhc constantly to address all kinds of issues that keep popping up, which undoubtedly makes it very difficult for you to focus."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:99
@@ -1589,7 +1607,7 @@ msgid ""
 "is to be compiled into. ATS is truly an ideal language for the kind of "
 "\"Snatch\" approach you want to take to re-write NetBSD. If you take the "
 "lead, then I will be happy to \"chip in\" :)"
-msgstr ""
+msgstr "I would highly recommend that you use ATS to implement NetBSD kernel.  Unlike jhc, there is no semantics gap between ATS and C. In particular, they both use the same native unboxed data representation.  Once you become familiar with ATS, you can readily visualize the C code that your ATS source is to be compiled into. ATS is truly an ideal language for the kind of \"Snatch\" approach you want to take to re-write NetBSD. If you take the lead, then I will be happy to \"chip in\" :)"
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:104
@@ -1598,7 +1616,7 @@ msgid ""
 "there is simply too much uncertainty to use it in real kernel "
 "implementation. Features like GC could make the kernel highly unpredictable, "
 "scaring away potential users."
-msgstr ""
+msgstr "I also spent some time reading documentation on jhc. Personally, I feel that there is simply too much uncertainty to use it in real kernel implementation. Features like GC could make the kernel highly unpredictable, scaring away potential users."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:111
@@ -1609,7 +1627,7 @@ msgid ""
 "kind of C programs he or she wanted to write in the first place. While jhc "
 "generates C code, the kind of C code it generates may not be suited for "
 "kernel. This is what I call a semantics gap."
-msgstr ""
+msgstr "I think that we both believe C is the right language for systems programming. The problem with C is that it is too difficult to write correct C programs. ATS is designed to allow the programmer to correctly write the kind of C programs he or she wanted to write in the first place. While jhc generates C code, the kind of C code it generates may not be suited for kernel. This is what I call a semantics gap."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:116
@@ -1618,17 +1636,17 @@ msgid ""
 "something that has not been done up to now: Writing a real kernel in "
 "(largely) functional style that can truly deliever safety-wise as well as "
 "performance-wise."
-msgstr ""
+msgstr "I write this message in the hope that we could join effort in doing something that has not been done up to now: Writing a real kernel in (largely) functional style that can truly deliever safety-wise as well as performance-wise."
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:118
 msgid "Cheers,"
-msgstr ""
+msgstr "Cheers,"
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:121
 msgid "--Hongwei ~~~"
-msgstr ""
+msgstr "--Hongwei ~~~"
 
 #. type: Plain text
 #: posts/2013-12-24-jats-ug.md:124
