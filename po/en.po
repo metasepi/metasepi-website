@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2014-08-13 20:27+0900\n"
-"PO-Revision-Date: 2014-08-17 19:21+0900\n"
+"PO-Revision-Date: 2014-08-17 20:36+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -2650,6 +2650,10 @@ msgid ""
 "tags: meeting, ajhc, ats, haskell, netbsd\n"
 "---\n"
 msgstr ""
+"title: Metasepi team meeting #13\n"
+"description: A debrief meeting of Arafura iteration\n"
+"tags: meeting, ajhc, ats, haskell, netbsd\n"
+"---\n"
 
 #. type: Plain text
 #: posts/2014-03-01-osc-tokyo.md:14
@@ -2661,6 +2665,11 @@ msgid ""
 "design_arafura.html)  が終わったので、イテレーションの振り返りと次のイテレー"
 "ションへの展望をざっくざっくとまとめたでゲッソ。"
 msgstr ""
+"We had \"Metasepi team meeting #13\" at\n"
+"[Open Source Conference 2014 Tokyo/Spring](http://www.ospn.jp/osc2014-spring/).\n"
+"At this meeting, I talked about rewriting NetBSD's sound driver with Haskell language and Ajhc compiler.\n"
+"Also, we looked back on the iteration and had future plan of our next iteration,\n"
+"because [Arafura](2013-01-09-design_arafura.html) as Metasepi's first itelation is done."
 
 #. type: Plain text
 #: posts/2014-03-01-osc-tokyo.md:28
@@ -2687,11 +2696,13 @@ msgid ""
 "さて、 [以前にも説明した](2013-12-24-jats-ug.html) 通りArafuraイテレーション"
 "は終わろうとしているでゲソ。 次のイテレーションでのkernelデザインは"
 msgstr ""
+"Now, Arafura iteration is closing [as explained in past](2013-12-24-jats-ug.html).\n"
+"Kernel design is in our next iteration:"
 
 #. type: Plain text
 #: posts/2014-03-01-osc-tokyo.md:33
 msgid "「NetBSD kernelをATSコンパイラを用いてスナッチ設計する」"
-msgstr ""
+msgstr "\"Rewrite NetBSD kernel using ATS2 compiler, with Snatch-driven development stype.\""
 
 #. type: Plain text
 #: posts/2014-03-01-osc-tokyo.md:40
@@ -2702,12 +2713,18 @@ msgid ""
 "ソ。 さっそく型の力できれいな海を取り戻そうじゃなイカ! そしてもちろんBohaiは"
 "ATSの作者である [Hongwei](http://www.cs.bu.edu/~hwxi/) の故郷でゲソー。"
 msgstr ""
+"We decide to name the new iteration as [Bohai](http://en.wikipedia.org/wiki/Bohai_Sea).\n"
+"Bohai (渤海) is the innermost gulf of the Yellow Sea on the coast of Northeastern and North China.\n"
+"However I hear that marine pollution occurs in the sea today.\n"
+"Let's clean up it immediately!\n"
+"And you know the sea is home of [Hongwei](http://www.cs.bu.edu/~hwxi/) as ATS language author.\n"
+"De-gesso."
 
 #. type: Plain text
 #: posts/2014-03-01-osc-tokyo.md:44
 msgid ""
 "### Metasepi team meeting #13: NetBSD driver using Haskell - @masterq_teokure"
-msgstr ""
+msgstr "### Metasepi team meeting #13: NetBSD driver using Haskell - masterq_teokure"
 
 #. type: Plain text
 #: posts/2014-03-01-osc-tokyo.md:46
@@ -2722,39 +2739,39 @@ msgid ""
 "\"_blank\">Metasepi team meeting #13: NetBSD driver using Haskell</a> </"
 "strong> from <strong><a href=\"http://www.slideshare.net/master_q\" target="
 "\"_blank\">Kiwamu Okabe</a></strong> </div>"
-msgstr ""
+msgstr "<iframe src=\"http://www.slideshare.net/slideshow/embed_code/31790906\" width=\"427\" height=\"356\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" style=\"border:1px solid #CCC; border-width:1px 1px 0; margin-bottom:5px; max-width: 100%;\" allowfullscreen> </iframe> <div style=\"margin-bottom:5px\"> <strong> <a href=\"https://www.slideshare.net/master_q/metasepi-team-meeting-13-netbsd-driver-using-haskell\" title=\"Metasepi team meeting #13: NetBSD driver using Haskell\" target=\"_blank\">Metasepi team meeting #13: NetBSD driver using Haskell</a> </strong> from <strong><a href=\"http://www.slideshare.net/master_q\" target=\"_blank\">Kiwamu Okabe</a></strong> </div>"
 
 #. type: Plain text
 #: posts/2014-03-01-osc-tokyo.md:48 posts/2014-01-18-mbed_fest.md:52
 #: posts/2013-11-10-kof2013.md:29
 msgid "## 発表動画"
-msgstr ""
+msgstr "## Presentation Video"
 
 #. type: Plain text
 #: posts/2014-03-01-osc-tokyo.md:50
 msgid ""
 "<iframe width=\"560\" height=\"350\" src=\"//www.youtube.com/embed/"
 "Nt-4XIL1J1c\" frameborder=\"0\" allowfullscreen></iframe>"
-msgstr ""
+msgstr "<iframe width=\"560\" height=\"350\" src=\"//www.youtube.com/embed/Nt-4XIL1J1c\" frameborder=\"0\" allowfullscreen></iframe>"
 
 #. type: Plain text
 #: posts/2014-03-01-osc-tokyo.md:52 posts/2013-10-20-osc2013-tokyo.md:35
 msgid "## デモ動画"
-msgstr ""
+msgstr "## Demo Video"
 
 #. type: Plain text
 #: posts/2014-03-01-osc-tokyo.md:54
 msgid ""
 "<iframe width=\"420\" height=\"315\" src=\"//www.youtube.com/embed/"
 "XEYcR5RG5cA\" frameborder=\"0\" allowfullscreen></iframe>"
-msgstr ""
+msgstr "<iframe width=\"420\" height=\"315\" src=\"//www.youtube.com/embed/XEYcR5RG5cA\" frameborder=\"0\" allowfullscreen></iframe>"
 
 #. type: Plain text
 #: posts/2014-03-01-osc-tokyo.md:58
 msgid ""
 "[https://github.com/metasepi/netbsd-arafura-s1](https://github.com/metasepi/"
 "netbsd-arafura-s1)"
-msgstr ""
+msgstr "[https://github.com/metasepi/netbsd-arafura-s1](https://github.com/metasepi/netbsd-arafura-s1)"
 
 #. type: Plain text
 #: posts/2014-03-01-osc-tokyo.md:60 posts/2014-01-17-11th_wocs2.md:32
@@ -2765,14 +2782,14 @@ msgstr ""
 #: posts/2014-01-10-prosym55.md:25 posts/2013-11-10-kof2013.md:35
 #: posts/2013-02-03-kickoff_meeting.md:68
 msgid "## 会議の雰囲気"
-msgstr ""
+msgstr "## Scene Photographs"
 
 #. type: Plain text
 #: posts/2014-03-01-osc-tokyo.md:63
 msgid ""
 "![](/img/20140301_R1098839.jpg)  ![](/img/20140301_R1098837.jpg)  ![](/"
 "img/20140301_R1098840.jpg)"
-msgstr ""
+msgstr "![](/img/20140301_R1098839.jpg)  ![](/img/20140301_R1098837.jpg)  ![](/img/20140301_R1098840.jpg)"
 
 #. type: Plain text
 #: posts/2013-01-31-jhc_internal_overview.md:5
