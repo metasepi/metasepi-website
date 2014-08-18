@@ -22,7 +22,7 @@ Additionally, Hello World program binary compiled by ATS is very small as
 
 ~~~
 $ cat hello.dats
-val _void_ = print ("Hello, world!\n")
+val _ = print ("Hello, world!\n")
 implement main () = ()
 $ atscc -o hello hello.dats
 $ ./hello
