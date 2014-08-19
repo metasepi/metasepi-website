@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2014-08-13 20:27+0900\n"
-"PO-Revision-Date: 2014-08-17 21:41+0900\n"
+"PO-Revision-Date: 2014-08-19 20:57+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -116,7 +116,7 @@ msgid ""
 msgstr ""
 "~~~\n"
 "$ cat hello.dats\n"
-"val _void_ = print (\"Hello, world!\\n\")\n"
+"val _ = print (\"Hello, world!\\n\")\n"
 "implement main () = ()\n"
 "$ atscc -o hello hello.dats\n"
 "$ ./hello\n"
@@ -4391,6 +4391,10 @@ msgid ""
 "tags: meeting, ajhc, ats, rust, mbed\n"
 "---\n"
 msgstr ""
+"title: Metasepi team meeting #9\n"
+"description: Let's prefetch Internet of Things (IoT) using functional language!\n"
+"tags: meeting, ajhc, ats, rust, mbed\n"
+"---\n"
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:10
@@ -4399,6 +4403,8 @@ msgid ""
 "(http://partake.in/events/ab56454b-c305-4f3b-b8ce-872871ab7da9)  というのを"
 "やってみたでゲソ。"
 msgstr ""
+"We had [Functional MCU programming training using mbedβ](http://partake.in/events/ab56454b-c305-4f3b-b8ce-872871ab7da9)\n"
+"as \"Metasepi team meeting #9\"."
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:26
@@ -4424,6 +4430,23 @@ msgid ""
 "ユーザの多い名古屋でβ版を開催しようということになったのでゲソ。 この講習会は"
 "続けて開催する予定で、今回はその準備編ということになるんじゃなイカ。"
 msgstr ""
+"Do you know [Internet of Things (IoT)](http://en.wikipedia.org/wiki/Internet_of_Things)?\n"
+"People advocating IoT would like to let non-descriptive things collect data on the location or behave more intelligentially, with injecting MCU into the things such like basketball.\n"
+"Gartner Says [\"the Internet of Things Installed Base Will Grow to 26 Billion Units By 2020\"](http://www.gartner.com/newsroom/id/2636073),\n"
+"then IoT is a big market while dollar amount may be inaccurate.\n"
+"However, rich OS such like Linux can't run on IoT device,\n"
+"because the device should be very inexpensive.\n"
+"Furthermore, it talks Bluetooth and Wifi to connect the internet.\n"
+"We need to get less runtime errors on the complex device,\n"
+"because it's hard to debug after published.\n"
+"I think we satisfy both of less man-hours and less runtime errors,\n"
+"as my research that design it using strongly typed language.\n"
+"Then, how about launch \"Functional language + MCU programming\" community,\n"
+"while Ajhc has unknown to solve the claim.\n"
+"To build Functional MCU programming training course for the community,\n"
+"we held beta version the course at [Nagoya](http://en.wikipedia.org/wiki/Nagoya)\n"
+"in where many functional programmer live.\n"
+"There is a plan to hold the courses continuously."
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:29
@@ -4432,21 +4455,24 @@ msgid ""
 "語の選択肢はイカのようでゲソ。 今年はそれぞれの言語処理系の評価をして、"
 "Arafuraより後のイテレーションに何れを採用するか見当をつけたいでゲソ。"
 msgstr ""
+"By the way, There is following choice to be statically typed functional programming language can do MCU programming.\n"
+"This year, we would like to survey each languages,\n"
+"and decide to employ which language after Arafura iteration."
 
 #. type: Bullet: '* '
 #: posts/2014-01-05-mbed_fp_0.md:33
 msgid "[Ajhc](http://ajhc.metasepi.org/)"
-msgstr ""
+msgstr "[Ajhc](http://ajhc.metasepi.org/)"
 
 #. type: Bullet: '* '
 #: posts/2014-01-05-mbed_fp_0.md:33
 msgid "[ATS](http://www.ats-lang.org/)"
-msgstr ""
+msgstr "[ATS](http://www.ats-lang.org/)"
 
 #. type: Bullet: '* '
 #: posts/2014-01-05-mbed_fp_0.md:33
 msgid "[Rust](http://www.rust-lang.org/)"
-msgstr ""
+msgstr "[Rust](http://www.rust-lang.org/)"
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:43
@@ -4458,6 +4484,12 @@ msgid ""
 "でゲソー! それにしてもAjhcをはじめた時はjhcしか処理系の候補がなかったのに、 "
 "今は3つも選択肢があるとは嬉しい悲鳴という奴じゃなイカ。"
 msgstr ""
+"Ajhc is the result of our own research.\n"
+"ATS is under survey on [the user group launched the other day](2013-12-24-jats-ug.html).\n"
+"For Rust, [\\@pirapira](https://twitter.com/pirapira) has a idea reading RSS of [Rust 'n Stuffs](http://cmr.github.io/), because developing speed of the Rust is very fast.\n"
+"Thank's a lot!\n"
+"Anyway, we have three choices today, while Ajhc is only hope when Ajhc project was started\n"
+"How shriek of joy!"
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:52
@@ -4468,6 +4500,10 @@ msgid ""
 "会参加者のコワーキングスペース利用料金を [ITプランニング](http://www.itpl.co."
 "jp/)  殿に援助してもらったでゲソ。うれしいじゃなイカー。ありがとうでゲッソ!"
 msgstr ""
+"We took on the [basecamp NAGOYA](http://basecamp-nagoya.jp/) for this meeting.\n"
+"[The stuff blog posts about this meeting.](http://basecamp-nagoya.jp/blog/entry-794.html)\n"
+"Also, usage fee on this meeting is paid by [IT Planning, Inc.](http://www.itpl.co.jp/en/)\n"
+"So happy and thank's!"
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:56
@@ -4482,12 +4518,12 @@ msgid ""
 "\">Functional MCU programming #0: Development environment</a> </strong> from "
 "<strong><a href=\"http://www.slideshare.net/master_q\" target=\"_blank"
 "\">Kiwamu Okabe</a></strong> </div>"
-msgstr ""
+msgstr "<iframe src=\"http://www.slideshare.net/slideshow/embed_code/29698577\" width=\"427\" height=\"356\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" style=\"border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px\" allowfullscreen> </iframe> <div style=\"margin-bottom:5px\"> <strong> <a href=\"https://www.slideshare.net/master_q/functional-mcu-programming-0-development-environment\" title=\"Functional MCU programming #0: Development environment\" target=\"_blank\">Functional MCU programming #0: Development environment</a> </strong> from <strong><a href=\"http://www.slideshare.net/master_q\" target=\"_blank\">Kiwamu Okabe</a></strong> </div>"
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:58
 msgid "## 発表音声"
-msgstr ""
+msgstr "## Sound recording at the meeting"
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:60
@@ -4496,24 +4532,24 @@ msgid ""
 "src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/"
 "tracks/128115689&amp;color=ff6600&amp;auto_play=false&amp;show_artwork=true"
 "\"></iframe>"
-msgstr ""
+msgstr "<iframe width=\"100%\" height=\"166\" scrolling=\"no\" frameborder=\"no\" src=\"https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/128115689&amp;color=ff6600&amp;auto_play=false&amp;show_artwork=true\"></iframe>"
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:62
 msgid "## 旅の情報 (名古屋)"
-msgstr ""
+msgstr "## Travel Guide (Nagoya)"
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:64
 msgid ""
 "この講習会は名古屋で続けて開催する予定なので、詳しく旅の情報を記録しておこう"
 "と思うでゲソ。"
-msgstr ""
+msgstr "This travel guide may be useful, because we will have many meeting at Nagoya."
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:66
 msgid "### 交通"
-msgstr ""
+msgstr "### Methods of transport"
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:71
@@ -4522,11 +4558,15 @@ msgid ""
 "www.bushikaku.net/)  から検索すれば 東京→名古屋 を片道2000円程度で移動できる"
 "でゲソ。 ただし、年末年始は相場が高めだったでゲソ...盲点だっだじゃなイカ。"
 msgstr ""
+"Highway express bus is inexpensive method to trip Nagoya from Tokyo.\n"
+"Using [夜行バス比較なび](http://www.bushikaku.net/),\n"
+"you can find ticket 2000 yen per one way.\n"
+"However, there are no inexpensive ticket during the year change period."
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:73
 msgid "### 宿"
-msgstr ""
+msgstr "### Hotel"
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:81
@@ -4537,11 +4577,15 @@ msgid ""
 "は、、、まぁ可も不可もない感じでゲソ。 カプセルの中に電源がないので注意が必要"
 "でゲソ。"
 msgstr ""
+"I always find hotel on [じゃらんnet](http://www.jalan.net/).\n"
+"In Nagoya, [カプセルイン名古屋](http://www.jalan.net/yad335292/plan/) is lowest price as 2500 yen per night.\n"
+"Quality of the hotel is .... so not bad.\n"
+"Note capsule room in the hotel has no power resource."
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:83
 msgid "### 朝、温泉に入りたい"
-msgstr ""
+msgstr "### Hot spring early morning"
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:89
@@ -4551,11 +4595,15 @@ msgid ""
 "は土日祝日にかぎって朝6時から開いているので、おすすめでゲソー。 タオルが有料"
 "なので持参すべきでゲソ。"
 msgstr ""
+"After exiting highway express bus, I would like to take a bath.\n"
+"[太閤天然温泉　湯吉郎](http://www.toukichirou.com/index.html) open since 6.00 a.m. on Saturday and Sunday,\n"
+"however the hot spring is far away from Nagoya station.\n"
+"Note you should have your own towel, because there are no free towels in the hot spring."
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:91
 msgid "### スタバでもくもく"
-msgstr ""
+msgstr "### Hack place"
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:95
@@ -4564,11 +4612,15 @@ msgid ""
 "search/detail.php?id=389)  でゲソ。たいだい電源があり、夜22:30ぐらいまで開い"
 "ているようでゲソ。 作業場所に困ることはなさそうでゲソ。"
 msgstr ""
+"There are many Starbucks Coffee shops\n"
+"[around Sakae](http://www.starbucks.co.jp/store/search/detail.php?id=389).\n"
+"These shop almost have power resource, and open until 22:30 p.m.\n"
+"You will have no trouble to find hack place."
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:97
 msgid "### マルツパーツ"
-msgstr ""
+msgstr "### Electronic components store"
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:110
@@ -4584,6 +4636,12 @@ msgid ""
 "japan.co.jp/web/jp/catalog/tools/PF254044)  はマイナーなボードだったようでゲ"
 "ソ。。。"
 msgstr ""
+"There is [マルツパーツ館　名古屋小田井店](http://www.marutsu.co.jp/nagoyaotai/) as only electronic components store at Nagoya.\n"
+"^[[\\@ytsuboi say](https://twitter.com/ytsuboi/status/420159418789924864) [\"There are many shop around Osu.\"](http://osu-ameyoko.co.jp/?page_id=272)]\n"
+"Many single-board computers are on ground floor.\n"
+"I found [STM32F4DISCOVERY](http://www.st.com/web/jp/catalog/tools/FM116/SC959/SS1532/PF252419)\n"
+"and [STM32VLDISCOVERY](http://www.st.com/web/jp/catalog/tools/FM116/SC959/SS1532/PF250863).\n"
+"[STM32F3DISCOVERY](http://www.st-japan.co.jp/web/jp/catalog/tools/PF254044) as first target board on Ajhc project may be not popular..."
 
 #. type: Plain text
 #: posts/2014-01-05-mbed_fp_0.md:117
@@ -4591,7 +4649,7 @@ msgid ""
 "![](/img/20140105_mbed_fp_meeting.jpg)  ![](/img/20140105_R1098744.jpg)  ![]"
 "(/img/20140105_R1098746.jpg)  ![](/img/20140105_R1098739.jpg)  ![](/"
 "img/20140105_R1098741.jpg)"
-msgstr ""
+msgstr "![](/img/20140105_mbed_fp_meeting.jpg)  ![](/img/20140105_R1098744.jpg)  ![](/img/20140105_R1098746.jpg)  ![](/img/20140105_R1098739.jpg)  ![](/img/20140105_R1098741.jpg)"
 
 #. type: Plain text
 #: posts/2013-02-13-ocamlopt.md:5
