@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2014-08-13 20:27+0900\n"
-"PO-Revision-Date: 2014-08-20 20:25+0900\n"
+"PO-Revision-Date: 2014-08-20 20:37+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -11967,6 +11967,10 @@ msgid ""
 "tags: meeting, ajhc, mbed, android\n"
 "---\n"
 msgstr ""
+"title: Metasepi team meeting #10\n"
+"description: Let's promote Metasepi at the programming symposium!\n"
+"tags: meeting, ajhc, mbed, android\n"
+"---\n"
 
 #. type: Plain text
 #: posts/2014-01-10-prosym55.md:10
@@ -11974,6 +11978,8 @@ msgid ""
 "Metasepi作戦会議 第10回を [「第55回プログラミング・シンポジウム」](http://"
 "www.ipsj.or.jp/prosym/55/55CFA.html)  にて開催したでゲソ。"
 msgstr ""
+"We had \"Metasepi team meeting #10\" at\n"
+"[Programming Symposium #55](http://www.ipsj.or.jp/prosym/55/55CFA.html)."
 
 #. type: Plain text
 #: posts/2014-01-10-prosym55.md:14
@@ -11982,6 +11988,9 @@ msgid ""
 "フトウェア研究者には宣伝してこなかったでゲソ。 今年は研究ドメインへの宣伝を増"
 "やすためにまずはプロシンに行ってみたのでゲソ。"
 msgstr ""
+"In the past, we have promoted Metasepi for software developers.\n"
+"However, not for software researchers.\n"
+"Then, I tried to join Programming Symposium for it."
 
 #. type: Plain text
 #: posts/2014-01-10-prosym55.md:19
@@ -11991,11 +12000,14 @@ msgid ""
 "twitter.com/mzp) 殿にかなり念入りな推敲をしてもらったじゃなイカ。 この場を通"
 "じで感謝でゲッソ!"
 msgstr ""
+"I wrote a paper with only 2 pages.\n"
+"This paper is reviewed by [\\@mzp](https://twitter.com/mzp) with meticulous care.\n"
+"Thank's a lot, mzp!"
 
 #. type: Plain text
 #: posts/2014-01-10-prosym55.md:21
 msgid "## 論文"
-msgstr ""
+msgstr "## Paper (in Japanese)"
 
 #. type: Plain text
 #: posts/2014-01-10-prosym55.md:23
@@ -12007,7 +12019,7 @@ msgstr ""
 msgid ""
 "![](/img/20140110_poster3.jpg)  ![](/img/20140110_poster2.jpg)  ![](/"
 "img/20140110_poster1.jpg)"
-msgstr ""
+msgstr "![](/img/20140110_poster3.jpg)  ![](/img/20140110_poster2.jpg)  ![](/img/20140110_poster1.jpg)"
 
 #. type: Plain text
 #: posts/2013-01-12-jhc_manual_ja.md:5
