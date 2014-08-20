@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2014-08-13 20:27+0900\n"
-"PO-Revision-Date: 2014-08-20 20:37+0900\n"
+"PO-Revision-Date: 2014-08-20 21:46+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -1798,13 +1798,17 @@ msgid ""
 "tags: haskell, ajhc, project\n"
 "---\n"
 msgstr ""
+"title: Metasepi 2013: going year and comming year\n"
+"description: Debrief Metasepi movement this year, and envision next year.\n"
+"tags: haskell, ajhc, project\n"
+"---\n"
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:10
 msgid ""
 "この記事は [Haskell Advent Calendar 2013 - Qiita [キータ]](http://qiita.com/"
 "advent-calendar/2013/haskell)  の12/21(土曜)分じゃなイカ。"
-msgstr ""
+msgstr "This article is a part of [Haskell Advent Calendar 2013 - Qiita [キータ]](http://qiita.com/advent-calendar/2013/haskell)."
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:17
@@ -1815,11 +1819,15 @@ msgid ""
 "カ？ また何をするのにどれぐらい工数がかかったのか覚えておくと後で役に立つかも"
 "しれないでゲソ。"
 msgstr ""
+"This year is tumultuous one for us.\n"
+"We started Metasepi project, and publish the first product as [Ajhc Haskell compiler](http://ajhc.metasepi.org/).\n"
+"Let's debrief this year, and envision next year.\n"
+"Also, it will be useful later remembering man-hour what is needed to do something."
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:19
 msgid "## 2012年12月"
-msgstr ""
+msgstr "## December 2012"
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:29
@@ -1834,6 +1842,16 @@ msgid ""
 "を持つことを知ったのでゲソ。 これはいいじゃなイカ! とC83 λカ娘にはその希望だ"
 "けにおわせておいたでゲソ。"
 msgstr ""
+"Last year, I surveyed GHC runtime internal.\n"
+"That is, I write article for [Functional Ikamusume Book C83](http://www.paraiso-lang.org/ikmsm/books/c83.html).\n"
+"I was deeply despairing of GHC application for embedded system, in this survey.\n"
+"At the time, my experience reading language internal source code was only GHC.\n"
+"If every language implementation having type inference was such like GHC,\n"
+"I think it cannot be used out of POSIX.\n"
+"However, I found [Jhc Haskell Compiler](http://repetae.net/computer/jhc/) by accident,\n"
+"and knew the runtime is very small.\n"
+"This is a good language implementation, isn't it?\n"
+"I wrote some about jhc on Functional Ikamusume Book C83 article."
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:33
@@ -1842,6 +1860,8 @@ msgid ""
 "(http://www.paraiso-lang.org/ikmsm/books/c84-sample.pdf)  の文章が頭に舞い降"
 "りたんでゲソ。"
 msgstr ""
+"In the night worked up C83 article,\n"
+"my head got [prologue of the article \"Measepi Foundation\"](http://www.paraiso-lang.org/ikmsm/books/c84-sample.pdf), like a shot."
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:42
@@ -1856,6 +1876,14 @@ msgid ""
 "Author: Kiwamu Okabe <kiwamu@debian.or.jp>\n"
 "Date:   Mon Dec 24 18:37:54 2012 +0900\n"
 msgstr ""
+"~~~\n"
+"$ pwd\n"
+"/home/kiwamu/doc/IKMSM/C84\n"
+"$ git log -p\n"
+"--snip--\n"
+"commit 7e43651b93631caa192bb7097126f9ce4735f060\n"
+"Author: Kiwamu Okabe <kiwamu@debian.or.jp>\n"
+"Date:   Mon Dec 24 18:37:54 2012 +0900\n"
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:45
@@ -1864,6 +1892,8 @@ msgid ""
 "    About metasepi.\n"
 "~~~\n"
 msgstr ""
+"    About metasepi.\n"
+"~~~\n"
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:48
@@ -1872,6 +1902,9 @@ msgid ""
 "タートしたんでゲソ。 まさしくDDD(同人誌 - ドリブン - デベロップメント)じゃな"
 "イカ!"
 msgstr ""
+"I wrote prologue and epilogue of the article at once,\n"
+"so Metasepi development was started to fill body of it.\n"
+"It's exactly the DDD (Doujinshi Driven Development)."
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:50 posts/2013-12-21-yuku-kuru.md:78
@@ -1882,37 +1915,37 @@ msgstr ""
 #: posts/2013-12-21-yuku-kuru.md:271 posts/2013-12-21-yuku-kuru.md:288
 #: posts/2013-12-21-yuku-kuru.md:305
 msgid "_やったことリスト_"
-msgstr ""
+msgstr "_List of things done"
 
 #. type: Bullet: '* '
 #: posts/2013-12-21-yuku-kuru.md:54
 msgid ""
 "[C84 λカ娘](http://www.paraiso-lang.org/ikmsm/books/c84.html) の原稿作成開始"
-msgstr ""
+msgstr "Start to write article for [Functional Ikamusume Book C84](http://www.paraiso-lang.org/ikmsm/books/c84.html)"
 
 #. type: Bullet: '* '
 #: posts/2013-12-21-yuku-kuru.md:54
 msgid "jhcのソースコード読み開始"
-msgstr ""
+msgstr "Start to read source code of the jhc internal"
 
 #. type: Bullet: '* '
 #: posts/2013-12-21-yuku-kuru.md:54
 msgid ""
 "[NetBSD bootloaderの一部をHaskell化](https://gitorious.org/metasepi/netbsd-"
 "arafura/activities)できた"
-msgstr ""
+msgstr "[Rewrite a part of NetBSD bootloader with Haskell](https://gitorious.org/metasepi/netbsd-arafura/activities)"
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:56
 msgid ""
 "[![若いころの John Meacham](http://repetae.net/pictures/me_tree_small.jpg)]"
 "(http://repetae.net/)"
-msgstr ""
+msgstr "[![John Meacham during his youth](http://repetae.net/pictures/me_tree_small.jpg)](http://repetae.net/)"
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:58
 msgid "## 2013年1月"
-msgstr ""
+msgstr "## January 2013"
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:69
@@ -1926,6 +1959,13 @@ msgid ""
 "には理解できていないでゲソ。。。 この日本語訳は今では [Ajhcのホームページの中"
 "に置かれている](http://ajhc.metasepi.org/manual_ja.html)  でゲソ。"
 msgstr ""
+"In these days, I did nothing but touched jhc source code, and knew the design a little.\n"
+"But I also understood it's not good to read the code without any documents,\n"
+"and translated [Jhc User's Manual](http://repetae.net/computer/jhc/manual.html) into Japanese with \n"
+"[\\@dif_engine](https://twitter.com/dif_engine)'s help.\n"
+"Clearly, this document is not for jhc compiler user!\n"
+"It explains the type system on latter half, and isn't perfectly understood by me today.\n"
+"Today, the translated manual is found at [Ajhc website](http://ajhc.metasepi.org/manual_ja.html)"
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:76
