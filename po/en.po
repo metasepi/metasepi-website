@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2014-08-13 20:27+0900\n"
-"PO-Revision-Date: 2014-08-19 20:57+0900\n"
+"PO-Revision-Date: 2014-08-20 20:25+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -3133,6 +3133,10 @@ msgid ""
 "tags: meeting, ajhc, mbed, haskell\n"
 "---\n"
 msgstr ""
+"title: Metasepi team meeting #11\n"
+"description: Let's set out on a tour of what's on corporate researcher's mind\n"
+"tags: meeting, ajhc, mbed, haskell\n"
+"---\n"
 
 #. type: Plain text
 #: posts/2014-01-17-11th_wocs2.md:10
@@ -3140,6 +3144,8 @@ msgid ""
 "Metasepi作戦会議 第11回を [「第11回クリティカルソフトウェアワークショップ」]"
 "(http://stage.tksc.jaxa.jp/jedi/event/20140115.html)  にて開催したでゲソ。"
 msgstr ""
+"We had \"Metasepi team meeting #11\" at\n"
+"[\"11th Workshop of Critical Software Systems(11thWOCS2)\"](http://stage.tksc.jaxa.jp/jedi/en/event/20140115.html)."
 
 #. type: Plain text
 #: posts/2014-01-17-11th_wocs2.md:16
@@ -3150,6 +3156,11 @@ msgid ""
 "見られなかったでゲソ。 それだけ現場で即使えるような手法が求められている、とい"
 "うことのようでゲソ。"
 msgstr ""
+"At Metasepi team meeting #10, we promoted Metasepi for university researcher.\n"
+"This time, I would like to promote it for corporate researcher.\n"
+"However, people at this workshop mainly discuss pure software-design process,\n"
+"and nobody discuss programming language as us.\n"
+"I think they need method that is ready-to-use on their job site."
 
 #. type: Plain text
 #: posts/2014-01-17-11th_wocs2.md:21
@@ -3161,6 +3172,14 @@ msgid ""
 "ソ。 「マイコンボードで動かしました」レベルではなく、どこかのドメインで実用に"
 "なるような技術をMetasepiは早く産み出す必要があるんじゃなイカ？"
 msgstr ""
+"But there is also a problem that is solved by us.\n"
+"Because we have only chosen \"C language + design method to support the language\"\n"
+"as facile solution in the past, software engineer is luckless today.\n"
+"To fix it, we should choose some fitting languages to be good for system programming, \n"
+"as chose C language instead of assembler\n"
+"Also Metasepi project should produce some practical technologies for some real domains,\n"
+"as soon as possible.\n"
+"\"It can run on MCU\" still isn't enough to do it."
 
 #. type: Plain text
 #: posts/2014-01-17-11th_wocs2.md:26
@@ -3170,6 +3189,8 @@ msgid ""
 "「型」の差異について、 明確に説明できるようになっておくべきだということが学習"
 "できたでゲソ。"
 msgstr ""
+"By the way, many corporate researchers associate [Ada](http://en.wikipedia.org/wiki/Ada_(programming_language)) with \"strongly typed language\".\n"
+"I know we should clearly explain difference between \"type \" of languages having type inference and of such like Ada."
 
 #. type: Plain text
 #: posts/2014-01-17-11th_wocs2.md:30
@@ -3183,13 +3204,13 @@ msgid ""
 "strong type\" target=\"_blank\">How to rewrite the OS using C by strong "
 "type</a> </strong> from <strong><a href=\"http://www.slideshare.net/master_q"
 "\" target=\"_blank\">Kiwamu Okabe</a></strong> </div>"
-msgstr ""
+msgstr "<iframe src=\"http://www.slideshare.net/slideshow/embed_code/29107727\" width=\"427\" height=\"356\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" style=\"border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px\" allowfullscreen> </iframe> <div style=\"margin-bottom:5px\"> <strong> <a href=\"https://www.slideshare.net/master_q/20140117-11th-wocs2\" title=\"How to rewrite the OS using C by strong type\" target=\"_blank\">How to rewrite the OS using C by strong type</a> </strong> from <strong><a href=\"http://www.slideshare.net/master_q\" target=\"_blank\">Kiwamu Okabe</a></strong> </div>"
 
 #. type: Plain text
 #: posts/2014-01-17-11th_wocs2.md:34
 msgid ""
 "![](/img/20140117_11th_wocs2_1.png)  ![](/img/20140117_11th_wocs2_2.png)"
-msgstr ""
+msgstr "![](/img/20140117_11th_wocs2_1.png)  ![](/img/20140117_11th_wocs2_2.png)"
 
 #. type: Plain text
 #: posts/2012-12-22-jhc.md:5
