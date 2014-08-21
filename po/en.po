@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2014-08-13 20:27+0900\n"
-"PO-Revision-Date: 2014-08-20 21:46+0900\n"
+"PO-Revision-Date: 2014-08-21 15:19+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -1981,32 +1981,41 @@ msgid ""
 "\"Arafura\"と呼ばれることになるでゲソ。 Arafuraを実現するためのjhcの拡張、つ"
 "まりarafura-jhcという名前にその後変遷することになるでゲソ。"
 msgstr ""
+"Also in these days, I got a idea to rewrite C language implementation using Haskell language little by little.\n"
+"Of course, it's hardly possible that the kernel partly rewrited with Haskell can't run.\n"
+"There is a big problem that most compiler of functional language can't handle reentrant code,\n"
+"and can't write hardware interrupt handler with Haskell.\n"
+"However, we decided to anyway build jhc into reentrant compiler,\n"
+"as used to rewrite C language implementation.\n"
+"After that, the design method is called \"Snatch\",\n"
+"and the design that apply Snatch method with Ajhc to NetBSD kernel is called \"Arafura\".\n"
+"An extension of jhc to make Arafura come true is called \"arafura-jhc\"."
 
 #. type: Bullet: '* '
 #: posts/2013-12-21-yuku-kuru.md:81
 msgid ""
 "[Arafuraイテレーション](http://metasepi.org/posts/2013-01-09-design_arafura."
 "html)開始"
-msgstr ""
+msgstr "Start [Arafura iteration](http://metasepi.org/posts/2013-01-09-design_arafura.html)"
 
 #. type: Bullet: '* '
 #: posts/2013-12-21-yuku-kuru.md:81
 msgid ""
 "[jhcユーザーズマニュアル日本語訳](http://metasepi.org/posts/2013-01-12-"
 "jhc_manual_ja.html)"
-msgstr ""
+msgstr "[Jhc User's Manual translated into Japanese](http://metasepi.org/posts/2013-01-12-jhc_manual_ja.html)"
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:83
 msgid ""
 "[![デザインArafura](/draw/2012-12-27-arafura_design.png)](http://metasepi."
 "org/posts/2013-01-09-design_arafura.html)"
-msgstr ""
+msgstr "[![Arafura design](/draw/2012-12-27-arafura_design.png)](http://metasepi.org/posts/2013-01-09-design_arafura.html)"
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:85
 msgid "## 2013年2月"
-msgstr ""
+msgstr "## February 2013"
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:91
@@ -2016,6 +2025,11 @@ msgid ""
 "の効果はほとんどなかったということでゲソ。 2つ目はjhcの作者であるJohnのメール"
 "やpatchに対する反応が悪かったことでゲソ。"
 msgstr ""
+"In these days, I felt frustration.\n"
+"There were two causes of it.\n"
+"First, there were not any feedback,\n"
+"while we had a briefing session about the Metasepi project.\n"
+"Second, John Meacham didn't actively reply our mail and patch."
 
 #. type: Plain text
 #: posts/2013-12-21-yuku-kuru.md:99
