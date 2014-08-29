@@ -223,12 +223,12 @@ ul.path {
 */
 
 #main-content {
-  width: 690px;
+  width: 550px;
   float: left;
 }
 
 aside#sidebar {
-  width: 250px;
+  width: 200px;
   padding-left: 20px;
   min-height: 504px;
   float: right;
