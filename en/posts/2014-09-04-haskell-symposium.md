@@ -1,14 +1,23 @@
 ---
 title: Metasepi team meeting #18
 description: It's showtime at Haskell Symposium 2014!
-tags: meeting, ajhc, netbsd
+tags: meeting, ajhc, netbsd, ats
 ---
 
 We had "Metasepi team meeting #18" at
 [Haskell Symposium 2014](http://www.haskell.org/haskell-symposium/2014/index.html).
 
-xxx
+I wrote the result of Arafure iteration into [a paper](/papers.html).
+And I talked about kernel programming in Haskell.
+However, I did not touch detail of kernel programming,
+and focused our Reentrant GC for real kernel programming.
+I hope many functional programmer are interested in kernel space real programming.
 
+And also, I have created
+[ATS programming demo on Arduino Mega 2560 + LCD](https://github.com/fpiot/arduino-mega2560-ats/tree/master/lcd_ats)
+during ICFP 2014.
+The demo doesn't use any GC and malloc.
+It's power of ATS's linear type.
 De-gesso.
 
 ## Slide
@@ -19,7 +28,7 @@ De-gesso.
 
 <iframe width="560" height="315" src="//www.youtube.com/embed/E30ZvEVExI0" frameborder="0" allowfullscreen></iframe>
 
-## Demo video
+## Demo video (ATS programming demo on Arduino Mega 2560 + LCD)
 
 <iframe width="420" height="315" src="//www.youtube.com/embed/5uPue0Jo1nc" frameborder="0" allowfullscreen></iframe>
 
