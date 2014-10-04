@@ -62,81 +62,89 @@
       </predecessors>
       <task id="12" name="Translate past entries" note="" work="1843200" start="20140526T170000Z" end="20140822T170000Z" work-start="20140527T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
     </task>
-    <task id="13" name="ATS Ethernet driver" note="" work="2016000" start="20140526T170000Z" end="20140901T170000Z" work-start="20140527T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <predecessors>
-        <predecessor id="1" predecessor-id="5" type="FS"/>
-      </predecessors>
-      <task id="14" name="Support mbed" note="" work="2016000" start="20140526T170000Z" end="20140901T170000Z" work-start="20140527T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
-    </task>
-    <task id="15" name="OSC@Nagoya" note="" work="0" start="20140704T000000Z" end="20140704T000000Z" work-start="20140704T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+    <task id="13" name="OSC@Nagoya" note="" work="0" start="20140704T000000Z" end="20140704T000000Z" work-start="20140704T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
       <constraint type="must-start-on" time="20140704T000000Z"/>
     </task>
-    <task id="16" name="OSC@Kansai" note="" work="0" start="20140801T000000Z" end="20140801T000000Z" work-start="20140801T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+    <task id="14" name="OSC@Kansai" note="" work="0" start="20140801T000000Z" end="20140801T000000Z" work-start="20140801T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
       <constraint type="must-start-on" time="20140801T000000Z"/>
     </task>
-    <task id="17" name="Haskell Symposium" note="" work="0" start="20140904T000000Z" end="20140904T000000Z" work-start="20140904T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+    <task id="15" name="Haskell Symposium" note="" work="0" start="20140904T000000Z" end="20140904T000000Z" work-start="20140904T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
       <constraint type="must-start-on" time="20140904T000000Z"/>
       <predecessors>
         <predecessor id="1" predecessor-id="11" type="FS"/>
       </predecessors>
     </task>
-    <task id="18" name="Web framework" note="" work="1440000" start="20140901T170000Z" end="20141110T170000Z" work-start="20140902T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="16" name="Setup to snatch Linux" note="" work="1526400" start="20140822T170000Z" end="20141105T170000Z" work-start="20140825T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
-        <predecessor id="1" predecessor-id="13" type="FS"/>
+        <predecessor id="1" predecessor-id="11" type="FS"/>
       </predecessors>
-      <task id="19" name="On POSIX" note="" work="432000" start="20140901T170000Z" end="20140922T170000Z" work-start="20140902T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
-      <task id="20" name="On mbed" note="" work="432000" start="20140922T170000Z" end="20141013T170000Z" work-start="20140923T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="17" name="Setup raspberrypi" note="" work="950400" start="20140822T170000Z" end="20141008T170000Z" work-start="20140825T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="18" name="Setup ATS config" note="" work="288000" start="20141008T170000Z" end="20141022T170000Z" work-start="20141009T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
-          <predecessor id="1" predecessor-id="19" type="FS"/>
+          <predecessor id="1" predecessor-id="17" type="FS"/>
         </predecessors>
       </task>
-      <task id="21" name="Wiki application" note="" work="576000" start="20141013T170000Z" end="20141110T170000Z" work-start="20141014T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="19" name="Choose snatch target" note="" work="288000" start="20141022T170000Z" end="20141105T170000Z" work-start="20141023T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
-          <predecessor id="1" predecessor-id="20" type="FS"/>
+          <predecessor id="1" predecessor-id="18" type="FS"/>
         </predecessors>
       </task>
     </task>
-    <task id="22" name="OSC@Tokyo" note="" work="0" start="20141018T000000Z" end="20141018T000000Z" work-start="20141020T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20141018T000000Z"/>
+    <task id="20" name="Lifegame on FSM-55" note="" work="1440000" start="20141105T170000Z" end="20150114T170000Z" work-start="20141106T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="16" type="FS"/>
+      </predecessors>
+      <task id="21" name="Snatch FSM-55" note="" work="432000" start="20141105T170000Z" end="20141126T170000Z" work-start="20141106T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="22" name="Lifegame on POSIX" note="" work="432000" start="20141126T170000Z" end="20141217T170000Z" work-start="20141127T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="21" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="23" name="Lifegame on FSM-55" note="" work="576000" start="20141217T170000Z" end="20150114T170000Z" work-start="20141218T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="22" type="FS"/>
+        </predecessors>
+      </task>
+    </task>
+    <task id="24" name="ATS Ethernet driver" note="" work="864000" start="20150114T170000Z" end="20150225T170000Z" work-start="20150115T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="20" type="FS"/>
       </predecessors>
+      <task id="25" name="Support mbed" note="" work="864000" start="20150114T170000Z" end="20150225T170000Z" work-start="20150115T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
     </task>
-    <task id="23" name="ATS snatches NetBSD" note="" work="864000" start="20141110T170000Z" end="20141222T170000Z" work-start="20141111T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="26" name="Web framework" note="" work="1440000" start="20150225T170000Z" end="20150506T170000Z" work-start="20150226T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
-        <predecessor id="1" predecessor-id="18" type="FS"/>
+        <predecessor id="1" predecessor-id="24" type="FS"/>
       </predecessors>
-      <task id="24" name="Setup raspberrypi" note="" work="432000" start="20141110T170000Z" end="20141201T170000Z" work-start="20141111T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
-      <task id="25" name="Choose snatch target" note="" work="288000" start="20141201T170000Z" end="20141215T170000Z" work-start="20141202T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="27" name="On POSIX" note="" work="432000" start="20150225T170000Z" end="20150318T170000Z" work-start="20150226T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="28" name="On mbed" note="" work="432000" start="20150318T170000Z" end="20150408T170000Z" work-start="20150319T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
-          <predecessor id="1" predecessor-id="24" type="FS"/>
+          <predecessor id="1" predecessor-id="27" type="FS"/>
         </predecessors>
       </task>
-      <task id="26" name="Setup ATS config" note="" work="144000" start="20141215T170000Z" end="20141222T170000Z" work-start="20141216T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-        <predecessors>
-          <predecessor id="1" predecessor-id="25" type="FS"/>
-        </predecessors>
-      </task>
-    </task>
-    <task id="27" name="ATS package manager" note="" work="633600" start="20141222T170000Z" end="20150121T170000Z" work-start="20141223T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <predecessors>
-        <predecessor id="1" predecessor-id="23" type="FS"/>
-      </predecessors>
-      <task id="28" name="Understand opam design" note="" work="432000" start="20141222T170000Z" end="20150112T170000Z" work-start="20141223T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
-      <task id="29" name="Get design for ATS" note="" work="201600" start="20150112T170000Z" end="20150121T170000Z" work-start="20150113T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="29" name="Wiki application" note="" work="576000" start="20150408T170000Z" end="20150506T170000Z" work-start="20150409T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
           <predecessor id="1" predecessor-id="28" type="FS"/>
         </predecessors>
       </task>
     </task>
-    <task id="30" name="Parsec on ATS" note="" work="576000" start="20150121T170000Z" end="20150218T170000Z" work-start="20150122T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <predecessors>
-        <predecessor id="1" predecessor-id="27" type="FS"/>
-      </predecessors>
+    <task id="30" name="OSC@Tokyo" note="" work="0" start="20141018T000000Z" end="20141018T000000Z" work-start="20141020T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20141018T000000Z"/>
     </task>
-    <task id="31" name="ATS Windows installer" note="" work="576000" start="20150218T170000Z" end="20150318T170000Z" work-start="20150219T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="31" name="ATS package manager" note="" work="633600" start="20150506T170000Z" end="20150605T170000Z" work-start="20150507T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
-        <predecessor id="1" predecessor-id="30" type="FS"/>
+        <predecessor id="1" predecessor-id="26" type="FS"/>
+      </predecessors>
+      <task id="32" name="Understand opam design" note="" work="432000" start="20150506T170000Z" end="20150527T170000Z" work-start="20150507T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="33" name="Get design for ATS" note="" work="201600" start="20150527T170000Z" end="20150605T170000Z" work-start="20150528T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <predecessors>
+          <predecessor id="1" predecessor-id="32" type="FS"/>
+        </predecessors>
+      </task>
+    </task>
+    <task id="34" name="Parsec on ATS" note="" work="576000" start="20150605T170000Z" end="20150703T170000Z" work-start="20150608T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="31" type="FS"/>
       </predecessors>
     </task>
   </tasks>
