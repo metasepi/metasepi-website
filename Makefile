@@ -40,12 +40,7 @@ server: all
 	./hakyll preview -p 9001
 
 publish: all
-	ssh sakura.masterq.net rm -rf ~/vhosts/_site ~/vhosts/_site.tar.gz
-	tar cfz _site.tar.gz _site
-	scp _site.tar.gz sakura.masterq.net:~/vhosts/
-	ssh sakura.masterq.net tar xfz ~/vhosts/_site.tar.gz -C ~/vhosts/
-	ssh sakura.masterq.net rm -rf ~/vhosts/metasepi
-	ssh sakura.masterq.net mv ~/vhosts/_site ~/vhosts/metasepi
+	cp -pr _site/* ~/doc/metasepi.github.io/
 
 lint: hakyll.hs
 	hlint -c hakyll.hs
