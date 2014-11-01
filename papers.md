@@ -6,6 +6,7 @@
 
 ## In Japanese
 
+* Kiwamu Okabe. [ATS言語を使って不変条件をAPIに強制する](doc/20141101_prosym_summer2014.pdf). [夏のプログラミング・シンポジウム 2014](http://prosym.github.io/sprosym2014/), 2014.
 * Kiwamu Okabe, Hiroki MIZUNO and Hidekazu SEGAWA. [強い型によるOSの開発手法の提案](doc/20140110_prosym55.pdf). [第55回プログラミング・シンポジウム](http://www.ipsj.or.jp/prosym/55/55CFA.html), 2014.
 
 # Technical Reports
