@@ -14,7 +14,7 @@
 * Design: Snatch NetBSD kernel using ATS
 * Product: Not yet
 * Demo: [ATS programing on Arduino](https://github.com/fpiot/arduino-mega2560-ats), [ATS programing on ChibiOS/RT](https://github.com/fpiot/chibios-ats), [ATS programing on mbed](https://github.com/fpiot/mbed-ats)
-* Paper: Not yet
+* Paper: ["ATS言語を使って不変条件をAPIに強制する"](/doc/20141101_prosym_summer2014.pdf)
 
 ### Arafura
 
@@ -23,7 +23,7 @@
 * Design: [Snatch NetBSD kernel using Ajhc Haskell compiler](en/posts/2013-01-09-design_arafura.html)
 * Product: [Ajhc Haskell compiler](http://ajhc.metasepi.org/)
 * Demo: [Application on Android NDK](https://github.com/ajhc/demo-android-ndk), [Application on Cortex-M3](https://github.com/ajhc/demo-cortex-m3), [Application on ChibiOS/RT](https://github.com/metasepi/chibios-arafura), [NetBSD kernel driver](https://github.com/metasepi/netbsd-arafura-s1)
-* Paper: [強い型によるOSの開発手法の提案(pdf)](/doc/20140110_prosym55.pdf)
+* Paper: ["強い型によるOSの開発手法の提案"](/doc/20140110_prosym55.pdf), ["Systems Demonstration: Writing NetBSD Sound Drivers in Haskell"](/doc/metasepi-icfp2014-demo.pdf)
 
 ## Five-Year Plans
 
