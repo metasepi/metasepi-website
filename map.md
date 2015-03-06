@@ -32,8 +32,9 @@
 
 ## Mind map
 
-<a href="http://www.flickr.com/photos/masterq/12087855036"><img alt="Map 2014/01/22" style="border-width:0" src="http://farm6.staticflickr.com/5534/12087855036_7c0e165b73_c.jpg" /></a>
+<a href="https://www.flickr.com/photos/masterq/16111135333/"><img alt="Map 2015/03/06" style="border-width:0" src="http://farm9.staticflickr.com/8624/16111135333_1d6265ab37_z_d.jpg" /></a>
 
 ### Old map
 
+* <a href="http://www.flickr.com/photos/masterq/12087855036">Map 2014/01/22</a>
 * <a href="http://www.flickr.com/photos/masterq/8379735651">Map 2013/01/14</a>
