@@ -1,7 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Data.Char     (toLower)
-import Data.Monoid   (mappend, mconcat)
 import Hakyll
 import Text.Pandoc
 
