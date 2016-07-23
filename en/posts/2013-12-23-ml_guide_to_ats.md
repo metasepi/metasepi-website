@@ -1,5 +1,5 @@
 ---
-title: "ML programmer's guide to ATS" translated into Japanese
+title: "ML programmer's guide to ATS translated into Japanese"
 description: Let's use the other language of Haskell for Snatch-deriven development!
 tags: ats, translation
 ---

@@ -1,5 +1,5 @@
 ---
-title: (作成中) Jhc compile pipeline: Grin => C
+title: '(作成中) Jhc compile pipeline: Grin => C'
 description: jhcコンパイルパイプラインの最後段をソースコードから理解してみるでゲソ
 tags: compiler, jhc, c, grin
 ---

@@ -1,5 +1,5 @@
 ---
-title: Jhc compile pipeline: Grin => C (code example)
+title: 'Jhc compile pipeline: Grin => C (code example)'
 description: jhcコンパイルパイプラインを後段から順番に読んでいかなイカ？
 tags: compiler, jhc, c, grin
 ---
