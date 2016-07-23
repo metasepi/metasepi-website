@@ -24,16 +24,16 @@ all: ${PNGS} ${PDFS} build
           unoconv -f pdf -o $@.tmp $<
 	mv $@.tmp $@
 
-updatepo: ${JPOSTS}
-	po4a-updatepo -M utf8 -f text ${OPT_UPDATEPO} -p po/en.po
+#updatepo: ${JPOSTS}
+#	po4a-updatepo -M utf8 -f text ${OPT_UPDATEPO} -p po/en.po
 
-en/posts/%.md: posts/%.md po/en.po
-	po4a-translate -M utf8 -f text -m $< -p po/en.po -l $@
+#en/posts/%.md: posts/%.md po/en.po
+#	po4a-translate -M utf8 -f text -m $< -p po/en.po -l $@
 
 hakyll: hakyll.hs
 	ghc --make -Wall -Werror hakyll.hs -o hakyll
 
-build: hakyll ${EPOSTS}
+build: hakyll # ${EPOSTS}
 	./hakyll build
 
 server: all
