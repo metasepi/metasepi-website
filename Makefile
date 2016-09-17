@@ -1,5 +1,5 @@
-ODGS := $(wildcard draw/*.odg)
-PNGS := $(patsubst %.odg,%.png,${ODGS})
+ODGS := $(wildcard draw/*.dia)
+PNGS := $(patsubst %.dia,%.png,${ODGS})
 DOCS := $(wildcard doc/*.doc)
 PDFS := $(patsubst %.doc,%.pdf,${DOCS})
 
@@ -9,13 +9,16 @@ OPT_UPDATEPO := $(patsubst %.md,-m %.md,${JPOSTS})
 
 all: ${PNGS} ${PDFS} build
 
-%.png: %.odg
-	unoconv -n -f png -o $@.tmp $< 2> /dev/null   || \
-          unoconv -f png -o $@.tmp $<                 || \
-	  unoconv -n -f png -o $@.tmp $< 2> /dev/null || \
-          unoconv -f png -o $@.tmp $<
-	convert -resize 500x $@.tmp $@
-	rm -f $@.tmp
+#%.png: %.odg
+#	unoconv -n -f png -o $@.tmp $< 2> /dev/null   || \
+#          unoconv -f png -o $@.tmp $<                 || \
+#	  unoconv -n -f png -o $@.tmp $< 2> /dev/null || \
+#          unoconv -f png -o $@.tmp $<
+#	convert -resize 500x $@.tmp $@
+#	rm -f $@.tmp
+
+%.png: %.dia
+	dia -t png -e $@ $<
 
 %.pdf: %.doc
 	unoconv -n -f pdf -o $@.tmp $< 2> /dev/null   || \
