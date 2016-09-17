@@ -12,7 +12,7 @@
 * Phase: Learning
 * Language: [ATS](http://www.ats-lang.org/)
 * Design: Snatch NetBSD kernel using ATS
-* Product: Not yet
+* Product: [c2ats](https://github.com/metasepi/c2ats)
 * Demo: [ATS programing on Arduino](https://github.com/fpiot/arduino-mega2560-ats), [ATS programing on ChibiOS/RT](https://github.com/fpiot/chibios-ats), [ATS programing on mbed](https://github.com/fpiot/mbed-ats)
 * Paper: ["ATS言語を使って不変条件をAPIに強制する"](/doc/20141101_prosym_summer2014.pdf)
 
