@@ -18,5 +18,6 @@
 
 ## Technical Reports
 
+* Kiwamu Okabe. [C言語ヘッダからのATS言語関数シグニチャの自動生成と段階的な線形型の導入](doc/ppl2017_ats_kiwamuokabe.pdf), 2017.
 * Kiwamu Okabe. [ATS言語による組込アプケーションの検証](doc/WOCS2_13th_kiwamu_okabe.pdf). [第13回クリティカルソフトウェアワークショップ](https://www.ipa.go.jp/sec/events/20160119.html), 2015.
 * Kiwamu Okabe. [めたせぴ☆ふぁうんでーしょん](doc/c84-metasepi-foundation-ja.pdf). [簡約!? λカ娘 Go!](http://www.paraiso-lang.org/ikmsm/books/c84.html), 2013.
