@@ -40,7 +40,7 @@ build: hakyll # ${EPOSTS}
 	./hakyll build
 
 server: all
-	./hakyll preview -p 9001
+	./hakyll preview
 
 publish: all
 	cp -pr _site/* ~/doc/metasepi.github.io/
