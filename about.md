@@ -16,10 +16,18 @@ Finally, study the actual results before closing the iteration.
 
 ![](img/200px-PDCA_Cycle.svg.png)
 
+## What is Chiers design?
+
+3rd code name of a Metasepi's design.
+And it's a river which runs at home of [Bart Jacobs](https://distrinet.cs.kuleuven.be/people/bartj) as the author of [VeriFast verifier](https://people.cs.kuleuven.be/~bart.jacobs/verifast/).
+Detail of Chiers design is found at [Map page](map.html#chiers).
+
+![](img/Chiers_river.png)
+
 ## What is Bohai design?
 
 2nd code name of a Metasepi's design.
-And home of [Hongwei Xi](http://www.cs.bu.edu/~hwxi/) as the author of [ATS Programming Language](http://www.ats-lang.org/).
+And it's a sea on home of [Hongwei Xi](http://www.cs.bu.edu/~hwxi/) as the author of [ATS Programming Language](http://www.ats-lang.org/).
 Detail of Bohai design is found at [Map page](map.html#bohai).
 
 ![](img/Bohaiseamap2.png)

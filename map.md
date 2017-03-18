@@ -2,10 +2,20 @@
 
 ## Gantt chart
 
-* Metasepi Bohai Plan / [html](/plan/metasepi-bohai.html), [planner](/plan/metasepi-bohai.planner)
+* Metasepi Bohai/Chiers Plan / [html](/plan/metasepi-chiers-bohai.html), [planner](/plan/metasepi-chiers-bohai.planner)
+* Metasepi Bohai Plan (old) / [html](/plan/metasepi-bohai.html), [planner](/plan/metasepi-bohai.planner)
 * Metasepi Arafura Plan (old) / [html](/plan/metasepi-arafura.html), [planner](/plan/metasepi-arafura.planner)
 
 ## Iterations
+
+### Chiers
+
+* Phase: Learning
+* Language: [C](https://en.wikipedia.org/wiki/C_(programming_language))
+* Design: Apply annotation to NetBSD kernel using [VeriFast](https://people.cs.kuleuven.be/~bart.jacobs/verifast/)
+* Product: None
+* Demo: [Verify sample application on ChibiOS/RT using VeriFast](https://github.com/fpiot/chibios-verifast)
+* Paper: None
 
 ### Bohai
 
@@ -14,7 +24,7 @@
 * Design: Snatch NetBSD kernel using ATS
 * Product: [c2ats](https://github.com/metasepi/c2ats)
 * Demo: [ATS programing on Arduino](https://github.com/fpiot/arduino-mega2560-ats), [ATS programing on ChibiOS/RT](https://github.com/fpiot/chibios-ats), [ATS programing on mbed](https://github.com/fpiot/mbed-ats)
-* Paper: ["ATS言語を使って不変条件をAPIに強制する"](/doc/20141101_prosym_summer2014.pdf)
+* Paper: ["ATS言語を使って不変条件をAPIに強制する"](/doc/20141101_prosym_summer2014.pdf), ["Arduino programing of ML-style in ATS"](/doc/metasepi-icfp2015-arduino-ats.pdf)
 
 ### Arafura
 
