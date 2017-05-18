@@ -108,62 +108,62 @@
         <predecessor id="1" predecessor-id="14" type="FS"/>
       </predecessors>
     </task>
-    <task id="19" name="&#x9759;&#x7684;&#x30B3;&#x30FC;&#x30C9;&#x89E3;&#x6790;&#x306E;&#x4F1A; #5 @&#x5317;&#x6D77;&#x9053;" note="" work="0" start="20170716T000000Z" end="20170716T000000Z" work-start="20170717T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20170716T000000Z"/>
-      <predecessors>
-        <predecessor id="1" predecessor-id="31" type="FS"/>
-      </predecessors>
-    </task>
-    <task id="20" name="Work on FreeRTOS" note="" work="576000" start="20170201T000000Z" end="20170228T170000Z" work-start="20170201T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
-    <task id="21" name="Setup FreeRTOS environment" note="" work="0" start="20170301T000000Z" end="20170301T000000Z" work-start="20170301T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+    <task id="19" name="Work on FreeRTOS" note="" work="576000" start="20170201T000000Z" end="20170228T170000Z" work-start="20170201T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+    <task id="20" name="Setup FreeRTOS environment" note="" work="0" start="20170301T000000Z" end="20170301T000000Z" work-start="20170301T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
       <constraint type="must-start-on" time="20170301T000000Z"/>
       <predecessors>
-        <predecessor id="1" predecessor-id="20" type="FS"/>
+        <predecessor id="1" predecessor-id="19" type="FS"/>
       </predecessors>
     </task>
-    <task id="22" name="Secure OS prototype1" note="" work="1209600" start="20170228T170000Z" end="20170427T170000Z" work-start="20170301T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="21" name="Secure OS prototype1" note="" work="1209600" start="20170228T170000Z" end="20170427T170000Z" work-start="20170301T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
-        <predecessor id="1" predecessor-id="20" type="FS"/>
+        <predecessor id="1" predecessor-id="19" type="FS"/>
       </predecessors>
     </task>
-    <task id="23" name="Demo meeting" note="" work="0" start="20170428T000000Z" end="20170428T000000Z" work-start="20170428T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+    <task id="22" name="Demo meeting" note="" work="0" start="20170428T000000Z" end="20170428T000000Z" work-start="20170428T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
       <constraint type="must-start-on" time="20170428T000000Z"/>
       <predecessors>
-        <predecessor id="1" predecessor-id="22" type="FS"/>
+        <predecessor id="1" predecessor-id="21" type="FS"/>
       </predecessors>
     </task>
-    <task id="24" name="Secure OS prototype2" note="" work="1324800" start="20170427T170000Z" end="20170630T170000Z" work-start="20170428T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="23" name="Secure OS prototype2" note="" work="1324800" start="20170427T170000Z" end="20170630T170000Z" work-start="20170428T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
-        <predecessor id="1" predecessor-id="22" type="FS"/>
+        <predecessor id="1" predecessor-id="21" type="FS"/>
       </predecessors>
     </task>
-    <task id="25" name="Secure OS prototype3" note="" work="1238400" start="20170630T170000Z" end="20170830T170000Z" work-start="20170703T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="24" name="Secure OS prototype3" note="" work="1238400" start="20170630T170000Z" end="20170830T170000Z" work-start="20170703T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="23" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="25" name="New board release" note="" work="0" start="20170731T000000Z" end="20170731T000000Z" work-start="20170731T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20170731T000000Z"/>
+    </task>
+    <task id="26" name="Hypervisor first release" note="" work="0" start="20170831T000000Z" end="20170831T000000Z" work-start="20170831T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20170831T000000Z"/>
       <predecessors>
         <predecessor id="1" predecessor-id="24" type="FS"/>
       </predecessors>
     </task>
-    <task id="26" name="New board release" note="" work="0" start="20170731T000000Z" end="20170731T000000Z" work-start="20170731T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20170731T000000Z"/>
-    </task>
-    <task id="27" name="Hypervisor first release" note="" work="0" start="20170831T000000Z" end="20170831T000000Z" work-start="20170831T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20170831T000000Z"/>
+    <task id="27" name="Secure OS on hypervisor" note="" work="604800" start="20170830T170000Z" end="20170928T170000Z" work-start="20170831T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
-        <predecessor id="1" predecessor-id="25" type="FS"/>
+        <predecessor id="1" predecessor-id="24" type="FS"/>
       </predecessors>
     </task>
-    <task id="28" name="Secure OS on hypervisor" note="" work="604800" start="20170830T170000Z" end="20170928T170000Z" work-start="20170831T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="28" name="Secure OS functions" note="" work="604800" start="20170928T170000Z" end="20171027T170000Z" work-start="20170929T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
-        <predecessor id="1" predecessor-id="25" type="FS"/>
+        <predecessor id="1" predecessor-id="27" type="FS"/>
       </predecessors>
     </task>
-    <task id="29" name="Secure OS functions" note="" work="604800" start="20170928T170000Z" end="20171027T170000Z" work-start="20170929T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="29" name="CES 2018" note="" work="0" start="20180117T000000Z" end="20180117T000000Z" work-start="20180117T080000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20180117T000000Z"/>
       <predecessors>
         <predecessor id="1" predecessor-id="28" type="FS"/>
       </predecessors>
     </task>
     <task id="30" name="VeriFast on production" note="" work="604800" start="20170427T170000Z" end="20170526T170000Z" work-start="20170428T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
-        <predecessor id="1" predecessor-id="22" type="FS"/>
+        <predecessor id="1" predecessor-id="21" type="FS"/>
       </predecessors>
     </task>
     <task id="31" name="Survey VeriFast internal" note="" work="864000" start="20170526T170000Z" end="20170707T170000Z" work-start="20170529T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
