@@ -131,10 +131,9 @@ feedConfiguration = FeedConfiguration
 
 pandocOptions :: WriterOptions
 pandocOptions = defaultHakyllWriterOptions
-    { writerTableOfContents = True
-    , writerTemplate = "<h2>Table of contents</h2>\n$toc$\n<hr>\n$body$"
-    , writerStandalone = True
-    }
+        { writerTableOfContents = True
+        , writerTemplate        = Just "<h2>Table of contents</h2>\n$toc$\n<hr>\n$body$"
+        }
 
 --------------------------------------------------------------------------------
 postCtx :: Tags -> Context String
