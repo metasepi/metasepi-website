@@ -1,5 +1,7 @@
 # Past Supporters
 
+* 2016-2017: [SELTECH CORPORATION ![](/img/LOGO_SELTECH_152x25.png)](http://seltech.co.jp/en/)
+* 2014-2017: [RIKEN AICS ![](/img/riken-logo_55x25.png)](http://www.aics.riken.jp/en/)
 * 2016: [Life Robotics Inc. ![](/img/liferobotics-logo_57x25.png)](https://liferobotics.jp/)
 * 2015-2016: [Centillion Japan Co.,Ltd. ![](/img/centillion_78x25.png)](http://www.centillion.co.jp/)
 * 2014-2015: [IT Planning, Inc. ![](/img/it_planning_108x20.png)](http://www.itpl.co.jp/en/)
