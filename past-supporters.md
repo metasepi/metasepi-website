@@ -1,5 +1,7 @@
 # Past Supporters
 
+* 2016-2017: [STMicroelectronics ![](/img/stlogo_x25.png)](http://www.st.com/)
+* 2017: [wolfSSL ![](/img/wolf-logo-x25.png)](https://www.wolfssl.com/)
 * 2016-2017: [SELTECH CORPORATION ![](/img/LOGO_SELTECH_152x25.png)](http://seltech.co.jp/en/)
 * 2014-2017: [RIKEN AICS ![](/img/riken-logo_55x25.png)](http://www.aics.riken.jp/en/)
 * 2016: [Life Robotics Inc. ![](/img/liferobotics-logo_57x25.png)](https://liferobotics.jp/)
