@@ -13,7 +13,7 @@ If you are using Windows or Linux, you must buy [SyncStitch with only 64,800 JPY
 ## About CSP and SyncStitch
 
 We had "SyncStitch hands-on" on [静的コード解析の会](https://metasepi.connpass.com/event/88027/) at [Tokyo](https://en.wikipedia.org/wiki/Tokyo).
-This hands-on purpose is that introduce [CSP (Communicating Sequential Processes)](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and use [SyncStitch](https://www.principia-m.com/syncstitch/) to get modeling on [concurrent systems](https://en.wikipedia.org/wiki/Concurrency_(computer_science)).
+This hands-on purpose is to introduce [CSP (Communicating Sequential Processes)](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and use [SyncStitch](https://www.principia-m.com/syncstitch/) to get modeling on [concurrent systems](https://en.wikipedia.org/wiki/Concurrency_(computer_science)).
 
 On CSP, developer can write Specification model and split it into some Implementation models connected by channel.
 
@@ -75,8 +75,8 @@ port no:         50000
 $ syncstitch
 ```
 
-* You should show a green window which is SyncStitch GUI
-* Click the right button and select "New model"
+* You should show a green window which is the SyncStitch GUI
+* Click the right button of your mouse and select "New model"
 
 ![](/img/2018-10-15-new-model.png)
 
@@ -99,6 +99,7 @@ xxx 続きを書く
 ## More
 
 Please read `SyncStitch-linux/doc/SyncStitch_Users_Guide.pdf`.
+You can feel free to tweet with [hastsugai](https://twitter.com/hatsugai), or e-mail isaac@principia-m.com.
 
 ## Copyright of this blog post
 
