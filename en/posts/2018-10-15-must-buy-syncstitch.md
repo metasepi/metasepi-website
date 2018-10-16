@@ -1,5 +1,5 @@
 ---
-title: You must buy SyncStitch with only 64,800 JPY!
+title: (UnderConstruction) You must buy SyncStitch with only 64,800 JPY!
 description: Dive into CSP (Communicating Sequential Processes) modeling.
 tags: csp, modeling
 ---
@@ -94,7 +94,7 @@ $ syncstitch
 
 ![](/img/2018-10-15-open-stack-queue.png)
 
-xxx 続きを書く
+xxx UnderConstruction
 
 ## More
 
