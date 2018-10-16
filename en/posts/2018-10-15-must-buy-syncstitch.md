@@ -1,5 +1,5 @@
 ---
-title: (UnderConstruction) You must buy SyncStitch with only 64,800 JPY!
+title: You must buy SyncStitch with only 64,800 JPY!
 description: Dive into CSP (Communicating Sequential Processes) modeling.
 tags: csp, modeling
 ---
@@ -62,7 +62,7 @@ $ vi $HOME/.syncstitch
 * Run `ssgsvr`
 
 ```shell
-$ ssgsvr
+$ (cd $HOME/bin/SyncStitch-linux/bin && ./ssgsvr)
 num_workers:     1
 heap_size (GiB): 1
 hashtable size:  4000037
@@ -92,9 +92,19 @@ $ syncstitch
 
 * Open `SyncStitch-linux/models/stack_queue.ss` file
 
-![](/img/2018-10-15-open-stack-queue.png)
+![](/img/2018-10-15-open-ringbuf_sem.png)
 
-xxx UnderConstruction
+* You should show Process list and Assertions
+
+![](/img/2018-10-15-ringbuf_sem-windows.png)
+
+* Click the right button of your mouse and select "checkall"
+
+![](/img/2018-10-15-ringbuf_sem-checkall.png)
+
+* You should show that the ring buffer `SYSTEM` is soundness in CSP!
+
+![](/img/2018-10-15-ringbuf_sem-checked.png)
 
 ## More
 
