@@ -2,7 +2,7 @@
 
 ## Gantt chart
 
-* Metasepi Bohai/Chiers Plan / [html](/plan/metasepi-chiers-bohai.html), [planner](/plan/metasepi-chiers-bohai.planner)
+* Metasepi Bohai/Chiers Plan (old) / [html](/plan/metasepi-chiers-bohai.html), [planner](/plan/metasepi-chiers-bohai.planner)
 * Metasepi Bohai Plan (old) / [html](/plan/metasepi-bohai.html), [planner](/plan/metasepi-bohai.planner)
 * Metasepi Arafura Plan (old) / [html](/plan/metasepi-arafura.html), [planner](/plan/metasepi-arafura.planner)
 
@@ -10,25 +10,25 @@
 
 ### Danvers
 
-* Phase: Learning
-* Language: [Verilog](https://en.wikipedia.org/wiki/Verilog)
-* Design: HDL captures system calls
+* Phase: Not yet touch
+* Language: [Chisel](https://chisel.eecs.berkeley.edu/), [Verilog](https://en.wikipedia.org/wiki/Verilog)
+* Design: System call caught by HDL
 * Product: None
 * Demo: None
 * Paper: None
 
 ### Chiers
 
-* Phase: Learning
-* Language: [C](https://en.wikipedia.org/wiki/C_(programming_language))
-* Design: Apply annotation to NetBSD kernel using [VeriFast](https://people.cs.kuleuven.be/~bart.jacobs/verifast/)
+* Phase: Closed
+* Language: [C](https://en.wikipedia.org/wiki/C_(programming_language)) verified by [VeriFast](https://people.cs.kuleuven.be/~bart.jacobs/verifast/)
+* Design: Apply annotation to NetBSD kernel
 * Product: None
-* Demo: [Verify sample application on ChibiOS/RT using VeriFast](https://github.com/fpiot/chibios-verifast)
+* Demo: [Verify sample application on ChibiOS/RT using VeriFast](https://github.com/fpiot/chibios-verifast), [Trying FreeRTOS using VeriFast](https://github.com/metasepi/amazon-freertos)
 * Paper: None
 
 ### Bohai
 
-* Phase: Learning
+* Phase: Re-training
 * Language: [ATS](http://www.ats-lang.org/)
 * Design: Snatch NetBSD kernel using ATS
 * Product: [c2ats](https://github.com/metasepi/c2ats)
