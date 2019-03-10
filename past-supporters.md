@@ -1,5 +1,7 @@
 # Past Supporters
 
+* 2018: [Shinkawa Ltd. ![](/img/shinkawa_logo.png)](https://www.shinkawa.com/en/)
+* 2018: [KYUSHU UNIVERSITY ![](/img/qlogo_x25.png)](http://www.kyushu-u.ac.jp/en/)
 * 2016-2017: [STMicroelectronics ![](/img/stlogo_x25.png)](http://www.st.com/)
 * 2017: [wolfSSL ![](/img/wolf-logo-x25.png)](https://www.wolfssl.com/)
 * 2016-2017: [SELTECH CORPORATION ![](/img/LOGO_SELTECH_152x25.png)](http://seltech.co.jp/en/)
