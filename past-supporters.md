@@ -1,5 +1,7 @@
 # Past Supporters
 
+* 2019: [tabasconian ![](/img/yksym_t.png)](https://twitter.com/yksym_t)
+* 2018-2019: [Keigo Imai ![](/img/keigoi.png)](https://twitter.com/keigoi)
 * 2018: [Shinkawa Ltd. ![](/img/shinkawa_logo.png)](https://www.shinkawa.com/en/)
 * 2018: [KYUSHU UNIVERSITY ![](/img/qlogo_x25.png)](http://www.kyushu-u.ac.jp/en/)
 * 2016-2017: [STMicroelectronics ![](/img/stlogo_x25.png)](http://www.st.com/)

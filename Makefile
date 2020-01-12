@@ -38,7 +38,7 @@ build: # ${EPOSTS}
 	stack run metasepi-website build
 
 server: all
-	stack run metasepi-website preview
+	stack run metasepi-website server
 
 publish: all
 	cp -pr _site/* ~/doc/metasepi.github.io/
@@ -47,6 +47,7 @@ lint: src/Main.hs
 	hlint -c src/Main.hs
 
 clean:
+	stack run metasepi-website clean
 	stack clean
 	rm -rf _site.tar.gz
 	rm -rf *.hi *.o
