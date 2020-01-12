@@ -2,9 +2,11 @@
 *.hi
 *.o
 *~
-hakyll
-_site.tar.gz
+.stack-work
 _cache/
+_site.tar.gz
 _site/
 draft/
+hakyll
 revhs/
+stack.yaml.lock

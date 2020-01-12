@@ -33,28 +33,26 @@ all: ${PNGS} ${PDFS} build
 #en/posts/%.md: posts/%.md po/en.po
 #	po4a-translate -M utf8 -f text -m $< -p po/en.po -l $@
 
-hakyll: hakyll.hs
-	ghc --make -Wall -Werror hakyll.hs -o hakyll
-
-build: hakyll # ${EPOSTS}
-	./hakyll build
+build: # ${EPOSTS}
+	stack build
+	stack run metasepi-website build
 
 server: all
-	./hakyll preview
+	stack run metasepi-website preview
 
 publish: all
 	cp -pr _site/* ~/doc/metasepi.github.io/
 
-lint: hakyll.hs
-	hlint -c hakyll.hs
+lint: src/Main.hs
+	hlint -c src/Main.hs
 
 clean:
-	-./hakyll clean
-	rm -rf hakyll _site.tar.gz
+	stack clean
+	rm -rf _site.tar.gz
 	rm -rf *.hi *.o
 	rm -rf `find . -name "*~"`
 
 distclean: clean
 	rm -f draw/*.png draw/*.tmp doc/*.pdf doc/*.tmp
 
-.PHONY: lint clean updatepo
+.PHONY: all build server publish lint clean distclean updatepo

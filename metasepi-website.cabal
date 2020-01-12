@@ -1,0 +1,25 @@
+Name:               metasepi-website
+Version:            0.1.0.0
+Synopsis:           Metasepi website
+Description:        Metasepi website
+Homepage:           http://metasepi.org/
+Author:             Metasepi term
+Maintainer:         metasepi@gmail.com
+Category:           Web
+Build-type:         Simple
+Cabal-version:      >= 1.8
+
+Executable metasepi-website
+  Main-is:        Main.hs
+  Ghc-options:    -Wall
+  Hs-source-dirs: src
+
+  Build-depends:
+    base      >= 4.6  && < 5,
+    binary    >= 0.5  && < 0.9,
+    directory >= 1.2  && < 1.4,
+    filepath  >= 1.3  && < 1.5,
+    hakyll    >= 4.10 && < 4.14,
+    pandoc    >= 2.0  && < 2.8,
+    process   >= 1.6  && < 1.7,
+    text      >= 1.2  && < 1.3
