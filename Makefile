@@ -38,7 +38,7 @@ build: # ${EPOSTS}
 	stack run metasepi-website build
 
 server: all
-	stack run metasepi-website server
+	stack run metasepi-website watch
 
 publish: all
 	cp -pr _site/* ~/doc/metasepi.github.io/
