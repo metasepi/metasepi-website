@@ -352,27 +352,76 @@ The following are in this pattern:
 This pattern could be only avoided by ATS2.
 [VeriFast does not yet avoided these.](https://groups.google.com/g/verifast/c/vJUViRAQbkI/m/1uSJJ-VOBAAJ)
 
-xxx Explain it
+Original vulnerabilities in C language are caused with returning uninitialized value to user space such as following:
 
-And ATS2 also has a limitation that can't capture error on polymorphic function such as following:
+```c
+typedef struct thrmisc {
+    char	pr_tname[MAXCOMLEN+1]; // <= `bzero` doesn't initialize this
+    u_int	_pad;
+} thrmisc_t;
+typedef thrmisc_t elf_thrmisc_t;
+
+static void
+__elfN(note_thrmisc)(void *arg, struct sbuf *sb, size_t *sizep)
+{
+	struct thread *td;
+	elf_thrmisc_t thrmisc; // <= allocate in kernel stack
+
+	td = (struct thread *)arg;
+	if (sb != NULL) {
+		KASSERT(*sizep == sizeof(thrmisc), ("invalid size"));
+		bzero(&thrmisc._pad, sizeof(thrmisc._pad));
+		strcpy(thrmisc.pr_tname, td->td_name);
+		sbuf_bcat(sb, &thrmisc, sizeof(thrmisc)); // <= return uninitialized value to user space
+```
+
+Above code causes run-time error, which is hard to be found on coding review.
+
+ATS2 can avoid this vulnerabilities.
+If you forget to return uninitialized value to user space such as following,
 
 ```ats
-typedef elf_thrmisc_t = @{ pr_tname = char, _pad = uint }
-
-fun bzero {a:vt@ype}{l:addr} (pf: !a? @ l >> a @ l | p: ptr l): void =
-  undefined()
-
-fun sbuf_bcat {a:vt@ype}{l:addr} (pf: !a @ l | p: ptr l): void =
-  undefined()
+typedef elf_thrmisc_t = @{
+  pr_tname = char, // <= `bzero` doesn't initialize this
+  _pad = uint
+}
 
 fun sbuf_bcat_thrmisc {l:addr} (pf: !elf_thrmisc_t @ l | p: ptr l): void =
-  sbuf_bcat(pf | p)
+  undefined()
 
 fun note_thrmisc(): void = {
   var thrmisc: elf_thrmisc_t
   prval pf_thrmisc_pad = view@thrmisc._pad
   val addr_thrmisc_pad = addr@thrmisc._pad
-  val () = bzero(pf_thrmisc_pad | addr_thrmisc_pad) // Initialize only `_pad` member
+  val () = bzero(pf_thrmisc_pad | addr_thrmisc_pad)
+  prval () = view@thrmisc._pad := pf_thrmisc_pad
+
+  prval pf_thrmisc = view@thrmisc
+  val addr_thrmisc = addr@thrmisc
+  val () = sbuf_bcat_thrmisc(pf_thrmisc | addr_thrmisc) // <= return uninitialized value to user space
+  prval () = view@thrmisc:= pf_thrmisc
+}
+```
+
+then ATS2 compiler causes compile error.
+It means you can notice this bug before shipping.
+You can try to see the compile result on your PC as following:
+
+```shell
+$ (cd postmortem/Security-Advisory/FreeBSD-kernel/FreeBSD-SA-20:03.thrmisc/Resolution/ATS2 && make)
+```
+
+But ATS2 has a limitation that can't capture error on polymorphic function such as following:
+
+```ats
+fun sbuf_bcat {a:vt@ype}{l:addr} (pf: !a @ l | p: ptr l): void =
+  undefined()
+
+fun note_thrmisc(): void = {
+  var thrmisc: elf_thrmisc_t
+  prval pf_thrmisc_pad = view@thrmisc._pad
+  val addr_thrmisc_pad = addr@thrmisc._pad
+  val () = bzero(pf_thrmisc_pad | addr_thrmisc_pad)
   prval () = view@thrmisc._pad := pf_thrmisc_pad
 
   prval pf_thrmisc = view@thrmisc
@@ -382,10 +431,11 @@ fun note_thrmisc(): void = {
 }
 ```
 
-It correctly causes compile error, if you use `sbuf_bcat_thrmis` function instead of polymorphic `sbuf_bcat` function.
-This limitation should be fixed on future, because there are many system calls to read from kernel space.
+Above code doesn't cause any compile error.
+But it correctly causes compile error, if you use `sbuf_bcat_thrmis` function instead of polymorphic `sbuf_bcat` function.
+This limitation should be fixed on future, because there are many system calls to read data from kernel space.
 As an example, please imagine [read(2)](https://www.freebsd.org/cgi/man.cgi?query=read&sektion=2) system call,
-which is a polymorphic function and should only return initialized values from any device.
+which is undoubtedly a polymorphic function and should only return initialized values from any device.
 
 ## Discussion
 
