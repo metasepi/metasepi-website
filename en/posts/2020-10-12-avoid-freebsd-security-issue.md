@@ -104,7 +104,7 @@ m_dispose_extcontrolm(struct mbuf *m)
 				}
 ```
 
-Above code causes run-time error, which is hard to be found.
+Above code causes run-time error, which is hard to be found on coding review.
 
 ATS2 can avoid this vulnerabilities.
 If you forget to free memory such as following,
@@ -183,7 +183,70 @@ The following are in this pattern:
 
 This pattern could be avoided by both ATS2 and VeriFast.
 
-xxx Explain it
+Original vulnerability in C language is caused with forgetting to lock structure such as following:
+
+```c
+int
+ip6_ctloutput(struct socket *so, struct sockopt *sopt)
+{
+// --snip--
+				INP_WLOCK(inp);
+				error = ip6_pcbopts(&inp->in6p_outputopts, m,
+				    so, sopt);
+				INP_WUNLOCK(inp);
+```
+
+Above code causes run-time error, which is hard to be found on coding review.
+
+ATS2 can avoid this vulnerabilities.
+If you forget to lock structure such as following,
+
+```ats
+implement ip6_ctloutput(sh) = let
+    // val (pfl, pf | x) = shared_lock{ip6_pktopts}(sh) // <= Forget calling
+    val error = ip6_pcbopts(pf | x)
+    // val () = shared_unlock(pfl, pf | sh, x) // <= Forget calling
+  in
+    error
+  end
+```
+
+then ATS2 compiler causes compile error.
+It means you can notice this bug before shipping.
+You can try to see the compile result on your PC as following:
+
+```shell
+$ (cd postmortem/Security-Advisory/FreeBSD-kernel/FreeBSD-SA-20:20.ipv6/Resolution/ATS2 && make)
+```
+
+VeriFast can also avoid this vulnerabilities.
+If you forget to lock structure such as following,
+
+```c
+int ip6_ctloutput(struct inpcb *inp)
+    //@ requires thread_run_data(ip6_thread)(inp);
+    //@ ensures thread_run_data(ip6_thread)(inp);
+{
+    int error;
+    //@ open thread_run_data(ip6_thread)(inp);
+    struct mutex *m = inp->mutex;
+    // mutex_acquire(m); // <= Forget calling
+    // //@ open inpcb(inp)();
+    error = ip6_pcbopts(&inp->in6p_outputopts);
+    // //@ close inpcb(inp)();
+    // mutex_release(m); // <= Forget calling
+    //@ close thread_run_data(ip6_thread)(inp);
+    return error;
+}
+```
+
+then VeriFast verifier find it on verification.
+It means you can notice this bug before shipping.
+You can try to see the verification result on your PC as following:
+
+```shell
+$ (cd postmortem/Security-Advisory/FreeBSD-kernel/FreeBSD-SA-20:20.ipv6/Resolution/VeriFast && make)
+```
 
 ### Pattern C: miss-use reference counting
 
@@ -193,7 +256,90 @@ The following are in this pattern:
 
 This pattern could be avoided by both ATS2 and VeriFast.
 
-xxx Explain it
+Original vulnerability in C language is caused with freeing when `refcount > 1` such as following:
+
+```c
+int
+sctp_insert_sharedkey(struct sctp_keyhead *shared_keys,
+    sctp_sharedkey_t *new_skey)
+{
+// --snip--
+			if ((skey->deactivated) && (skey->refcount > 1)) {
+				SCTPDBG(SCTP_DEBUG_AUTH1,
+				    "can't replace shared key id %u\n",
+				    new_skey->keyid);
+				return (EBUSY);
+			}
+			SCTPDBG(SCTP_DEBUG_AUTH1,
+			    "replacing shared key id %u\n",
+			    new_skey->keyid);
+			LIST_INSERT_BEFORE(skey, new_skey, next);
+			LIST_REMOVE(skey, next);
+			sctp_free_sharedkey(skey); // Free `skey` if `refcount > 1`
+			return (0);
+```
+
+Above code causes run-time error, which is hard to be found on coding review.
+
+ATS2 can avoid this vulnerabilities.
+If you try to free `skey` when `refcount > 1` such as following,
+
+```ats
+fun sctp_insert_sharedkey {l:addr}{r:int} (pf_skey: !sctp_shared_key(r) @ l >> option_v (sctp_shared_key(r) @ l, n != 0) | skey: ptr l): #[n:int] int n =
+  if (!skey.deactivated != 0) * (!skey.refcount > 1) // `*` operator means `&&`
+  then let
+      prval () = pf_skey := Some_v pf_skey
+    in
+      EBUSY
+    end
+  else let
+      // Insert new_skey
+      val () = sctp_free_sharedkey(pf_skey | skey) // Free `skey` if `refcount > 1`
+      prval () = pf_skey := None_v ()
+    in
+      0
+    end
+```
+
+then ATS2 compiler causes compile error.
+It means you can notice this bug before shipping.
+You can try to see the compile result on your PC as following:
+
+```shell
+$ (cd postmortem/Security-Advisory/FreeBSD-kernel/FreeBSD-SA-20:14.sctp/Resolution/ATS2 && make)
+```
+
+VeriFast can also avoid this vulnerabilities.
+If you forget to free `skey` when `refcount > 1` such as following,
+
+```c
+int sctp_insert_sharedkey(sctp_sharedkey_t *skey)
+    //@ requires malloc_block_sctp_shared_key(skey) &*& skey->refcount |-> _ &*& skey->deactivated |-> _;
+    /*@
+    ensures
+        result == 0 ? // success
+           true
+        : // failure
+           malloc_block_sctp_shared_key(skey) &*& skey->refcount |-> _ &*& skey->deactivated |-> _
+        ;
+    @*/
+{
+    if ((skey->deactivated) && (skey->refcount > 1)) {
+        return EBUSY;
+    }
+    // Insert new_skey
+    sctp_free_sharedkey(skey); // Free `skey` if `refcount > 1`
+    return 0;
+}
+```
+
+then VeriFast verifier find it on verification.
+It means you can notice this bug before shipping.
+You can try to see the verification result on your PC as following:
+
+```shell
+$ (cd postmortem/Security-Advisory/FreeBSD-kernel/FreeBSD-SA-20:14.sctp/Resolution/VeriFast && make)
+```
 
 ### Pattern D: return uninitialized value
 
