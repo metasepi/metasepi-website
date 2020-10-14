@@ -1,6 +1,6 @@
 ---
-title: ATS2 and VeriFast avoid some of vulnerabilities on FreeBSD
-description: Vulnerabilities may be avoided, if it is written by ATS2 or verified by VeriFast.
+title: ATS2 and VeriFast avoid some of FreeBSD vulnerabilities
+description: We can mechanically avoid 16% of vulnerabilities without code review.
 tags: ats, verifast, security, vulnerability, freebsd, kernel, postmortem
 ---
 
@@ -448,8 +448,10 @@ Some of vulnerabilities (which is known Pattern D in this post) are only avoided
 VeriFast has not yet avoided that.
 
 We need much experience on real usage for ATS2 and VeriFast to introduce real kernel developments such as Linux and FreeBSD.
-Because existing kernel should be re-written by ATS2,
+Because for that, existing kernel needs be re-written by ATS2,
 or it needs so many [pseudo C language headers](/en/posts/2018-11-13-see-you-verifast.html) to be verified by VeriFast.
+
+And we should look for solutions other than ATS2 and VeriFast.
 
 ## Future works
 
