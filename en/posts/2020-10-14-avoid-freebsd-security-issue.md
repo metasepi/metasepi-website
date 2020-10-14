@@ -1,6 +1,6 @@
 ---
 title: ATS2 and VeriFast avoid some of FreeBSD vulnerabilities
-description: We can mechanically avoid 16% of vulnerabilities without code review.
+description: Mechanically avoid 16% of latest FreeBSD vulnerabilities without code review.
 tags: ats, verifast, security, vulnerability, freebsd, kernel, postmortem
 ---
 
