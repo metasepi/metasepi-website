@@ -7,6 +7,7 @@ tags: ats, verifast, security, vulnerability, freebsd, kernel, postmortem
 ## TL;DR
 
 After investigating latest 50 of the FreeBSD vulnerabilities, 8 of them could be avoided by the [ATS2 language](http://www.ats-lang.org/), and 5 of them could be avoided by the [VeriFast verifier](https://github.com/verifast/verifast).
+It means we can mechanically avoid **16%** of the latest vulnerabilities without human resource such as code review.
 
 ## Introduction
 
@@ -437,19 +438,33 @@ This limitation should be fixed on future, because there are many system calls t
 As an example, please imagine [read(2)](https://www.freebsd.org/cgi/man.cgi?query=read&sektion=2) system call,
 which is undoubtedly a polymorphic function and should only return initialized values from any device.
 
-## Discussion
+## Conclusion and Discussion
 
-xxx
+After investigating latest 50 of the FreeBSD vulnerabilities, 8 of them could be avoided by the ATS2 language, and 5 of them could be avoided by the VeriFast verifier.
+It means we can mechanically avoid **16%** of the latest vulnerabilities without human resource such as code review.
+This is a notable amount.
 
-## Conclusion
+Some of vulnerabilities (which is known Pattern D in this post) are only avoided by ATS2.
+VeriFast has not yet avoided that.
 
-xxx
+We need much experience on real usage for ATS2 and VeriFast to introduce real kernel developments such as Linux and FreeBSD.
+Because existing kernel should be re-written by ATS2,
+or it needs so many [pseudo C language headers](/en/posts/2018-11-13-see-you-verifast.html) to be verified by VeriFast.
 
 ## Future works
 
-* xxx Choose Rust as solution
-* xxx Choose some model checking method as solution
-* xxx Take more vulnerabilities of FreeBSD
+We will continue this project to understand the solutions to avoid vulnerabilities.
+
+Firstly, we will choose and compare following solutions instead of ATS2 and VeriFast:
+
+* [KreMLin](https://github.com/FStarLang/kremlin)
+* [Rust](https://www.rust-lang.org/)
+* [SPARK](https://www.adacore.com/about-spark)
+* [Zig](https://ziglang.org/)
+
+Secondly, we will know if formal methods such as model checking avoid vulnerabilities.
+
+Finally, we will take more FreeBSD vulnerabilities.
 
 ## Acknowledgements
 
