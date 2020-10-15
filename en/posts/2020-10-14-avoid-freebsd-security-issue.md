@@ -77,7 +77,7 @@ The annotation enforces safe memory usage.
 Instead of re-writing real kernel code, we wrote pseudo codes to establish that the solutions can avoid the vulnerabilities.
 The vulnerabilities avoided by the solutions are classified into the following four patterns.
 
-### Pattern A: forget to free memory
+### Pattern 1: forget to free memory
 
 The following are in this pattern:
 
@@ -176,7 +176,7 @@ You can try to see the verification result on your PC as following:
 $ (cd postmortem/Security-Advisory/FreeBSD-kernel/FreeBSD-SA-19:02.fd/Resolution/VeriFast && make)
 ```
 
-### Pattern B: forget to lock before using structure
+### Pattern 2: forget to lock before using structure
 
 The following are in this pattern:
 
@@ -249,7 +249,7 @@ You can try to see the verification result on your PC as following:
 $ (cd postmortem/Security-Advisory/FreeBSD-kernel/FreeBSD-SA-20:20.ipv6/Resolution/VeriFast && make)
 ```
 
-### Pattern C: miss-use reference counting
+### Pattern 3: miss-use reference counting
 
 The following are in this pattern:
 
@@ -342,7 +342,7 @@ You can try to see the verification result on your PC as following:
 $ (cd postmortem/Security-Advisory/FreeBSD-kernel/FreeBSD-SA-20:14.sctp/Resolution/VeriFast && make)
 ```
 
-### Pattern D: return uninitialized value
+### Pattern 4: return uninitialized value
 
 The following are in this pattern:
 
@@ -444,7 +444,7 @@ After investigating latest 50 of the FreeBSD vulnerabilities, 8 of them could be
 It means we can mechanically avoid **16%** of the latest vulnerabilities without human resource such as code review.
 This is a notable amount.
 
-Some of vulnerabilities (which is known Pattern D in this post) are only avoided by ATS2.
+Some of vulnerabilities (which is known Pattern 4 in this post) are only avoided by ATS2.
 VeriFast has not yet avoided that.
 
 We need much experience on real usage for ATS2 and VeriFast to introduce real kernel developments such as Linux and FreeBSD.
