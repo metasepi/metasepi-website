@@ -1,5 +1,6 @@
 # Past Supporters
 
+* 2019-2020: [QuantumCore ![](/img/qcore_158x25.png)](https://www.qcore.co.jp/)
 * 2019: [tabasconian ![](/img/yksym_t.png)](https://twitter.com/yksym_t)
 * 2018-2019: [Keigo Imai ![](/img/keigoi.png)](https://twitter.com/keigoi)
 * 2018: [Shinkawa Ltd. ![](/img/shinkawa_logo.png)](https://www.shinkawa.com/en/)
