@@ -12,11 +12,11 @@
 
 ## Iterations
 
-### Danvers
+### Doshi
 
-* Phase: Not yet touch
-* Language: [Chisel](https://chisel.eecs.berkeley.edu/), [Verilog](https://en.wikipedia.org/wiki/Verilog)
-* Design: System call caught by HDL
+* Phase: Planning
+* Language: New language
+* Design: Design new domain-specific language for device driver, RTOS, and bare metal code
 * Product: None
 * Demo: None
 * Paper: None

@@ -16,11 +16,11 @@ Finally, study the actual results before closing the iteration.
 
 ![](img/200px-PDCA_Cycle.svg.png)
 
-## What is Danvers design?
+## What is Doushi design?
 
 4th code name of a Metasepi's design.
-And it's a river which runs near by [DEC](https://en.wikipedia.org/wiki/Digital_Equipment_Corporation) as the author of [PDP-11](https://en.wikipedia.org/wiki/PDP-11).
-Detail of Danvers design is found at [Map page](map.html#danvers).
+And it's a river which runs with the hometown of [Laid-Back Camp](https://en.wikipedia.org/wiki/Laid-Back_Camp).
+Detail of Danvers design is found at [Map page](map.html#doshi).
 
 ## What is Chiers design?
 
