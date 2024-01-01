@@ -1,5 +1,7 @@
 # Past Supporters
 
+* 2023: [VA Linux Systems Japan K.K. ![](/img/valinux_117x25.png)](https://www.valinux.co.jp/)
+* 2022-2023: [SYSTEM I ![](/img/systemi_22x25.png)](https://systemi.co.jp/)
 * 2021-2022: [NXP Japan Ltd. ![](/img/nxp_69x25.png)](https://www.nxp.jp)
 * 2020-2021: [Donuts Co. Ltd. ![](/img/donuts_76x25.png)](https://www.donuts.ne.jp/)
 * 2019-2020: [QuantumCore ![](/img/qcore_158x25.png)](https://www.qcore.co.jp/)
