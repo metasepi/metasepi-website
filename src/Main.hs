@@ -24,31 +24,12 @@ main = hakyll $ do
   tags <- buildTags "posts/*.md" (fromCapture "tags/*.html" . map toLower)
   tagsEn <- buildTags "en/posts/*.md" (fromCapture "en/tags/*.html" . map toLower)
 
-  match ("posts/*.md") $ do
-    route $ setExtension "html"
-    compile $ pandocCompilerWith defaultHakyllReaderOptions pandocOptions
-      >>= loadAndApplyTemplate "templates/post.html"    (postCtx tags)
-      >>= loadAndApplyTemplate "templates/default.html" (postCtx tags)
-      >>= relativizeUrls
-
   match ("en/posts/*.md") $ do
     route $ setExtension "html"
     compile $ pandocCompilerWith defaultHakyllReaderOptions pandocOptions
       >>= loadAndApplyTemplate "templates/post.html"    (postCtx tagsEn)
       >>= loadAndApplyTemplate "templates/default.html" (postCtx tagsEn)
       >>= relativizeUrls
-
-  create ["posts.html"] $ do
-        route idRoute
-        compile $ do
-            let archiveCtx =
-                  field "posts" (\_ -> postList tags "posts/*.md" recentFirst) `mappend`
-                  constField "title" "Blog posts (Old & Japanese)"              `mappend`
-                  defaultContext
-            makeItem ""
-                >>= loadAndApplyTemplate "templates/posts.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/default.html" archiveCtx
-                >>= relativizeUrls
 
   create ["en/posts.html"] $ do
         route idRoute
