@@ -3,8 +3,6 @@
 
 [http://www.flickr.com/groups/metasepi/](http://www.flickr.com/groups/metasepi/)
 
-<div id="PictoBrowser140123155327">Get the flash player here: http://www.adobe.com/flashplayer</div><script type="text/javascript" src="http://www.db798.com/pictobrowser/swfobject.js"></script><script type="text/javascript">var so = new SWFObject("http://www.db798.com/pictobrowser.swf", "PictoBrowser", "500", "500", "8", "#DDDDDD"); so.addParam("quality", "low"); so.addParam("scale", "noscale"); so.addParam("align", "mid"); so.addVariable("ids", "2135433@N24"); so.addVariable("names", "Metasepi"); so.addVariable("userName", "masterq"); so.addVariable("userId", "49071064@N00"); so.addVariable("source", "groups"); so.write("PictoBrowser140123155327");	</script>
-
 ## Contributors
 
 ### [\@nushio](https://twitter.com/nushio)
