@@ -72,15 +72,6 @@ main = hakyll $ do
         >>= loadAndApplyTemplate "templates/default.html" defaultContext
         >>= relativizeUrls
 
-  create ["rss.xml"] $ do
-    route idRoute
-    compile $ do
-      let feedCtx = dateField "date" "%B %e, %Y"
-                      `mappend` defaultContext
-                      `mappend` constField "description" "This is the post description"
-      posts <- fmap (take 10) . recentFirst =<< loadAll "posts/*"
-      renderAtom (feedConfiguration {feedTitle = "Metasepi Blog (Old & Japanese)"}) feedCtx posts
-
   create ["rss_en.xml"] $ do
     route idRoute
     compile $ do
