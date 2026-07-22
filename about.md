@@ -2,19 +2,15 @@
 
 ## What is Metasepi?
 
-Challenge to create a free software Unix-like operating system designed with strong type.
+Challenge to create a open source Unix-like operating system designed with strong type.
 
-![](img/metasepi_logo_v1_200x200.png)
-
-Photo: [Copyright (C) 2007 Silke Baron All Rights Reserved](http://www.flickr.com/photos/silkebaron/931247866/).
+![](img/metasepi_logo_v3_200x200.png)
 
 ## How do you get it?
 
 Use [iterative development](http://en.wikipedia.org/wiki/Iterative_and_incremental_development).
 First, we choose language and development method as design, then develop OS for testing with the design.
 Finally, study the actual results before closing the iteration.
-
-![](img/200px-PDCA_Cycle.svg.png)
 
 ## What is Doushi design?
 
