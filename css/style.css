@@ -250,6 +250,51 @@ aside#sidebar {
 
 /* ==|== media queries ====================================================== */
 
+/*
+ * Mobile navigation
+ *
+ * The desktop header has a fixed height of 40px.  On narrow screens the
+ * navigation no longer fits beside the brand and falls below the header,
+ * leaving white links on the white page background.
+ */
+@media only screen and (max-width: 767px) {
+    .topbar {
+        height: auto;
+        min-height: 40px;
+    }
+
+    .topbar .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .topbar .brand {
+        float: none;
+        padding: 8px 20px;
+    }
+
+    .topbar .nav {
+        display: flex;
+        float: none;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 10px 8px;
+    }
+
+    .topbar .nav li {
+        display: block;
+        margin: 0;
+        padding: 0;
+    }
+
+    .topbar .nav a {
+        display: block;
+        padding: 5px 10px;
+    }
+}
+
 @media only screen and (min-width: 480px) {
 
 
