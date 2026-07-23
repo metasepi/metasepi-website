@@ -18,6 +18,8 @@ Finally, study the actual results before closing the iteration.
 And it's a river which runs with the hometown of [Laid-Back Camp](https://en.wikipedia.org/wiki/Laid-Back_Camp).
 Detail of Danvers design is found at [Map page](map.html#doshi).
 
+![](img/Doushi_river.png)
+
 ## What is Chiers design?
 
 3rd code name of a Metasepi's design.
