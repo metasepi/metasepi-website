@@ -16,7 +16,7 @@ Finally, study the actual results before closing the iteration.
 
 4th code name of a Metasepi's design.
 And it's a river which runs with the hometown of [Laid-Back Camp](https://en.wikipedia.org/wiki/Laid-Back_Camp).
-Detail of Danvers design is found at [Map page](map.html#doshi).
+Detail of Doushi design is found at [Map page](map.html#doshi).
 
 ![](img/Doushi_river.png)
 
