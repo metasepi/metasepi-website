@@ -2,24 +2,19 @@
 <div class="info">Posted on $date$ / Tags: $tags$</div>
 $body$
 <p>
-  <div id="disqus_thread"></div>
-  <script type="text/javascript">
-    var disqus_shortname = 'metasepi';
-    var disqus_identifier = '$url$';
-    var disqus_url = 'https://metasepi.org' + '$url$';
-    var disqus_title = '$title$';
-    var disqus_developer = 1;
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the 
-    <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-  <a href="http://disqus.com" class="dsq-brlink">
-    blog comments powered by <span.logo-disqus>Disqus</span>
-  </a>
+<script src="https://giscus.app/client.js"
+        data-repo="metasepi/metasepi-website"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkxMjgyMzQ5Nw=="
+        data-category="[ENTER CATEGORY NAME HERE]"
+        data-category-id="[ENTER CATEGORY ID HERE]"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
 </p>
