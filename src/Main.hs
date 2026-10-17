@@ -3,6 +3,7 @@
 import Data.Char     (toLower)
 import Hakyll
 import Text.Pandoc
+import Data.Text     (Text)
 
 main :: IO ()
 main = hakyll $ do
@@ -104,8 +105,16 @@ feedConfiguration = FeedConfiguration
 pandocOptions :: WriterOptions
 pandocOptions = defaultHakyllWriterOptions
         { writerTableOfContents = True
-        , writerTemplate        = Just "<h2>Table of contents</h2>\n$toc$\n<hr>\n$body$"
+        , writerTemplate        = Just tocTemplate
         }
+
+tocTemplate :: Text.Pandoc.Template Text
+tocTemplate =
+    either error id $ either (error . show) id $
+        runPure $
+            runWithDefaultPartials $
+                Text.Pandoc.compileTemplate ""
+                    "<h2>Table of contents</h2>\n$toc$\n<hr>\n$body$"
 
 --------------------------------------------------------------------------------
 postCtx :: Tags -> Context String
