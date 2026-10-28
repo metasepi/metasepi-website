@@ -98,8 +98,8 @@ feedConfiguration = FeedConfiguration
   { feedTitle       = "Metasepi Blog"
   , feedDescription = "A diary to develop Metasepi kernel."
   , feedAuthorName  = "Kiwamu Okabe"
-  , feedAuthorEmail = "kiwamu@debian.or.jp"
-  , feedRoot        = "http://metasepi.org/"
+  , feedAuthorEmail = "kiwamu@metasepi.org"
+  , feedRoot        = "https://metasepi.org/"
   }
 
 pandocOptions :: WriterOptions
